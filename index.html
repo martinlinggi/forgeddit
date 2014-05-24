@@ -8,13 +8,77 @@
 <body>
    <div id="header">
        <div id="logo"></div>
+       <div id="adverts"></div>
+   </div>
+
+   <div id="navigation">
+       <div id="menu">
+           <ul>
+               <li><a href="#">Popular</a></li>
+               <li><a href="#">New</a></li>
+               <li><a href="#">Ascending</a></li>
+               <li><a href="#">About</a></li>
+           </ul>
+       </div>
+       <div id="signIn">
+           <ul>
+               <li><a href="#">Create free account</a></li>
+               <li><a href="#">Sign in</a></li>
+           </ul>
+       </div>
+       <div id="search">
+           <form>
+               <input type="text" id="searchText" placeholder="Search Forgeddit">
+               <input type="button" id="doSearch" value="Search">
+           </form>
+       </div>
    </div>
 
    <div id="content">
-       Content to be defined here....
+       <div id="LinkBox">
+           <table id="linkTable">
+               <thead>
+               <tr>
+                   <td>Rate</td>
+                   <td>Title/Abstract</td>
+                   <td>Submitted</td>
+                   <td>To</td>
+                   <td>Comments</td>
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+                   <td><a href="#">-</a> 3 <a href="#">+</a></td>
+                   <td><a href="#">You miss 100% of the shots you don't take</a></td>
+                   <td>9 hours ago</td>
+                   <td><a href="#">/r/funny</a></td>
+                   <td><a href="#">15</a></td>
+               </tr>
+               </tbody>
+           </table>
+       </div>
+       <div id="add">
+           <div id="addLink">
+               <form>
+                   <label for="linkTitle">Title</label>
+                   <input type="text" id="linkTitle" placeholder="Enter title">
+                   <label for="link">Link</label>
+                   <input type="text" id="link" placeholder="Enter link">
+                   <input type="button" id="sendLink" value="Send Link">
+               </form>
+           </div>
+           <div id="addText">
+               <form>
+                   <label for="textTitle">Title</label>
+                   <input type="text" id="textTitle" placeholder="Enter title">
+                   <label for="text">Text</label>
+                   <input type="text" id="text" placeholder="Enter text">
+                   <input type="button" id="sendText" value="Send text">
+               </form>
+           </div>
+       </div>
    </div>
 
-   <div id="LinkBox"></div>
 
    <script src="forgeddit.js"></script>
 </body>
