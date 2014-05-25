@@ -4,3 +4,48 @@
     width:304px;
     background-image: url("img/ForgeddIt-Logo.png");
 }
+
+body {
+    font-size: 1.0em;
+    line-height: 170%;
+    font-family: Helvetica, Verdana, sans-serif;
+}
+
+#content {
+    height: 1%;
+    overflow: auto;
+}
+
+#content,
+#navigation,
+#header,
+#footer {
+    width: 768px;
+    margin: auto;
+}
+
+#linkBox {
+    float: left;
+    width: 598px;
+}
+
+#addEntry,
+#search {
+    margin-left: 608px;
+}
+
+#footer {
+    clear: both;
+}
+
+#menu ul{
+    padding: 0;
+}
+
+#menu li,
+#signIn li
+{
+    float: left;
+    list-style: none;
+    margin-right: 10px;
+}
