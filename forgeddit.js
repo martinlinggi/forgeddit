@@ -170,11 +170,11 @@ function createLinkHtml(title, link, text)
         return '<p class="link"><a href="' + link + '">' + link + '</a></p>';
     }
     // A title and a text is provided
-    else if (text.length > 0 && title.length > 0) {
+    else if (title.length > 0 && text.length > 0) {
         return '<p class="link"><a href="#">' + title + '</a></p>';
     }
     // A title without a text is provided
-    else if (text.length > 0 && title.length == 0) {
+    else if (title.length > 0 && text.length == 0) {
         return '<p class="link">' + title + '</p>';
     }
     // Fallback: should not occur
