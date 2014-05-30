@@ -2,85 +2,183 @@
  * Created by martinlinggi on 22.05.14.
  */
 
-window.onload = init;
+jQuery(document).ready(function() {
 
+    console.log('Document ready');
+    $('#sendText').bind('click', onAddText);
+    $('#sendLink').bind('click', onAddLink);
 
-/**
- * Creates the handlers for the buttons
- */
-function init() {
-    var addLinkButton = document.getElementById("sendLink");
-    addLinkButton.onclick = addLinkHandler;
-
-    var addTextButton = document.getElementById("sendText");
-    addTextButton.onclick = addTextHandler;
-    console.log("init");
-}
+});
 
 /**
  * Handles the click on the button "send link"
- *
- * If the link-field is empty, no row is added to the table
- *
- * If the title-field is empty, the link itself is used as the title
  */
-function addLinkHandler() {
+function onAddLink() {
 
     // get the values
-    var titleInput = document.getElementById("linkTitle");
-    var titleText = titleInput.value;
+    var title = $('#linkTitle').val();
+    var link = $('#link').val();
+    var text = ""
 
-    var linkInput = document.getElementById("link");
-    var link = linkInput.value;
-
-    // create a link entry
-    if (link.length > 0)
-    {
-        var tableNode = document.getElementById("linkTable");
-        var tableBodyNodes = tableNode.getElementsByTagName("tbody");
-
-        var trNode = document.createElement("tr");
-
-        var rateNode = document.createElement("td");
-        rateNode.innerHTML = "<a href='#'>-</a> 0 <a href='#'>+</a>";
-        trNode.appendChild(rateNode);
-
-        var  linkNode = document.createElement("td");
-        var linkElement = document.createElement("a");
-        linkElement.setAttribute("href", link);
-        if (titleText.length > 0)
-        {
-            linkElement.innerHTML = titleText;
-        }
-        else
-        {
-            linkElement.innerHTML = link;
-        }
-        linkNode.appendChild(linkElement);
-        trNode.appendChild(linkNode);
-
-        var  timeNode = document.createElement("td");
-        timeNode.innerHTML = "right now";
-        trNode.appendChild(timeNode);
-
-        var  toNode = document.createElement("td");
-        toNode.innerHTML = "/r/test";
-        trNode.appendChild(toNode);
-
-        var  commentNode = document.createElement("td");
-        commentNode.innerHTML = "0";
-        trNode.appendChild(commentNode);
-
-        tableBodyNodes[0].appendChild(trNode);
-
+    // At least a link is mandatory
+    if (link.length > 0) {
+        addLinkListEntry(title, link, text);
     }
     else
     {
-        // TODO: Implemet user Feedback
-        console.log("No Link provided");
+        console.log('Error: no link provided');
+        // TODO: Inform the user about the error
     }
 }
 
-function addTextHandler() {
-    console.log("Add Text Pressed");
+/**
+ * Handles the click on the button "send text"
+ */
+function onAddText() {
+
+    // get the values
+    var title = $('#textTitle').val();
+    var link = "";
+    var text = $('#text').val();
+
+    // At least the title is mandatory
+    if (title.length > 0) {
+        addLinkListEntry(title, link, text);
+    }
+    else
+    {
+        console.log('Error: No text provided.');
+        // TODO: Inform the user about the error
+    }
+}
+
+function onRemoveText() {
+    // TODO: Implement it
+}
+
+/**
+ * Creates the list-element for the link-list.
+ * @param title Title of the entry
+ * @param link  Link of the element
+ * @param text  Text of the Element
+ * @returns {*|jQuery} List-element
+ */
+function createLinkListItem(title, link, text) {
+    return $('<li>').addClass('linkItem');
+}
+
+/**
+ * Creates the div-element for the rate-value
+ * @returns {void|jQuery} The div-element
+ */
+function createRateDiv() {
+    return $('<div>').addClass('rate').append('<p>+</p><p>0</p><p>-</p>');
+}
+
+/**
+ * Creates a new entry in the link list
+ * @param title The title either from linkTitle or textTitle input field
+ * @param link  The link from the link input field
+ * @param text  The text from the text input field
+ */
+function addLinkListEntry(title, link, text)
+{
+    // create a link entry
+    var $thumbDiv = createThumbDiv(link);
+
+    var $listItem = createLinkListItem()
+        .append(createRateDiv())
+        .append($thumbDiv)
+        .append(createEntryDiv(title, link, text ))
+        .append(createResetDiv());
+    $('#linkList').prepend($listItem);
+
+    // If a link is provided, try to load an image. Is successful  make thumbnail visible
+    if (link.lenght > 0) {
+        $('img', $thumbDiv).load(function () {
+            var $img = $(this);
+            // Adjust size depending on ratio width <> height
+            if ($img.width() > $img.height()) {
+                $img.css('height', '100%').css('width', 'auto');
+            }
+            else {
+                $img.css('height', 'auto').css('width', '100%');
+            }
+            $thumbDiv.show();
+        });
+    }
+
+}
+
+/**
+ * Creates the thumbnail div-element
+ * @param link The url to the image
+ * @returns {*|jQuery} The div-element
+ */
+function createThumbDiv(link) {
+    return $('<div>').addClass('thumb').append('<img src="' + link + '">').hide();
+}
+
+/**
+ * Creates the entry div-element
+ * @param title The title either from linkTitle or textTitle input field
+ * @param link  The link from the link input field
+ * @param text  The text from the text input field
+ * @returns {void|jQuery}
+ */
+function createEntryDiv(title, link, text) {
+    if (link.length > 0 && title.length == 0) {
+        title = link;
+    }
+    var $entryItem = $('<div>').addClass('entry')
+        .append(createLinkHtml(title, link, text))
+        .append('<p class="info">Subbmitted a few Seconds ago from <a href="#">TestUser</a> to <a href="#">/r/Fun</a></p>')
+        .append('<p class="actionList">'
+            + '<a href="#">0 Comments</a>'
+            + '<a href="#">Share</a>'
+            + '<a href="#">Hide</a>'
+            + '<a href="#">Blame</a>'
+            + '<a href="#">Remove</a>');
+    return $entryItem;
+}
+
+/**
+ * Creates a (empty) div for layout-clearing
+ * @returns {*|jQuery} The div-element
+ */
+function createResetDiv()
+{
+    return $('<div>').addClass('reset');
+}
+
+/**
+ * Creates the html-code for the title in the entry-div
+ *
+ * @param title The title either from linkTitle or textTitle input field
+ * @param link  The link from the link input field
+ * @param text  The text from the text input field
+ * @returns {string}
+ */
+function createLinkHtml(title, link, text)
+{
+    // A link and a title is provided
+    if (link.length > 0 && title.length > 0) {
+        return '<p class="link"><a href="' + link + '">' + title + '</a></p>';
+    }
+    // A link without a title is provided
+    else if (link.length > 0 && title.length == 0) {
+        return '<p class="link"><a href="' + link + '">' + link + '</a></p>';
+    }
+    // A title and a text is provided
+    else if (text.length > 0 && title.length > 0) {
+        return '<p class="link"><a href="#">' + title + '</a></p>';
+    }
+    // A title without a text is provided
+    else if (text.length > 0 && title.length == 0) {
+        return '<p class="link">' + title + '</p>';
+    }
+    // Fallback: should not occur
+    else {
+        return '<p class="link">...</p>';
+    }
 }

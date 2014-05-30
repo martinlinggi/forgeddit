@@ -36,30 +36,36 @@
 
    <div id="content">
        <div id="linkBox">
-           <table id="linkTable">
-               <thead>
-               <tr>
-                   <td>Rate</td>
-                   <td>Title/Abstract</td>
-                   <td>Submitted</td>
-                   <td>To</td>
-                   <td>Comments</td>
-               </tr>
-               </thead>
-               <tbody>
-               <tr>
-                   <td><a href="#">-</a> 3 <a href="#">+</a></td>
-                   <td><a href="#">You miss 100% of the shots you don't take</a></td>
-                   <td>9 hours ago</td>
-                   <td><a href="#">/r/funny</a></td>
-                   <td><a href="#">15</a></td>
-               </tr>
-               </tbody>
-           </table>
+           <ul id="linkList">
+               <li class="linkItem">
+                   <div class="rate"><p>+</p><p>2546</p><p>-</p></div>
+                   <div class="thumb"><img src="img/link-1.jpg"></div>
+                   <div class="entry">
+                       <p class="link"><a href="#">Link to a great story</a></p>
+                       <p class="info">Submitted one hour ago by <a href="#">MaLiMaster</a> to <a href="#">fun</a></p>
+                       <p class="actionList">
+                           <a href="#">1 Comment</a><a href="#">Share</a><a href="#">Hide</a><a href="#">Blame</a><a href="#">Remove</a>
+                       </p>
+                   </div>
+                   <div class="reset"></div>
+               </li>
+               <li class="linkItem">
+                   <div class="rate"><p>+</p><p>325</p><p>-</p></div>
+                   <div class="thumb"><img src="img/link-1.jpg"></div>
+                   <div class="entry">
+                       <p class="link"><a href="#">Link to a another great story</a></p>
+                       <p class="info">Submitted one hour ago by <a href="#">MaLiMaster</a> to <a href="#">fun</a></p>
+                       <p class="actionList">
+                           <a href="#">1 Comment</a><a href="#">Share</a><a href="#">Hide</a><a href="#">Blame</a><a href="#">Remove</a>
+                       </p>
+                   </div>
+                   <div class="reset"></div>
+               </li>
+            </ul>
        </div>
        <div id="addEntry">
            <div id="addLink">
-               <h5>Send a text</h5>
+               <h5>Send a link</h5>
                <form>
                    <label for="linkTitle">Title</label>
                    <input type="text" id="linkTitle" placeholder="Enter title">
@@ -69,7 +75,7 @@
                </form>
            </div>
            <div id="addText">
-               <h5>Send a link</h5>
+               <h5>Send a text</h5>
                <form>
                    <label for="textTitle">Title</label>
                    <input type="text" id="textTitle" placeholder="Enter title">
@@ -86,6 +92,7 @@
    </div>
 
 
+   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
    <script src="forgeddit.js"></script>
 </body>
 </html>
