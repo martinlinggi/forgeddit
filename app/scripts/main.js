@@ -18,7 +18,7 @@ function onAddLink() {
     // get the values
     var title = $('#linkTitle').val();
     var link = $('#link').val();
-    var text = ""
+    var text = '';
 
     // At least a link is mandatory
     if (link.length > 0) {
@@ -38,7 +38,7 @@ function onAddText() {
 
     // get the values
     var title = $('#textTitle').val();
-    var link = "";
+    var link = '';
     var text = $('#text').val();
 
     // At least the title is mandatory
@@ -63,7 +63,7 @@ function onRemoveText() {
  * @param text  Text of the Element
  * @returns {*|jQuery} List-element
  */
-function createLinkListItem(title, link, text) {
+function createLinkListItem() {
     return $('<li>').addClass('linkItem');
 }
 
@@ -127,18 +127,18 @@ function createThumbDiv(link) {
  * @returns {void|jQuery}
  */
 function createEntryDiv(title, link, text) {
-    if (link.length > 0 && title.length == 0) {
+    if (link.length > 0 && title.length === 0) {
         title = link;
     }
     var $entryItem = $('<div>').addClass('entry')
         .append(createLinkHtml(title, link, text))
         .append('<p class="info">Subbmitted a few Seconds ago from <a href="#">TestUser</a> to <a href="#">/r/Fun</a></p>')
-        .append('<p class="actionList">'
-            + '<a href="#">0 Comments</a>'
-            + '<a href="#">Share</a>'
-            + '<a href="#">Hide</a>'
-            + '<a href="#">Blame</a>'
-            + '<a href="#">Remove</a>');
+        .append('<p class="actionList">' +
+            '<a href="#">0 Comments</a>' +
+            '<a href="#">Share</a>' +
+            '<a href="#">Hide</a>' +
+            '<a href="#">Blame</a>' +
+            '<a href="#">Remove</a>');
     return $entryItem;
 }
 
@@ -166,7 +166,7 @@ function createLinkHtml(title, link, text)
         return '<p class="link"><a href="' + link + '">' + title + '</a></p>';
     }
     // A link without a title is provided
-    else if (link.length > 0 && title.length == 0) {
+    else if (link.length > 0 && title.length === 0) {
         return '<p class="link"><a href="' + link + '">' + link + '</a></p>';
     }
     // A title and a text is provided
@@ -174,7 +174,7 @@ function createLinkHtml(title, link, text)
         return '<p class="link"><a href="#">' + title + '</a></p>';
     }
     // A title without a text is provided
-    else if (title.length > 0 && text.length == 0) {
+    else if (title.length > 0 && text.length === 0) {
         return '<p class="link">' + title + '</p>';
     }
     // Fallback: should not occur

@@ -3,12 +3,23 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Forgeddit</title>
-    <link rel="stylesheet" href="forgeddit.css">
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
    <div id="header">
        <div id="logo"></div>
-       <div id="adverts"></div>
+       <div id="search">
+           <form>
+               <input type="text" id="searchText" placeholder="Search Forgeddit">
+               <input type="button" id="doSearch" value="Search">
+           </form>
+       </div>
+       <div id="signIn">
+           <ul>
+               <li><a href="#">Sign in</a></li>
+               <li><a href="#">Create free account</a></li>
+           </ul>
+       </div>
    </div>
 
    <div id="navigation">
@@ -20,18 +31,6 @@
                <li><a href="#">About</a></li>
            </ul>
        </nav>
-       <div id="signIn">
-           <ul>
-               <li><a href="#">Create free account</a></li>
-               <li><a href="#">Sign in</a></li>
-           </ul>
-       </div>
-       <div id="search">
-           <form>
-               <input type="text" id="searchText" placeholder="Search Forgeddit">
-               <input type="button" id="doSearch" value="Search">
-           </form>
-       </div>
    </div>
 
    <div id="content">
@@ -39,7 +38,7 @@
            <ul id="linkList">
                <li class="linkItem">
                    <div class="rate"><p>+</p><p>2546</p><p>-</p></div>
-                   <div class="thumb"><img src="img/link-1.jpg"></div>
+                   <div class="thumb"><img src="images/link-1.jpg"></div>
                    <div class="entry">
                        <p class="link"><a href="#">Link to a great story</a></p>
                        <p class="info">Submitted one hour ago by <a href="#">MaLiMaster</a> to <a href="#">fun</a></p>
@@ -47,11 +46,10 @@
                            <a href="#">1 Comment</a><a href="#">Share</a><a href="#">Hide</a><a href="#">Blame</a><a href="#">Remove</a>
                        </p>
                    </div>
-                   <div class="reset"></div>
                </li>
                <li class="linkItem">
                    <div class="rate"><p>+</p><p>325</p><p>-</p></div>
-                   <div class="thumb"><img src="img/link-1.jpg"></div>
+                   <div class="thumb"><img src="images/link-1.jpg"></div>
                    <div class="entry">
                        <p class="link"><a href="#">Link to a another great story</a></p>
                        <p class="info">Submitted one hour ago by <a href="#">MaLiMaster</a> to <a href="#">fun</a></p>
@@ -59,13 +57,12 @@
                            <a href="#">1 Comment</a><a href="#">Share</a><a href="#">Hide</a><a href="#">Blame</a><a href="#">Remove</a>
                        </p>
                    </div>
-                   <div class="reset"></div>
                </li>
             </ul>
        </div>
        <div id="addEntry">
            <div id="addLink">
-               <h5>Send a link</h5>
+               <h3>Send a link</h3>
                <form>
                    <label for="linkTitle">Title</label>
                    <input type="text" id="linkTitle" placeholder="Enter title">
@@ -75,7 +72,7 @@
                </form>
            </div>
            <div id="addText">
-               <h5>Send a text</h5>
+               <h3>Send a text</h3>
                <form>
                    <label for="textTitle">Title</label>
                    <input type="text" id="textTitle" placeholder="Enter title">
@@ -92,7 +89,7 @@
    </div>
 
 
-   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-   <script src="forgeddit.js"></script>
+   <script src="bower_components/jquery/dist/jquery.js"></script>
+   <script src="scripts/main.js"></script>
 </body>
 </html>
