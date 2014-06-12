@@ -2,29 +2,26 @@
  * Created by martinlinggi on 22.05.14.
  */
 
-
 var linkList;
 
 jQuery(document).ready(function() {
 
     console.log('Document ready');
-    var url = "links.json";
+    var url = 'links.json';
     var request = new XMLHttpRequest();
-    request.open("GET", url);
+    request.open('GET', url);
     request.onload = function() {
-        if (request.status == 200)
+        if (request.status === 200)
         {
             getLinkList(request.response);
         }
     };
     request.send(null);
 
-    $('#sendText').bind('click', onAddText);
-    $('#sendLink').bind('click', onAddLink);
+    $('#sendText').on('click', onAddText);
+    $('#sendLink').on('click', onAddLink);
 
 });
-
-
 
 /**
  * Handles the click on the button "send link"
@@ -78,18 +75,18 @@ function getLinkList(responseText)
 
 function refreshLinkList()
 {
-    $('.linkItem').remove();
+//    $('.linkItem').remove();
 
     for (var i = linkList.length -1 ; i >= 0; i--) {
         var link = linkList[i];
 
         // create a link entry
-        var $thumbDiv = createThumbDiv(link.url, link.id);
+        var $thumbDiv = createThumbDiv(link.url);
 
         var $listItem = createLinkListItem()
-            .append(createRateDiv(link.rate))
+            .append(createRateDiv(link.rate, link.id))
             .append($thumbDiv)
-            .append(createEntryDiv(link.title, link.url, link.text, link.user, link.group, link.time));
+            .append(createEntryDiv(link.title, link.url, link.text, link.user, link.group, link.time, link.comments));
         $('#linkList').append($listItem);
 
         // If a link is provided, try to load an image. Is successful  make thumbnail visible
@@ -142,17 +139,17 @@ function createRateDiv(rate, id) {
 function addLinkListEntry(title, url, text, user, group, rate, time)
 {
     linkList.push({
-        "id": user + "_" + new Date().getTime(),
-        "title" : title,
-        "url" : url,
-        "text": text,
-        "user": user,
-        "group" : group,
-        "rate": rate,
-        "time": time
+        'id': user + '_' + new Date().getTime(),
+        'title' : title,
+        'url' : url,
+        'text': text,
+        'user': user,
+        'group' : group,
+        'rate': rate,
+        'time': time,
+        'comment': []
     });
     refreshLinkList();
-
 }
 
 /**
@@ -172,21 +169,18 @@ function createThumbDiv(link) {
  * @param user  The user name
  * @param group The group name
  * @param time The creation time
+ * @params comments The comment list
  * @returns {void|jQuery}
  */
-function createEntryDiv(title, url, text, user, group, time) {
+function createEntryDiv(title, url, text, user, group, time, comments) {
     if (url.length > 0 && title.length === 0) {
         title = url;
     }
     return $('<div>').addClass('entry')
         .append(createLinkHtml(title, url, text))
-        .append('<p class="info">Subbmitted ' + getCreationTimeAsText(time) + ' from <a href="#">' + user + '</a> to <a href="#">' + group + '</a></p>')
-        .append('<p class="actionList">' +
-            '<a href="#">0 Comments</a>' +
-            '<a href="#">Share</a>' +
-            '<a href="#">Hide</a>' +
-            '<a href="#">Blame</a>' +
-            '<a href="#">Remove</a>');
+        .append(createLinkEntryInfo(time, user, group))
+        .append(createLinkEntryOptions(comments))
+        .append(createLinkEntryComments(comments));
 }
 
 /**
@@ -199,26 +193,77 @@ function createEntryDiv(title, url, text, user, group, time) {
  */
 function createLinkHtml(title, link, text)
 {
+    var $div = $('<div>').addClass('link');
+    var $link = $('<a>');
     // A link and a title is provided
     if (link.length > 0 && title.length > 0) {
-        return '<p class="link"><a href="' + link + '">' + title + '</a></p>';
+        $link.attr({href: '#'}).append(title);
+        return $($div).append($link);
     }
     // A link without a title is provided
     else if (link.length > 0 && title.length === 0) {
-        return '<p class="link"><a href="' + link + '">' + link + '</a></p>';
+        $link.attr({href: '#'}).append(link);
+        return $div.append($link);
     }
     // A title and a text is provided
     else if (title.length > 0 && text.length > 0) {
-        return '<p class="link"><a href="#">' + title + '</a></p>';
+        $link.attr({href: '#'}).append(title);
+        return $div.append($link);
     }
     // A title without a text is provided
     else if (title.length > 0 && text.length === 0) {
-        return '<p class="link">' + title + '</p>';
+        return $div.append(title);
     }
     // Fallback: should not occur
     else {
-        return '<p class="link">...</p>';
+        return $div;
     }
+}
+
+function createLinkEntryInfo(time, user, group)
+{
+    var $userLink =  $('<a>').attr({href: '#'}).append(user);
+    var $groupLink =  $('<a>').attr({href: '#'}).append(group);
+    var $div = $('<div>').addClass('info').
+        append('Submitted ' + getCreationTimeAsText(time) + ' from ').
+        append($userLink).
+        append(' to ').
+        append($groupLink);
+    return $div;
+}
+
+function createLinkEntryOptions(comments)
+{
+    var $div = $('<div>').addClass('actionList');
+    var $menu = $('<ul>').addClass('menu');
+    var $comments = $('<li>').addClass('menuItem').append(comments.length + ' Comments');
+    $menu.append($comments);
+    var $share = $('<li>').addClass('menuItem').append('share');
+    $menu.append($share);
+    var $hide = $('<li>').addClass('menuItem').append('hide');
+    $menu.append($hide);
+    var $blame = $('<li>').addClass('menuItem').append('blame');
+    $menu.append($blame);
+    var $remove = $('<li>').addClass('menuItem').append('remove');
+    $menu.append($remove);
+    $div.append($menu);
+    return $div;
+}
+
+function createLinkEntryComments(comments)
+{
+    var $divList = $('<div>').addClass('commentList');
+    console.log(comments.length);
+    for (var i = 0; i < comments.length; i++) {
+        var $divItem = $('<div>').addClass('commentItem');
+        var $user = $('<div>').addClass('commentUser').append(comments[i].user);
+        var $time = $('<div>').addClass('commentTime').append(getCreationTimeAsText(comments[i].time));
+        var $text = $('<div>').addClass('commentText').append(comments[i].text);
+        console.log(comments[i].user + ": " + comments[i].text);
+        $divList.append($divItem.append($user).append($time).append($text));
+    }
+    return $divList;
+
 }
 
 function getCreationTimeAsText(creationTime)
@@ -255,11 +300,10 @@ function getCreationTimeAsText(creationTime)
     else if (millis < oneMonth) {  //  1 week steps
         return Math.round(millis / oneWeek) + ' weeks ago';
     }
-    else if (millis < oneYear) {  //  1 week steps
+    else if (millis < oneYear) {  //  1 month steps
         return Math.round(millis / oneMonth) + ' months ago';
     }
-    else {
-        return Math.round(millis / oneYear) + ' months ago';
+    else {  // 1 year steps
+        return Math.round(millis / oneYear) + ' years ago';
     }
-
 }

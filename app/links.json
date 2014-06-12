@@ -5,7 +5,10 @@
     "user" : "MaLiMaster",
     "group" : "fun",
     "rate" : 2643,
-    "time" : 1308774240669
+    "time" : 1308774240669,
+    "comments": [
+        {"user" : "tinMan", "time": 1308774240669, "text": "Hallo"},
+        {"user" : "MaLiMaster", "time": 1308774240669, "text": "Comment"}]
 },
 {   "id" : 2,
     "title" : "Kurios gesammelt",
@@ -14,5 +17,6 @@
     "user" : "MaLiMaster",
     "group" : "fun",
     "rate" : 15,
-    "time" : 1308124245826
+    "time" : 1308124245826,
+    "comments": [{}]
 }]

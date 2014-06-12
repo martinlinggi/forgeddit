@@ -4,6 +4,16 @@
   display: block;
 }
 
+%horizontalList {
+  padding-left: 1em;
+}
+
+%horizontalListItem {
+    float: left;
+    list-style: none;
+    margin-right: 1em;
+}
+
 
 /* general settings */
 * {
@@ -118,15 +128,13 @@ body {
 
 
 /* Menü */
-#menu {
+#menu,
+.actionList {
   ul{
-    padding-left: 1em;
-  }
-
-  li  {
-    float: left;
-    list-style: none;
-    margin-right: 1em;
+    @extend %horizontalList;
+    li  {
+      @extend %horizontalListItem;
+    }
   }
 }
 
@@ -168,14 +176,32 @@ body {
     float: left;
     width: 45em;
     font-size: 0.8em;
+
+    div {
+      float: none;
+    }
+
+    .commentItem {
+      clear: both;
+    }
+
+    .commentUser {
+      float: left;
+    }
+
+    .commentTime {
+      float: right;
+    }
+
+    .commentText {
+      clear: both;
+      float: left;
+    }
+
   }
 
   .link {
     font-size: 1.4em;
-  }
-
-  .actionList a{
-    margin-right: 1em;
   }
 
   &:after {
@@ -188,15 +214,15 @@ ul#linkList {
 
   width: 100%;
 
-  li:last-child{
+  .linkItem:last-child{
     border-bottom: 1px solid #E1E1E1;
   }
 
-  li:nth-child(odd) {
+  .linkItem:nth-child(odd) {
     background-color: #EDEDED;
   }
 
-  li:nth-child(even) {
+  .linkItem:nth-child(even) {
     background-color: #F5F5F5;
   }
 }
