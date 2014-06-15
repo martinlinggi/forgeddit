@@ -14,7 +14,6 @@
     margin-right: 1em;
 }
 
-
 /* general settings */
 * {
     margin: 0px;
@@ -22,15 +21,15 @@
 }
 
 a:link {
-    color: dodgerblue;
+    color: #d10000;
 }
 
 a:hover {
-    color: blue;
+    color: red;
 }
 
 a:visited {
-    color: dodgerblue;
+    color: #d10000;
 }
 
 body {
@@ -45,7 +44,6 @@ body {
 #header,
 #footer {
   max-width: 75em;
-  min-width: 60em;
   margin: auto;
 }
 
@@ -174,7 +172,7 @@ body {
 
   .entry {
     float: left;
-    width: 45em;
+//    width: 45em;
     font-size: 0.8em;
 
     div {
@@ -190,7 +188,7 @@ body {
     }
 
     .commentTime {
-      float: right;
+      float: left;
     }
 
     .commentText {
@@ -225,6 +223,69 @@ ul#linkList {
   .linkItem:nth-child(even) {
     background-color: #F5F5F5;
   }
+}
+
+
+@media (max-width: 48em)
+{
+
+  #header {
+
+    #logo {
+      float: none;
+    }
+
+    #search {
+      float: right;
+      width: auto;
+      margin-top: 0px;
+      background-color: white;
+      margin-top: 0.5em;
+    }
+
+    #signIn {
+      float: left;
+      width: auto;
+      margin-top: 0px;
+      background-color: white;
+      margin-top: 0.5em;
+    }
+  }
+}
+
+@media (max-width: 30em)
+{
+
+  #header {
+
+    #logo {
+      float: none;
+    }
+
+    #signIn,
+    #search {
+      float: none;
+      width: auto;
+      margin-top: 0px;
+      background-color: white;
+      margin-top: 0.5em;
+    }
+  }
+
+  #content {
+
+
+    #linkBox,
+    #addEntry{
+      margin-top: 1em;
+      float: none;
+      width: 100%;
+    }
+  }
+
+
+
+
 }
 
 

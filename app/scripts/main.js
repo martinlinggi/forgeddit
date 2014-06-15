@@ -58,7 +58,7 @@ function onAddText() {
 
     // At least the title is mandatory
     if (title.length > 0) {
-        addLinkListEntry(title, link, text, 'testUser', 'testGroup', 0, creationTime - 2000);
+        addLinkListEntry(title, link, text, 'testUser', 'testGroup', 0, creationTime - 10000);
     }
     else
     {
@@ -75,7 +75,7 @@ function getLinkList(responseText)
 
 function refreshLinkList()
 {
-//    $('.linkItem').remove();
+    $('.linkItem').remove();
 
     for (var i = linkList.length -1 ; i >= 0; i--) {
         var link = linkList[i];
@@ -147,7 +147,7 @@ function addLinkListEntry(title, url, text, user, group, rate, time)
         'group' : group,
         'rate': rate,
         'time': time,
-        'comment': []
+        'comments': []
     });
     refreshLinkList();
 }
@@ -169,7 +169,7 @@ function createThumbDiv(link) {
  * @param user  The user name
  * @param group The group name
  * @param time The creation time
- * @params comments The comment list
+ * @param comments The comment list
  * @returns {void|jQuery}
  */
 function createEntryDiv(title, url, text, user, group, time, comments) {
@@ -194,21 +194,17 @@ function createEntryDiv(title, url, text, user, group, time, comments) {
 function createLinkHtml(title, link, text)
 {
     var $div = $('<div>').addClass('link');
-    var $link = $('<a>');
     // A link and a title is provided
     if (link.length > 0 && title.length > 0) {
-        $link.attr({href: '#'}).append(title);
-        return $($div).append($link);
+        return $($div).append($('<a>', {href: '#', text: title}));
     }
     // A link without a title is provided
     else if (link.length > 0 && title.length === 0) {
-        $link.attr({href: '#'}).append(link);
-        return $div.append($link);
+        return $($div).append($('<a>', {href: '#', text: link}));
     }
     // A title and a text is provided
     else if (title.length > 0 && text.length > 0) {
-        $link.attr({href: '#'}).append(title);
-        return $div.append($link);
+        return $($div).append($('<a>', {href: '#', text: title}));
     }
     // A title without a text is provided
     else if (title.length > 0 && text.length === 0) {
@@ -224,12 +220,11 @@ function createLinkEntryInfo(time, user, group)
 {
     var $userLink =  $('<a>').attr({href: '#'}).append(user);
     var $groupLink =  $('<a>').attr({href: '#'}).append(group);
-    var $div = $('<div>').addClass('info').
+    return $('<div>').addClass('info').
         append('Submitted ' + getCreationTimeAsText(time) + ' from ').
         append($userLink).
         append(' to ').
         append($groupLink);
-    return $div;
 }
 
 function createLinkEntryOptions(comments)
@@ -280,16 +275,16 @@ function getCreationTimeAsText(creationTime)
         return 'just now';
     }
     else if (millis < 10 * oneSec) {  // 1 second steps
-        return Math.round(millis / 1000) + ' seconds ago';
+        return Math.round(millis / oneSec) + ' seconds ago';
     }
     else if (millis < oneMin) {  //  10 seconds steps
-        return Math.round(millis / oneSec * 10 ) * 10 + ' seconds ago';
+        return Math.round(millis / (oneSec * 10) ) * 10 + ' seconds ago';
     }
     else if (millis < oneMin * 10) {  // 1 minute steps
         return Math.round(millis / oneMin) + ' minutes ago';
     }
     else if (millis < oneHour) {  // 10 minute steps
-        return Math.round(millis / 10 * oneMin) * 10 + ' minutes ago';
+        return Math.round(millis / (10 * oneMin)) * 10 + ' minutes ago';
     }
     else if (millis < oneDay) {  // 1 hour steps
         return Math.round(millis / oneHour) + ' hours ago';
