@@ -1,3 +1,26 @@
+@font-face {
+  font-family: "symbols";
+  src: url("../fonts/symbols.eot?#iefix") format("embedded-opentype"),
+  url("../fonts/symbols.woff") format("woff"),
+  url("../fonts/symbols.ttf") format("truetype"),
+  url("../fonts/symbols.svg#svgFontName") format("svg");
+}
+
+
+.error {
+  background-color: red;
+}
+
+.imageScaleH {
+  height: 100%;
+  width: auto;
+}
+
+.imageScaleV {
+  height: auto;
+  width: 100%;
+}
+
 @mixin resetBlock {
   clear: both;
   content: "";
@@ -114,6 +137,7 @@ body {
 
       input {
         width: 100%;
+        cursor: pointer;
       }
     }
 
@@ -132,6 +156,9 @@ body {
     @extend %horizontalList;
     li  {
       @extend %horizontalListItem;
+      color: #d10000;
+      font-weight: bold;
+      cursor: pointer;
     }
   }
 }
@@ -160,6 +187,24 @@ body {
     float: left;
     text-align: center;
     width: 3em;
+
+    .voteUp {
+      cursor: pointer;
+
+      &:before {
+        content: "\e001";
+        font-family: symbols;
+      }
+    }
+
+    .voteDown {
+      cursor: pointer;
+
+      &:before {
+        content: "\e002";
+        font-family: symbols;
+      }
+    }
   }
 
   .thumb {
@@ -181,6 +226,7 @@ body {
 
     .commentItem {
       clear: both;
+      border-top: 1px solid #E1E1E1;
     }
 
     .commentUser {
@@ -194,6 +240,11 @@ body {
     .commentText {
       clear: both;
       float: left;
+    }
+
+    .addComment {
+      clear: both;
+      float: none;
     }
 
   }
@@ -225,7 +276,6 @@ ul#linkList {
   }
 }
 
-
 @media (max-width: 48em)
 {
 
@@ -238,17 +288,15 @@ ul#linkList {
     #search {
       float: right;
       width: auto;
-      margin-top: 0px;
-      background-color: white;
       margin-top: 0.5em;
+      background-color: white;
     }
 
     #signIn {
       float: left;
       width: auto;
-      margin-top: 0px;
-      background-color: white;
       margin-top: 0.5em;
+      background-color: white;
     }
   }
 }
@@ -266,9 +314,8 @@ ul#linkList {
     #search {
       float: none;
       width: auto;
-      margin-top: 0px;
-      background-color: white;
       margin-top: 0.5em;
+      background-color: white;
     }
   }
 

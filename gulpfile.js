@@ -6,6 +6,21 @@ var gulp = require('gulp');
 // load plugins
 var $ = require('gulp-load-plugins')();
 
+// Neuen Task erstellen
+gulp.task('iconfont', function(){
+    return gulp.src('app/images/icons/*')
+        .pipe($.iconfont({
+            fontName: 'IconFont'
+        }))
+        .on('codepoints', function(codepoints, options) {
+            // CSS templating, e.g.
+            // console.log(codepoints, options);
+        })
+        .pipe(gulp.dest('.tmp/fonts/'))
+        .pipe(gulp.dest('dist/fonts/'));
+});
+
+
 gulp.task('styles', function () {
     return gulp.src('app/styles/main.scss')
         .pipe($.rubySass({
@@ -70,7 +85,7 @@ gulp.task('clean', function () {
     return gulp.src(['.tmp', 'dist'], { read: false }).pipe($.clean());
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'extras']);
+gulp.task('build', ['html', 'images', 'iconfont', 'fonts', 'extras']);
 
 gulp.task('default', ['clean'], function () {
     gulp.start('build');
