@@ -10,7 +10,7 @@ var linkList;
  * @param url The url to the json file.
  * @param callback The callback is used to inform the page that the list is loaded.
  */
-function linklist_requestLinkList(url, callback) {
+function requestLinkList(url, callback) {
     var request = new XMLHttpRequest();
     var err;
     request.open('GET', url);
@@ -35,7 +35,7 @@ function linklist_requestLinkList(url, callback) {
  * @param url The url of the link
  * @param group The group where the link belongs to.
  */
-function linklist_addLink(user, title, url, group) {
+function addLink(user, title, url, group) {
     var time = new Date().getTime();
     linkList.push({
         'id': user + '_' + time,
@@ -55,9 +55,9 @@ function linklist_addLink(user, title, url, group) {
  * @param value The value to add (can be + or -)
  * @returns {number} the new vote value (or undef)
  */
-function linklist_voteLink(id, value)
+function voteLink(id, value)
 {
-    var idx = linklist_getLinklistIndex(id);
+    var idx = getLinklistIndex(id);
     if (idx > -1) {
         linkList[idx].rate += value;
         return linkList[idx].rate;
@@ -70,11 +70,11 @@ function linklist_voteLink(id, value)
  * @param id The id of the link
  * @param commentText The comment text
  */
-function linklist_addComment(id, commentText)
+function addComment(id, commentText)
 {
-    var idx = linklist_getLinklistIndex(id);
+    var idx = getLinklistIndex(id);
     if (idx > -1) {
-        var comments = linklist_getComments(id);
+        var comments = getComments(id);
         comments.push({
             'user': 'test',
             'time': new Date().getTime(),
@@ -89,8 +89,8 @@ function linklist_addComment(id, commentText)
  * @param id The id of the link
  * @returns {*} A list of comments (or an empty list)
  */
-function linklist_getComments(id) {
-    var idx = linklist_getLinklistIndex(id);
+function getComments(id) {
+    var idx = getLinklistIndex(id);
     if (idx > -1) {
         return linkList[idx].comments;
     }
@@ -102,7 +102,7 @@ function linklist_getComments(id) {
  * @param id The id of the link.
  * @returns {number} the index of the link
  */
-function linklist_getLinklistIndex(id)
+function getLinklistIndex(id)
 {
     for (var i = 0 ; i < linkList.length; i++) {
         if (linkList[i].id === id)

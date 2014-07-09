@@ -5,10 +5,22 @@
 jQuery(document).ready(function() {
 
     console.log('Document ready');
-    linklist_requestLinkList('links.json', function(err) {
-        refreshPage()
+    requestLinkList('links.json', function(err) {
+        refreshPage();
     });
-    $('#sendLink').on('click', onAddLink);
+    $('#sendLink').
+        on('click', onAddLink).
+        attr('disabled','disabled');
+
+    $('#link').keyup(function() {
+        if($(this).val().trim() !== '') {
+            $('#sendLink').removeAttr('disabled');
+        }
+        else {
+            $('#sendLink').attr('disabled','disabled');
+        }
+    });
+
 
 });
 
@@ -24,7 +36,7 @@ function onAddLink() {
     // At least a link is mandatory
     if (link.length > 0) {
         $('#link').removeClass('error');
-        linklist_addLink(user, title, link, 'test');
+        addLink(user, title, link, 'test');
         refreshPage();
     }
     else
@@ -54,7 +66,7 @@ function refreshPage()
 
 function vote(id, value)
 {
-    value = linklist_voteLink(id, value);
+    value = voteLink(id, value);
     if (value)
     {
         $('#' + id + ' div.rate div.vote').html(value);
@@ -181,7 +193,6 @@ function createLinkEntryOptions(id, comments)
     var $menu = $('<ul>').addClass('menu');
     var $comments = $('<li>').addClass('menuItem').append(comments.length + ' Comments');
     $($comments).on('click', function() {
-        console.log('comment');
         if (comments.length > 0) {
             $('#' + id + ' div.entry div.commentList').toggle();
         }
@@ -200,13 +211,11 @@ function createLinkEntryOptions(id, comments)
 function createLinkEntryComments(comments)
 {
     var $divList = $('<div>').addClass('commentList').hide();
-    console.log(comments.length);
     for (var i = 0; i < comments.length; i++) {
         var $divItem = $('<div>').addClass('commentItem');
         var $user = $('<div>').addClass('commentUser').append(comments[i].user);
         var $time = $('<div>').addClass('commentTime').append(getCreationTimeAsText(comments[i].time));
         var $text = $('<div>').addClass('commentText').append(comments[i].text);
-        console.log(comments[i].user + ": " + comments[i].text);
         $divList.append($divItem.append($user).append($time).append($text));
     }
     return $divList;
@@ -234,13 +243,24 @@ function createLinkEntryCommentEditor(id)
             append($cancel).
             append($send));
     $commentEdit.append($form);
+
+    $($send).attr('disabled','disabled');
+    $($textField).keyup(function() {
+        if($(this).val().trim() !== '') {
+            $($send).removeAttr('disabled');
+        }
+        else {
+            $($send).attr('disabled','disabled');
+        }
+    });
+
     $($send).on('click', function() {
         var commentText = $('textarea#commentId').val();
         if (commentText.length > 0)
         {
             console.log('--> addComment activated.');
-            linklist_addComment(id, commentText);
-            var newComments = linklist_getComments(id);
+            addComment(id, commentText);
+            var newComments = getComments(id);
             var $divCommentOptions = createLinkEntryOptions(id, newComments);
             $('#'+ id + ' div.entry div.actionList').replaceWith($divCommentOptions);
             var $divComments = createLinkEntryComments(newComments);
