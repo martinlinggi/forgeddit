@@ -5,6 +5,25 @@ $colorLinkHover: #ff0000;
 $colorLinkVisited: #900000;
 $colorError: #ff0000;
 
+
+$colorButtonBackgroundHighlight: #78ff9c;
+$colorButtonHoverHighlight: #25fa5e;
+$colorButtonColorHighlight: #000000;
+$colorButtonBorderHighlight: #51ed7a;
+$colorButtonShadowHighlight: #c0fad1;
+
+$colorButtonBackgroundDisabled: #ededed;
+$colorButtonColorDisabled: #b0b0b0;
+$colorButtonBorderDisabled: #dcdcdc;
+$colorButtonShadowDisabled: #dcdcdc;
+
+$colorButtonBackground: #ededed;
+$colorButtonHover: #dfdfdf;
+$colorButtonColor: #777777;
+$colorButtonBorder: #dcdcdc;
+$colorButtonShadow: #ffffff;
+
+
 $maxWith: 75em;
 
 // Iconfont
@@ -23,6 +42,20 @@ $maxWith: 75em;
   clear: left;
   content: "";
   display: block;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin box-shadow($colorShadow) {
+  -moz-box-shadow:inset 0px 1px 0px 0px $colorShadow;
+  -webkit-box-shadow:inset 0px 1px 0px 0px $colorShadow;
+  -ms-box-shadow:inset 0px 1px 0px 0px $colorShadow;
+  box-shadow:inset 0px 1px 0px 0px $colorShadow;
 }
 
 %mainLayout {
@@ -70,6 +103,52 @@ a:hover {
   color: $colorLinkHover;
 }
 
+input[type=button] {
+  display:inline-block;
+  height: 2.5em;
+  color:$colorButtonColorDisabled;
+  background-color: $colorButtonBackgroundDisabled;
+  border:1px solid $colorButtonBorder;
+  @include border-radius(5px);
+  font-style:normal;
+  text-align:center;
+  &:enabled {
+    color:$colorButtonColor;
+    background-color :$colorButtonBackground;
+    @include box-shadow($colorButtonShadow);
+  }
+  &:hover:enabled {
+    background-color: $colorButtonHover;
+  }
+}
+
+#sendLink,
+#sendCommentText {
+  margin-top: 0.5em;
+  &:enabled {
+    color: $colorButtonColor;
+    background-color: $colorButtonBackgroundHighlight;
+    border: 1px solid $colorButtonBorderHighlight;
+    @include box-shadow($colorButtonShadowHighlight);
+  }
+  &:hover:enabled {
+    background-color: $colorButtonHoverHighlight;
+  }
+}
+
+#sendCommentText {
+  margin-left: 0.5em;
+}
+
+#doSearch {
+  height: 19px;
+  @include border-radius(0px);
+}
+
+#searchText {
+  height: 13px;
+}
+
 
 // general settings
 * {
@@ -78,10 +157,10 @@ a:hover {
 }
 
 body {
-  line-height: 150%;
-  font-family: Helvetica, Verdana, sans-serif;
-  font-size: 0.8em;
-}
+    line-height: 150%;
+    font-family: Helvetica, Verdana, sans-serif;
+    font-size: 0.8em;
+  }
 
 // Main Layout: Header
 #header {
@@ -111,7 +190,6 @@ body {
     height: 19px;
     background-color: #151515;
   }
-
 }
 
 // Main Layout Navigation
@@ -120,7 +198,6 @@ body {
   display: block;
   background-color: #c8c8c8;
   margin-top: 1em;
-
 }
 
 // Main Layout Content
@@ -180,13 +257,13 @@ body {
 
 /* Link-List  */
 #linkBox li {
-    list-style: none;
+  list-style: none;
 }
 
 .linkItem {
-    border-top: 1px solid #E1E1E1;
-    padding-top: 0.6em;
-    padding-bottom: 0.6em;
+  border-top: 1px solid #E1E1E1;
+  padding-top: 0.6em;
+  padding-bottom: 0.6em;
 
   .rate {
     float: left;
@@ -337,8 +414,6 @@ ul#linkList {
   }
 
   #content {
-
-
     #linkBox,
     #addEntry{
       margin-top: 1em;
@@ -346,10 +421,7 @@ ul#linkList {
       width: 100%;
     }
   }
-
-
-
-
 }
+
 
 
