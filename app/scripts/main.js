@@ -12,7 +12,7 @@ jQuery(document).ready(function() {
         on('click', onAddLink).
         attr('disabled','disabled');
 
-    $('#link').keyup(function() {
+    $('#link').bind('input change paste keyup mouseup',function() {
         if($(this).val().trim() !== '') {
             $('#sendLink').removeAttr('disabled');
         }
@@ -245,7 +245,7 @@ function createLinkEntryCommentEditor(id)
     $commentEdit.append($form);
 
     $($send).attr('disabled','disabled');
-    $($textField).keyup(function() {
+    $($textField).bind('input change paste keyup mouseup', function() {
         if($(this).val().trim() !== '') {
             $($send).removeAttr('disabled');
         }

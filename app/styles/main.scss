@@ -1,43 +1,58 @@
 
-// Color definitions
+/**********************************************************
+ * Variable Definitions
+ **********************************************************/
+
+// Layout Colors
+$defaultColor: #151515;
+
+// Header
+$colorHeaderLineBackGround: #151515;
+
+// Navigation
+$colorNavigationBackground: #c8c8c8;
+
+// Link entry
+$colorLinkItemBorder: #e1e1e1;
+$colorLinkItemBackgroundOdd: #ededed;
+$colorLinkItemBackgroundEven: #f5f5f5;
+
+// Sidebar add entry
+$colorAddEntryBackGround: #f5f5f5;
+$colorAddEntryBorder: #e1e1e1;
+
+// Links
 $colorLink: #d10000;
 $colorLinkHover: #ff0000;
 $colorLinkVisited: #900000;
 $colorError: #ff0000;
 
-
-$colorButtonBackgroundHighlight: #78ff9c;
-$colorButtonHoverHighlight: #25fa5e;
-$colorButtonColorHighlight: #000000;
-$colorButtonBorderHighlight: #51ed7a;
-$colorButtonShadowHighlight: #c0fad1;
-
-$colorButtonBackgroundDisabled: #ededed;
-$colorButtonColorDisabled: #b0b0b0;
-$colorButtonBorderDisabled: #dcdcdc;
-$colorButtonShadowDisabled: #dcdcdc;
-
+// Standard button
 $colorButtonBackground: #ededed;
 $colorButtonHover: #dfdfdf;
 $colorButtonColor: #777777;
 $colorButtonBorder: #dcdcdc;
 $colorButtonShadow: #ffffff;
 
+// Button disabled
+$colorButtonBackgroundDisabled: #ededed;
+$colorButtonColorDisabled: #b0b0b0;
+$colorButtonBorderDisabled: #dcdcdc;
+$colorButtonShadowDisabled: #dcdcdc;
 
+// Button highlighted
+$colorButtonBackgroundHighlight: #78ff9c;
+$colorButtonHoverHighlight: #25fa5e;
+$colorButtonColorHighlight: #000000;
+$colorButtonBorderHighlight: #51ed7a;
+$colorButtonShadowHighlight: #c0fad1;
+
+// Max width
 $maxWith: 75em;
 
-// Iconfont
-@font-face {
-  font-family: "symbols";
-  src: url("../fonts/symbols.eot?#iefix") format("embedded-opentype"),
-  url("../fonts/symbols.woff") format("woff"),
-  url("../fonts/symbols.ttf") format("truetype"),
-  url("../fonts/symbols.svg#svgFontName") format("svg");
-}
-
-// General-Defintions
-
-// Reset Layout
+/**********************************************************
+ * Mixin definitions
+ **********************************************************/
 @mixin resetBlock {
   clear: left;
   content: "";
@@ -58,12 +73,52 @@ $maxWith: 75em;
   box-shadow:inset 0px 1px 0px 0px $colorShadow;
 }
 
+/**********************************************************
+ * Placeholder definitions
+ **********************************************************/
 %mainLayout {
   max-width: $maxWith;
   margin:auto;
   &:after {
     @include resetBlock;
   }
+}
+
+/**********************************************************
+ * Icon font
+ **********************************************************/
+@font-face {
+  font-family: "symbols";
+  src: url("../fonts/symbols.eot?#iefix") format("embedded-opentype"),
+  url("../fonts/symbols.woff") format("woff"),
+  url("../fonts/symbols.ttf") format("truetype"),
+  url("../fonts/symbols.svg#svgFontName") format("svg");
+}
+
+/**********************************************************
+ * General settings
+ **********************************************************/
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  line-height: 150%;
+  font-family: Helvetica, Verdana, sans-serif;
+  font-size: 0.8em;
+}
+
+a:link {
+  color: $colorLink;
+}
+
+a:visited {
+  color: $colorLinkVisited;
+}
+
+a:hover {
+  color: $colorLinkHover;
 }
 
 // Horizontal list for menus
@@ -86,34 +141,19 @@ $maxWith: 75em;
   width: 100%;
 }
 
-// Colors
-.error {
-  background-color: $colorError;
-}
-
-a:link {
-  color: $colorLink;
-}
-
-a:visited {
-  color: $colorLinkVisited;
-}
-
-a:hover {
-  color: $colorLinkHover;
-}
-
+// Buttons
 input[type=button] {
-  display:inline-block;
+  display: inline-block;
   height: 2.5em;
-  color:$colorButtonColorDisabled;
+  color: $colorButtonColorDisabled;
   background-color: $colorButtonBackgroundDisabled;
-  border:1px solid $colorButtonBorder;
+  border: 1px solid $colorButtonBorder;
   @include border-radius(5px);
-  font-style:normal;
-  text-align:center;
+  font-style: normal;
+  text-align: center;
+  cursor: pointer;
   &:enabled {
-    color:$colorButtonColor;
+    color: $colorButtonColor;
     background-color :$colorButtonBackground;
     @include box-shadow($colorButtonShadow);
   }
@@ -150,17 +190,9 @@ input[type=button] {
 }
 
 
-// general settings
-* {
-  margin: 0px;
-  padding: 0px;
-}
-
-body {
-    line-height: 150%;
-    font-family: Helvetica, Verdana, sans-serif;
-    font-size: 0.8em;
-  }
+/**********************************************************
+ * Layout
+ **********************************************************/
 
 // Main Layout: Header
 #header {
@@ -180,7 +212,7 @@ body {
     margin-top: 54px;
     padding: 0px 10px;
     height: 19px;
-    background-color: #151515;
+    background-color: $colorHeaderLineBackGround;
   }
 
   #signIn {
@@ -188,7 +220,7 @@ body {
     margin-top: 54px;
     padding: 0px 10px;
     height: 19px;
-    background-color: #151515;
+    background-color: $colorHeaderLineBackGround;
   }
 }
 
@@ -196,7 +228,7 @@ body {
 #navigation {
   @extend %mainLayout;
   display: block;
-  background-color: #c8c8c8;
+  background-color: $colorNavigationBackground;
   margin-top: 1em;
 }
 
@@ -213,15 +245,14 @@ body {
   #addEntry {
     float: right;
     width: 18em;
-    background-color: #F5F5F5;
-    border: 1px solid #E1E1E1;
+    background-color: $colorAddEntryBackGround;
+    border: 1px solid $colorAddEntryBorder;
 
     div {
       padding: 1em;
 
       input {
         width: 100%;
-        cursor: pointer;
       }
     }
 
@@ -242,7 +273,6 @@ body {
     @extend %horizontalList;
     li  {
       @extend %horizontalListItem;
-      color: #d10000;
       font-weight: bold;
       cursor: pointer;
     }
@@ -261,7 +291,7 @@ body {
 }
 
 .linkItem {
-  border-top: 1px solid #E1E1E1;
+  border-top: 1px solid $colorLinkItemBorder;
   padding-top: 0.6em;
   padding-bottom: 0.6em;
 
@@ -319,7 +349,7 @@ body {
 
     .commentItem {
       clear: both;
-      border-top: 1px solid #E1E1E1;
+      border-top: 1px solid $colorLinkItemBorder;
     }
 
     .commentUser {
@@ -358,18 +388,21 @@ ul#linkList {
   width: 100%;
 
   .linkItem:last-child{
-    border-bottom: 1px solid #E1E1E1;
+    border-bottom: 1px solid $colorLinkItemBorder;
   }
 
   .linkItem:nth-child(odd) {
-    background-color: #EDEDED;
+    background-color: $colorLinkItemBackgroundOdd;
   }
 
   .linkItem:nth-child(even) {
-    background-color: #F5F5F5;
+    background-color: $colorLinkItemBackgroundEven;
   }
 }
 
+/**********************************************************
+ * Responsive design
+ **********************************************************/
 @media (max-width: 48em)
 {
 
