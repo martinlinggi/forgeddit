@@ -3,6 +3,11 @@
  * Variable Definitions
  **********************************************************/
 
+// Links
+$colorLink: #528fcc;
+$colorLinkHover: #80b5ea;
+$colorLinkVisited: #38597a;
+
 // Layout Colors
 $defaultColor: #151515;
 
@@ -21,12 +26,6 @@ $colorLinkItemBackgroundEven: #f5f5f5;
 $colorAddEntryBackGround: #f5f5f5;
 $colorAddEntryBorder: #e1e1e1;
 
-// Links
-$colorLink: #d10000;
-$colorLinkHover: #ff0000;
-$colorLinkVisited: #900000;
-$colorError: #ff0000;
-
 // Standard button
 $colorButtonBackground: #ededed;
 $colorButtonHover: #dfdfdf;
@@ -42,7 +41,7 @@ $colorButtonShadowDisabled: #dcdcdc;
 
 // Button highlighted
 $colorButtonBackgroundHighlight: #78ff9c;
-$colorButtonHoverHighlight: #25fa5e;
+$colorButtonHoverHighlight:  #25fa5e;
 $colorButtonColorHighlight: #000000;
 $colorButtonBorderHighlight: #51ed7a;
 $colorButtonShadowHighlight: #c0fad1;
@@ -207,20 +206,20 @@ input[type=button] {
     background-image: url("../images/ForgeddIt-Logo.png");
   }
 
-  #search {
-    float: right;
-    margin-top: 54px;
-    padding: 0px 10px;
-    height: 19px;
-    background-color: $colorHeaderLineBackGround;
-  }
-
+  #search,
   #signIn {
     float: right;
     margin-top: 54px;
     padding: 0px 10px;
     height: 19px;
     background-color: $colorHeaderLineBackGround;
+    a {
+      &:link,
+      &:hover,
+      &:visited {
+        color: $colorLinkHover;
+      }
+    }
   }
 }
 
@@ -255,9 +254,7 @@ input[type=button] {
         width: 100%;
       }
     }
-
   }
-
 }
 
 // Main Layout Footer
@@ -275,6 +272,10 @@ input[type=button] {
       @extend %horizontalListItem;
       font-weight: bold;
       cursor: pointer;
+      color: $colorLink;
+      &:hover{
+        color: $colorLinkHover;
+      }
     }
   }
 }
@@ -306,6 +307,7 @@ input[type=button] {
       &:before {
         content: "\e001";
         font-family: symbols;
+        cursor: pointer;
       }
     }
 
@@ -315,6 +317,7 @@ input[type=button] {
       &:before {
         content: "\e002";
         font-family: symbols;
+        cursor: pointer;
       }
     }
   }
@@ -424,6 +427,13 @@ ul#linkList {
       width: auto;
       margin-top: 0.5em;
       background-color: white;
+      a {
+        &:link,
+        &:hover,
+        &:visited {
+          color: $colorLink;
+        }
+      }
     }
   }
 }
@@ -443,6 +453,13 @@ ul#linkList {
       width: auto;
       margin-top: 0.5em;
       background-color: white;
+      a {
+        &:link,
+        &:hover,
+        &:visited {
+          color: $colorLink;
+        }
+      }
     }
   }
 

@@ -20,8 +20,6 @@ jQuery(document).ready(function() {
             $('#sendLink').attr('disabled','disabled');
         }
     });
-
-
 });
 
 /**
@@ -46,6 +44,9 @@ function onAddLink() {
     }
 }
 
+/**
+ * Refreshes the page
+ */
 function refreshPage()
 {
     $('.linkItem').remove();
@@ -64,10 +65,15 @@ function refreshPage()
     }
 }
 
+/**
+ * Changes the vote vlaue
+ * @param id The id of the link
+ * @param value The new vote value
+ */
 function vote(id, value)
 {
     value = voteLink(id, value);
-    if (value)
+    if (value !== undefined)
     {
         $('#' + id + ' div.rate div.vote').html(value);
         console.log('Vote: ' + id + ' new Value: ' + value );
@@ -110,7 +116,7 @@ function createRateDiv(rate, id) {
  * @returns {*|jQuery} The div-element
  */
 function createThumbDiv(link) {
-    var $thumb = $('<img>').attr('src', link);
+    var $thumb = $('<img>').attr('src', link).attr('alt', 'thumb for the link entry');
     var $link = $('<a>').attr('href', link).append($thumb);
     var $thumbDiv = $('<div>').addClass('thumb').append($link).hide();
 
@@ -176,6 +182,13 @@ function createLinkHtml(title, link)
     }
 }
 
+/**
+ * Creates the middle line of the link entry
+ * @param time The time when the link entry was created
+ * @param user The user who created the link
+ * @param group The group wehre the link belongs
+ * @returns {*|jQuery}
+ */
 function createLinkEntryInfo(time, user, group)
 {
     var $userLink =  $('<a>').attr({href: '#'}).append(user);
@@ -187,6 +200,12 @@ function createLinkEntryInfo(time, user, group)
         append($groupLink);
 }
 
+/**
+ * Creates the options menu of the link entry
+ * @param id The id of the link entry
+ * @param comments The comments of the link entry
+ * @returns {*|jQuery}
+ */
 function createLinkEntryOptions(id, comments)
 {
     var $div = $('<div>').addClass('actionList');
@@ -208,6 +227,11 @@ function createLinkEntryOptions(id, comments)
     return $div;
 }
 
+/**
+ * Creates the comments of a link
+ * @param comments The comments
+ * @returns {*|jQuery}
+ */
 function createLinkEntryComments(comments)
 {
     var $divList = $('<div>').addClass('commentList').hide();
@@ -221,6 +245,11 @@ function createLinkEntryComments(comments)
     return $divList;
 }
 
+/**
+ * Creates an editfield to add a comment
+ * @param id The id of the link entry
+ * @returns {*|jQuery}
+ */
 function createLinkEntryCommentEditor(id)
 {
     var $commentEdit = $('<div>').addClass('commentEditor').attr('id', 'addComment');
@@ -274,6 +303,11 @@ function createLinkEntryCommentEditor(id)
     return $commentEdit;
 }
 
+/**
+ * Creates a text in the form "<time>-ago" from the given creation time
+ * @param creationTime The creation time
+ * @returns {string}
+ */
 function getCreationTimeAsText(creationTime)
 {
     var millis = new Date().getTime() - creationTime;
