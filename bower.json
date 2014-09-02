@@ -1,8 +1,25 @@
 {
-  "name": "empty-sass",
-  "private": true,
+  "name": "forgeddit",
+  "version": "0.0.0",
+  "homepage": "https://github.com/martinlinggi/forgeddit",
+  "authors": [
+    "martinlinggi <ma-li@hispeed.ch>"
+  ],
+  "description": "a small reddit clone",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
   "dependencies": {
-    "jquery": "2.1.1"
-  },
-  "devDependencies": {}
+    "angular": "~1.2.23",
+    "bootstrap": "~3.2.0",
+    "jquery": "2.1.1",
+    "underscore": "~1.7.0"
+  }
 }

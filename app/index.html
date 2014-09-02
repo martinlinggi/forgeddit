@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="forgedditApp">
 <head lang="en">
     <meta charset="UTF-8">
     <title>Forgeddit</title>
@@ -45,17 +45,48 @@
                </form>
            </div>
        </div>
-       <div id="linkBox">
+       <div id="linkBox" ng-controller="LinkListController as linkList">
            <ul id="linkList">
+               <li class="linkItem" ng-repeat="link in linkList.links" id="{{link.id}}">
+                 <div class="rate">
+                     <div class="voteUp"></div>
+                     <div class="vote">{{link.rate}}</div>
+                     <div class="voteDown"></div>
+                 </div>
+                 <div class="thumb" style="display: none;">
+                     <a href="{{link.url}}">
+                         <img src="{{link.url}}" alt="thumb for the link entry">
+                     </a>
+                 </div>
+                 <div class="entry">
+                     <div class="link">
+                         <a href="{{link.url}}">{{link.title}}</a>
+                     </div>
+                     <div class="info">Submitted 3 years ago from <a href="#">{{link.user}}</a> to <a href="#">{{link.group}}</a></div>
+                     <div class="actionList">
+                         <ul class="menu">
+                             <li class="menuItem"><a ng-click="linkList.setShowCommentsIndex($index)"> {{link.comments.length}} Comments</a></li>
+                             <li class="menuItem">Add Comment</li>
+                         </ul>
+                     </div>
+                     <div ng-show="linkList.isShowComments($index)" class="commentList">
+                         <div class="commentItem" ng-repeat="comment in link.comments">
+                             <div class="commentUser">{{comment.user}}</div>
+                             <div class="commentTime">3 years ago</div>
+                             <div class="commentText">{{comment.text}}</div>
+                         </div>
+                     </div>
+                 </div>
+               </li>
            </ul>
        </div>
    </div>
 
-   <div id="footer">
+   <div id="footer"></div>
 
 
    <script src="bower_components/jquery/dist/jquery.js"></script>
-   <script src="scripts/linklist.js"></script>
-   <script src="scripts/main.js"></script>
+   <script src="bower_components/angular/angular.js"></script>
+   <script src="scripts/forgeddit.js"></script>
 </body>
 </html>
