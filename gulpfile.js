@@ -92,17 +92,19 @@ gulp.task('default', ['clean'], function () {
 });
 
 gulp.task('connect', function () {
-    var connect = require('connect');
-    var app = connect()
-        .use(require('connect-livereload')({ port: 35729 }))
-        .use(connect.static('app'))
-        .use(connect.static('.tmp'))
-        .use(connect.directory('app'));
+    console.log('connect:::');
+    var express = require('express');
+    var app = require('./server.js');
+    console.log('connect:::2');
+    app.use(require('connect-livereload')({ port: 35729 }))
+        .use(express.static('app'))
+        .use(express.static('.tmp'));
 
-    require('http').createServer(app)
-        .listen(9000)
+    console.log('connect:::');
+
+    app.listen(9000)
         .on('listening', function () {
-            console.log('Started connect web server on http://localhost:9000');
+            console.log('Started express web server on http://localhost:9000');
         });
 });
 

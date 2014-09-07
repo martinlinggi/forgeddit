@@ -45,7 +45,7 @@
                </form>
            </div>
        </div>
-       <div id="linkBox" ng-controller="LinkListController as linkList">
+       <div id="linkBox" ng-controller="LinkListController as linkList">{{linkList.testdata}}
            <ul id="linkList">
                <li class="linkItem" ng-repeat="link in linkList.links" id="{{link.id}}">
                  <div class="rate">
@@ -55,7 +55,7 @@
                  </div>
                  <div class="thumb" style="display: none;">
                      <a href="{{link.url}}">
-                         <img src="{{link.url}}" alt="thumb for the link entry">
+                         <img ng-src="{{link.url}}" alt="thumb for the link entry">
                      </a>
                  </div>
                  <div class="entry">

@@ -2,73 +2,49 @@
  * Created by martinlinggi on 01.09.14.
  */
 
-(function() {
+//(function() {
 
-  var app = angular.module('forgedditApp', []);
+  angular.module('forgedditApp', [])
+      .controller('LinkListController', ['$scope', '$http', function($scope, $http) {
+       $http.get('api').
+           success(function(data, status, headers, config){
+              $scope.links = data;
+               console.log('success: ' + $scope.links);
+           }).
+           error(function(data, status, header, config){
+               console.log('error: ' + status);
 
-   app.controller('LinkListController', function() {
-       this.links = linkList;
-       this.showCommentsIndex = -1;
+           });
 
-       this.setShowCommentsIndex = function (index) {
+//       this.links = linkList;
+       $scope.showCommentsIndex = -1;
+       $scope.testdata="Hello Test";
+
+       $scope.setShowCommentsIndex = function (index) {
            if (this.links[index].comments.length === 0)
            {
                return;
            }
-           else if (this.showCommentsIndex === index) {
-               this.showCommentsIndex = -1;
+           else if ($scope.showCommentsIndex === index) {
+               $scope.showCommentsIndex = -1;
            }
            else {
-               this.showCommentsIndex = index;
+               $scope.showCommentsIndex = index;
            }
        }
 
-       this.isShowComments = function (index) {
-           return this.showCommentsIndex === index;
+       $scope.isShowComments = function (index) {
+           return $scope.showCommentsIndex === index;
        }
 
-   });
+   }]);
 
-   var linkList =
-              [{  "id" : 1,
-                  "title" : "Sony streamt Spiele auf Fernseher",
-                  "url" : "http://www.heise.de/newsticker/meldung/E3-Sony-streamt-Spiele-auf-Fernseher-zeigt-neue-PS4-Titel-2218073.html",
-                  "user" : "MaLiMaster",
-                  "group" : "fun",
-                  "rate" : 432,
-                  "time" : 1308774240669,
-                  "comments": [
-                      {"user" : "tinMan", "time": 1308774240669, "text": "Hallo"},
-                      {"user" : "MaLiMaster", "time": 1308774240669, "text": "Comment"}]
-                },
-               {   "id" : 2,
-                    "title" : "Kurios gesammelt",
-                    "url" : "http://www.heise.de/newsticker/meldung/Messesplitter-Kurioses-und-Bemerkenswertes-von-der-Computex-2217665.html",
-                    "user" : "MaLiMaster",
-                    "group" : "fun",
-                    "rate" : 15,
-                    "time" : 1308124245826,
-                    "comments": []
-                },
-               {  "id" : 3,
-                   "title" : "Möchtegern Hausbauer",
-                    "url" : "http://i.imgur.com/RJqRpbM.jpg",
-                    "user" : "MaLiMaster",
-                    "group" : "fun",
-                    "rate" : 22,
-                    "time" : 1308124245826,
-                    "comments": [
-                        {"user" : "tinMan", "time": 1308774240669, "text": "Hallo"}]
-                },
-               {   "id" : 4,
-                    "title" : "Giraffes in love",
-                    "url" : "http://www.freemake.com/blog/wp-content/uploads/2013/07/animated-gifs-giraffes-51.gif",
-                    "user" : "MaLiMaster",
-                    "group" : "fun",
-                    "rate" : 578,
-                    "time" : 1308124245826,
-                    "comments": []
-                }];
+//   app.directive('entryPartial', function() {
+//       return {
+//           restrict: 'E',
+//           templateUrl: 'link-list-partial.html'
+//       };
+//   });
 
-})();
+//})();
 
