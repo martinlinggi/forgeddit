@@ -33,21 +33,21 @@
    </div>
 
    <div id="content">
-       <div id="addEntry">
+       <div id="addEntry" ng-controller="addLinkController">
            <div id="addLink">
                <h3>Send a link</h3>
-               <form>
+               <form ng-submit="form.submitLink()" >
                    <label for="linkTitle">Title</label>
-                   <input type="text" id="linkTitle" placeholder="Enter title">
+                   <input ng-model="form.title" type="text" id="linkTitle" placeholder="Enter title">
                    <label for="link">Link</label>
-                   <input type="text" id="link" placeholder="Enter link">
+                   <input ng-model= "form.url" type="text" id="link" placeholder="Enter link">
                    <input type="button" id="sendLink" value="Send Link">
                </form>
            </div>
        </div>
-       <div id="linkBox" ng-controller="LinkListController as linkList">{{linkList.testdata}}
+       <div id="linkBox" ng-controller="LinkController">
            <ul id="linkList">
-               <li class="linkItem" ng-repeat="link in linkList.links" id="{{link.id}}">
+               <li class="linkItem" ng-repeat="link in links" id="{{link.id}}">
                  <div class="rate">
                      <div class="voteUp"></div>
                      <div class="vote">{{link.rate}}</div>
@@ -65,11 +65,11 @@
                      <div class="info">Submitted 3 years ago from <a href="#">{{link.user}}</a> to <a href="#">{{link.group}}</a></div>
                      <div class="actionList">
                          <ul class="menu">
-                             <li class="menuItem"><a ng-click="linkList.setShowCommentsIndex($index)"> {{link.comments.length}} Comments</a></li>
+                             <li class="menuItem"><a ng-click="links.setShowCommentsIndex($index)"> {{link.comments.length}} Comments</a></li>
                              <li class="menuItem">Add Comment</li>
                          </ul>
                      </div>
-                     <div ng-show="linkList.isShowComments($index)" class="commentList">
+                     <div ng-show="links.isShowComments($index)" class="commentList">
                          <div class="commentItem" ng-repeat="comment in link.comments">
                              <div class="commentUser">{{comment.user}}</div>
                              <div class="commentTime">3 years ago</div>

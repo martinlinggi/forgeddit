@@ -48,18 +48,23 @@ router.get('/', function(req, res) {
   res.json(data);
 });
 
+// create a link
 router.route('/links').post(function(req, res) {
 
-    var link = JSON.parse(req.body.link);
+    var linkData = JSON.parse(req.body.link);
+    var time = new Date().getTime();
+    linkData.id = linkData.user + '_' + time;
+    linkData.group = "test-group";
+    linkData.rate  =0;
+    linkData.time = time;
+    linkData.comments = [];
+    console.dir(linkData);
 
-    console.dir(link);
-
-    data.push(link);
+    data.push(linkData);
     console.dir(data);
 
     res.json({message: 'Link created'});
 });
 
-  // create a link
 
 module.exports = router;
