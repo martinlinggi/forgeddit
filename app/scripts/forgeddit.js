@@ -4,8 +4,9 @@
 
 //(function() {
 
-var app = angular.module('forgedditApp', [])
-    .controller('LinkController', ['$scope', '$http', function($scope, $http) {
+var app = angular.module('forgedditApp', []);
+
+    app.controller('LinkController', ['$scope', '$http', function($scope, $http) {
         $http.get('api').
             success(function(data, status, headers, config){
                 $scope.links = data;
@@ -16,7 +17,6 @@ var app = angular.module('forgedditApp', [])
 
             });
 
-//       this.links = linkList;
         $scope.showCommentsIndex = -1;
         $scope.testdata="Hello Test";
 
@@ -36,18 +36,19 @@ var app = angular.module('forgedditApp', [])
         $scope.isShowComments = function (index) {
             return $scope.showCommentsIndex === index;
         }
-    }])
-    .controller('addLinkController', ['$scope', '$http', function($scope, $http){
+    }]);
+
+    app.controller('addLinkController', ['$scope', '$http', function($scope, $http){
 
         $scope.form = {};
         $scope.form.title = "";
         $scope.form.url = "";
-        $scope.form.submitLink = function(item, event) {
+        $scope.form.sendLink = function() {
             var dataObject = {};
             dataObject.title = $scope.form.title;
             dataObject.url = $scope.form.url;
             dataObject.user = 'testuser';
-            $http.post('/links', dataObject)
+            $http.post('/api/links', dataObject)
                 .success(function (data, status, headers, config) {
                     console.log('Success: link added')
 

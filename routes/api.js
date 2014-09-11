@@ -51,13 +51,24 @@ router.get('/', function(req, res) {
 // create a link
 router.route('/links').post(function(req, res) {
 
-    var linkData = JSON.parse(req.body.link);
+    console.dir(req.body);
+    linkData = {};
+    console.dir('1');
     var time = new Date().getTime();
+    linkData.user = req.bodys.user;
+    linkData.title = req.bodys.title;
+    linkData.url = req.bodys.url;
+    console.dir('2');
     linkData.id = linkData.user + '_' + time;
+    console.dir('3');
     linkData.group = "test-group";
+    console.dir('4');
     linkData.rate  =0;
+    console.dir('5');
     linkData.time = time;
+    console.dir('6');
     linkData.comments = [];
+    console.dir('7');
     console.dir(linkData);
 
     data.push(linkData);

@@ -36,12 +36,12 @@
        <div id="addEntry" ng-controller="addLinkController">
            <div id="addLink">
                <h3>Send a link</h3>
-               <form ng-submit="form.submitLink()" >
+               <form>
                    <label for="linkTitle">Title</label>
                    <input ng-model="form.title" type="text" id="linkTitle" placeholder="Enter title">
                    <label for="link">Link</label>
-                   <input ng-model= "form.url" type="text" id="link" placeholder="Enter link">
-                   <input type="button" id="sendLink" value="Send Link">
+                   <input ng-model= "form.url" type="url" id="link" placeholder="Enter link">
+                   <input ng-click="form.sendLink()" type="button" id="sendLink" value="Send Link">
                </form>
            </div>
        </div>
