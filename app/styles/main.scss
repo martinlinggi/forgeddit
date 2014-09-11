@@ -14,17 +14,17 @@ $defaultColor: #151515;
 // Header
 $colorHeaderLineBackGround: #151515;
 
-// Navigation
-$colorNavigationBackground: #c8c8c8;
+// Contentbox Header
+$colorContentBoxHeaderBackground: #c8c8c8;
+
+// ContentBox
+$colorContentBoxBackground: #f5f5f5;
+$colorContentBoxBorder: #e1e1e1;
 
 // Link entry
 $colorLinkItemBorder: #e1e1e1;
 $colorLinkItemBackgroundOdd: #ededed;
 $colorLinkItemBackgroundEven: #f5f5f5;
-
-// Sidebar add entry
-$colorAddEntryBackGround: #f5f5f5;
-$colorAddEntryBorder: #e1e1e1;
 
 // Standard button
 $colorButtonBackground: #ededed;
@@ -120,16 +120,6 @@ a:hover {
   color: $colorLinkHover;
 }
 
-// Horizontal list for menus
-%horizontalList {
-  padding-left: 1em;
-}
-%horizontalListItem {
-  float: left;
-  list-style: none;
-  margin-right: 1em;
-}
-
 // Scale image with aspect ratio
 .imageScaleH {
   height: 100%;
@@ -163,7 +153,6 @@ input[type=button] {
 
 #sendLink,
 #sendCommentText {
-  margin-top: 0.5em;
   &:enabled {
     color: $colorButtonColor;
     background-color: $colorButtonBackgroundHighlight;
@@ -227,7 +216,7 @@ input[type=button] {
 #navigation {
   @extend %mainLayout;
   display: block;
-  background-color: $colorNavigationBackground;
+  background-color: $colorContentBoxHeaderBackground;
   margin-top: 1em;
 }
 
@@ -236,26 +225,51 @@ input[type=button] {
   @extend %mainLayout;
   height: 1%;
   display: block;
+}
 
-  #linkBox {
-    margin-right: 18.5em;
-  }
+.box {
+  width: 100%;
+}
 
-  #addEntry {
-    float: right;
-    width: 18em;
-    background-color: $colorAddEntryBackGround;
-    border: 1px solid $colorAddEntryBorder;
+.boxHeader {
+  margin-top: 1em;
+  padding-left: 1em;
+  background-color: $colorContentBoxHeaderBackground;
+  font-weight: bold;
+}
 
-    div {
-      padding: 1em;
+.boxContent {
+  clear: left;
+  background-color: $colorContentBoxBackground;
+  border: 1px solid $colorContentBoxBorder;
+}
 
-      input {
-        width: 100%;
-      }
+#addLink {
+  float: inline;
+  form {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    label {
+      margin-left: 1em;
     }
+    input[type=text],
+    input[type=url]
+    {
+      display: inline;
+      width: 33%;
+      height: 2em;
+      margin-left: 0.5em;
+    }
+    #sendLink {
+      width: 10em;
+      margin-right: 1em;
+      margin-bottom: 1em;
+      float: right;
+    }
+
   }
 }
+
 
 // Main Layout Footer
 #footer {
@@ -264,37 +278,33 @@ input[type=button] {
 
 
 /* Menü */
-#menu,
+
 .actionList {
-  ul{
-    @extend %horizontalList;
-    li  {
-      @extend %horizontalListItem;
-      font-weight: bold;
-      cursor: pointer;
-      color: $colorLink;
-      &:hover{
-        color: $colorLinkHover;
-      }
+  padding-left: 1em;
+  li  {
+    display: inline;
+    list-style: none;
+    margin-right: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    color: $colorLink;
+    &:hover{
+      color: $colorLinkHover;
     }
   }
 }
 
 #signIn li {
-  float: left;
+  display: inline;
   list-style: none;
   margin-right: 1em;
-}
-
-/* Link-List  */
-#linkBox li {
-  list-style: none;
 }
 
 .linkItem {
   border-top: 1px solid $colorLinkItemBorder;
   padding-top: 0.6em;
   padding-bottom: 0.6em;
+  list-style: none;
 
   .rate {
     float: left;
@@ -388,6 +398,8 @@ input[type=button] {
 
 ul#linkList {
 
+  clear: left;
+
   width: 100%;
 
   .linkItem:last-child{
@@ -406,8 +418,7 @@ ul#linkList {
 /**********************************************************
  * Responsive design
  **********************************************************/
-@media (max-width: 48em)
-{
+@media (max-width: 48em){
 
   #header {
 
