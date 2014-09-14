@@ -1,0 +1,25 @@
+<div class="entry" ng-controller="linkContentController">
+    <div class="link">
+        <a href="{{link.url}}">{{link.title}}</a>
+    </div>
+    <div class="info">Submitted {{getTimeAgo(link.time)}} ago from <a href="#">{{link.user}}</a> to <a href="#">{{link.group}}</a></div>
+    <div class="actionList">
+        <ul class="menu">
+            <li class="menuItem"><a ng-click="toggleComments(link)"> {{link.comments.length}} Comments</a></li>
+        </ul>
+    </div>
+    <div ng-show="showComments" class="commentList">
+        <div class="commentItem" ng-repeat="comment in link.comments">
+            <div class="commentUser">{{comment.user}}</div>
+            <div class="commentTime">{{getTimeAgo(link.comments[$index].time)}}</div>
+            <div class="commentText">{{comment.text}}</div>
+        </div>
+    </div>
+    <div ng-show="showComments" class="addComment">
+        <form name="addComment" class="ccs-form">
+            <label for="comment">Link:</label>
+            <input ng-model= "newComment" type="text" id="comment" placeholder="Enter Comment" required >
+            <input ng-click="sendComment(link)" ng-disabled="addComment.$invalid" type="button" id="sendComment" value="Send Comment">
+        </form>
+    </div>
+</div>
