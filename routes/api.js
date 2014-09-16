@@ -3,6 +3,8 @@ var router = express.Router();
 
 var linkStore = require('../models/linklist.js');
 
+var version = 0;
+
 /* GET all the links. */
 router.get('/', function(req, res) {
     linkStore.getAllLinks(function (err, docs) {
@@ -11,7 +13,8 @@ router.get('/', function(req, res) {
 });
 
 // create a link
-router.route('/links').post(function(req, res) {
+router.route('/links')
+    .post(function(req, res) {
 
     var time = new Date().getTime();
     var linkData = {};
@@ -28,6 +31,8 @@ router.route('/links').post(function(req, res) {
         res.json(doc);
     });
 
+    version++;
+
 });
 
 // votes a link
@@ -41,6 +46,8 @@ router.route('/links/:linkId')
         linkStore.voteLink(req.params.linkId, vote, function(err, numReplaced) {
             res.json(numReplaced);
         });
+
+        version++;
 
     });
 
@@ -56,7 +63,14 @@ router.route('/links/:linkId/comments')
             res.json(numReplaced);
         });
 
+        version++;
+
     });
+
+router.get('/version', function(req, res) {
+    res.json(version);
+});
+
 
 
 module.exports = router;

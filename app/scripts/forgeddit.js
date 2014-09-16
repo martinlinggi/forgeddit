@@ -53,34 +53,68 @@ function getTimeAgo(time)
     }
 }
 
-app.controller('linkController', ['$scope', '$http', function($scope, $http) {
+app.factory('pollingService', ['$http', function($http) {
+    var defaultPollingTime = 10000;
+    var polls = {};
+
+    return {
+        startPolling: function(name, url, pollingTime, callback) {
+            // Check to make sure poller doesn't already exist
+            if (!polls[name]) {
+                var poller = function() {
+                    $http.get(url).then(callback);
+                };
+                poller();
+                polls[name] = setInterval(poller, pollingTime || defaultPollingTime);
+            }
+        },
+
+        stopPolling: function(name) {
+            clearInterval(polls[name]);
+            delete polls[name];
+        }
+    }
+}]);
+
+app.controller('linkController', ['$scope', '$http', 'pollingService', function($scope, $http, pollingService) {
 
     $scope.showCommentsIndex = -1;
-    $scope.predicate = 'time';
-    $scope.reverse = true;
+    $scope.version = -1;
+
 
     $scope.getTimeAgo = function(time) {
         return getTimeAgo(time);
     };
-
-    // Gets all the links from the api
-    $http.get('api').
-        success(function(data, status, headers, config){
-            linkList = data;
-            $scope.links = linkList;
-            console.log('success: ' + $scope.links);
-        }).
-        error(function(data, status, header, config){
-            console.log('error: ' + status);
-// TODO Fix Error when send link does not work
-        });
 
     // Sort the link list
     $scope.sort = function(predicate, reverse) {
         $scope.predicate = predicate;
         $scope.reverse = reverse;
         console.log('sort: ' + predicate + ' ' + reverse);
+        if ($scope.predicate === 'rate') {
+            pollingService.stopPolling('update');
+        }
+        else {
+            pollingService.startPolling("update", 'api/version', 1500, function(result) {
+                if ($scope.version != result.data) {
+                    // Gets all the links from the api
+                    $http.get('api').
+                        success(function(data, status, headers, config){
+                            linkList = data;
+                            $scope.links = linkList;
+                            console.log('success: ' + $scope.links);
+                        }).
+                        error(function(data, status, header, config){
+                            console.log('error: ' + status);
+// TODO Fix Error when send link does not work
+                        });
+                    $scope.version = result.data;
+                }
+            });
+        }
     };
+
+    $scope.sort('time', true);
 
 }]);
 

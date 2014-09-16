@@ -89,17 +89,12 @@ gulp.task('default', ['clean'], function () {
 });
 
 gulp.task('connect', function () {
-    console.log('connect:::');
     var express = require('express');
     var app = require('./server.js');
-    console.log('connect:::2');
     app.use(require('connect-livereload')({ port: 35729 }))
         .use(express.static('app'))
         .use(express.static('.tmp'));
-
-    console.log('connect:::');
-
-    app.listen(9000)
+    var server = app.listen(9000)
         .on('listening', function () {
             console.log('Started express web server on http://localhost:9000');
         });
