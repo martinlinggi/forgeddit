@@ -1,0 +1,16 @@
+<div class="boxHeader">Send a forgeddable link!</div>
+<div id="addLink" class="boxContent">
+    <form name="form" class="css-form" novalidate>
+
+        <label for="link">Link:</label>
+        <input ng-model= "url" type="url" id="link" placeholder="Enter link" required >
+
+        <label for="linkTitle">Title:</label>
+        <input ng-model="title" type="text" id="linkTitle" placeholder="Enter title" required>
+
+        <button class="sendLink"
+                ng-click="sendLink()"
+                ng-disabled="form.$invalid">Send Link</button>
+
+    </form>
+</div>

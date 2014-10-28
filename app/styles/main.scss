@@ -120,6 +120,17 @@ a:hover {
   color: $colorLinkHover;
 }
 
+input[type=text],
+input[type=url],
+input[type=password],
+{
+  display: inline;
+  width: 33%;
+  height: 2em;
+  margin-left: 0.5em;
+}
+
+
 // Scale image with aspect ratio
 .imageScaleH {
   height: 100%;
@@ -131,7 +142,7 @@ a:hover {
 }
 
 // Buttons
-input[type=button] {
+button {
   display: inline-block;
   height: 2.5em;
   color: $colorButtonColorDisabled;
@@ -251,14 +262,6 @@ input[type=button] {
     padding-bottom: 1em;
     label {
       margin-left: 1em;
-    }
-    input[type=text],
-    input[type=url]
-    {
-      display: inline;
-      width: 33%;
-      height: 2em;
-      margin-left: 0.5em;
     }
     #sendLink {
       width: 10em;

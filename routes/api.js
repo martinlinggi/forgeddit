@@ -1,20 +1,17 @@
 var express = require('express');
 var router = express.Router();
 
-var linkStore = require('../models/linklist.js');
-
-var version = 0;
+var ForgedditStore = require('../models/linkStore.js');
 
 /* GET all the links. */
-router.get('/', function(req, res) {
-    linkStore.getAllLinks(function (err, docs) {
+router.get('/links', function(req, res) {
+    ForgedditStore.getAllLinks(function (err, docs) {
         res.json(docs);
     });
 });
 
 // create a link
-router.route('/links')
-    .post(function(req, res) {
+router.post('/links', function(req, res) {
 
     var time = new Date().getTime();
     var linkData = {};
@@ -27,28 +24,20 @@ router.route('/links')
     linkData.time = time;
     linkData.comments = [];
 
-    linkStore.addLink(linkData, function(err, doc) {
+    ForgedditStore.addLink(linkData, function(err, doc) {
         res.json(doc);
     });
-
-    version++;
 
 });
 
 // votes a link
-router.route('/links/:linkId')
-    .get(function(req, res) {
-
-    })
-    .put(function(req, res) {
-        console.log('voting received: ' + req.params.linkId);
-        var vote = req.body.vote;
-        linkStore.voteLink(req.params.linkId, vote, function(err, numReplaced) {
+router.put('/links/:linkId/vote', function(req, res) {
+    console.log('voting received: ', linkId, req.body.value);
+    var vote = req.body.value;
+    var linkId = req.params.linkId;
+    ForgedditStore.voteLink(linkId, vote, function(err, numReplaced) {
             res.json(numReplaced);
         });
-
-        version++;
-
     });
 
 // votes a link
@@ -59,18 +48,10 @@ router.route('/links/:linkId/comments')
         comment.text = req.body.text;
         comment.user = req.body.user;
         comment.time = new Date().getTime();
-        linkStore.addComment(req.params.linkId, comment, function(err, numReplaced) {
+        ForgedditStore.addComment(req.params.linkId, comment, function(err, numReplaced) {
             res.json(numReplaced);
         });
 
-        version++;
-
     });
-
-router.get('/version', function(req, res) {
-    res.json(version);
-});
-
-
 
 module.exports = router;

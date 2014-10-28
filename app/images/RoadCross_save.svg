@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="801px" height="601px" viewBox="0 0 801 601" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.4 (8053) - http://www.bohemiancoding.com/sketch -->
+    <title>RoadCross</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="RoadCross" sketch:type="MSLayerGroup" transform="translate(0.000000, 1.000000)">
+            <g id="Background" sketch:type="MSShapeGroup">
+                <rect id="Rectangle-1" stroke="#979797" fill="#D8D8D8" x="1" y="0" width="800" height="600"></rect>
+                <rect id="Rectangle-2" stroke="#4D4D4D" fill="#4D4D4D" x="0" y="225" width="799" height="150"></rect>
+                <rect id="Rectangle-3" stroke="#4D4D4D" fill="#4D4D4D" transform="translate(401.000000, 300.000000) rotate(-90.000000) translate(-401.000000, -300.000000) " x="101" y="225" width="600.0625" height="150"></rect>
+                <rect id="Rectangle-4" fill="#FFFFFF" x="2" y="298" width="62" height="4"></rect>
+                <rect id="Rectangle-6" fill="#FFFFFF" x="208" y="298" width="62" height="4"></rect>
+                <rect id="Rectangle-5" fill="#FFFFFF" x="105" y="298" width="62" height="4"></rect>
+                <rect id="Rectangle-9" fill="#FFFFFF" x="208" y="298" width="118" height="4"></rect>
+                <rect id="Rectangle-8" fill="#FFFFFF" x="2" y="298" width="62" height="4"></rect>
+                <rect id="Rectangle-7" fill="#FFFFFF" transform="translate(321.000000, 336.500000) rotate(-90.000000) translate(-321.000000, -336.500000) " x="283" y="331.5" width="76" height="10"></rect>
+                <rect id="Rectangle-5" fill="#FFFFFF" transform="translate(666.000000, 300.000000) scale(-1, -1) translate(-666.000000, -300.000000) " x="635" y="298" width="62" height="4"></rect>
+                <rect id="Rectangle-9" fill="#FFFFFF" transform="translate(535.000000, 300.000000) scale(-1, -1) translate(-535.000000, -300.000000) " x="476" y="298" width="118" height="4"></rect>
+                <rect id="Rectangle-8" fill="#FFFFFF" transform="translate(769.000000, 300.000000) scale(-1, -1) translate(-769.000000, -300.000000) " x="738" y="298" width="62" height="4"></rect>
+                <rect id="Rectangle-7" fill="#FFFFFF" transform="translate(481.000000, 263.500000) scale(-1, -1) rotate(-90.000000) translate(-481.000000, -263.500000) " x="443" y="258.5" width="76" height="10"></rect>
+                <rect id="Rectangle-5" fill="#FFFFFF" transform="translate(401.500000, 34.500000) scale(-1, -1) rotate(-90.000000) translate(-401.500000, -34.500000) " x="370.5" y="32.5" width="62" height="4"></rect>
+                <rect id="Rectangle-9" fill="#FFFFFF" transform="translate(401.500000, 165.500000) scale(-1, -1) rotate(-90.000000) translate(-401.500000, -165.500000) " x="342.5" y="163.5" width="118" height="4"></rect>
+                <rect id="Rectangle-7" fill="#FFFFFF" transform="translate(365.000000, 219.500000) scale(-1, -1) rotate(-180.000000) translate(-365.000000, -219.500000) " x="327" y="214.5" width="76" height="10"></rect>
+                <rect id="Rectangle-5" fill="#FFFFFF" transform="translate(400.500000, 565.500000) rotate(-90.000000) translate(-400.500000, -565.500000) " x="369.5" y="563.5" width="62" height="4"></rect>
+                <rect id="Rectangle-9" fill="#FFFFFF" transform="translate(400.500000, 434.500000) rotate(-90.000000) translate(-400.500000, -434.500000) " x="341.5" y="432.5" width="118" height="4"></rect>
+                <rect id="Rectangle-7" fill="#FFFFFF" transform="translate(437.000000, 380.500000) rotate(-180.000000) translate(-437.000000, -380.500000) " x="399" y="375.5" width="76" height="10"></rect>
+            </g>
+            <g id="Signals" transform="translate(482.000000, 202.000000)" sketch:type="MSShapeGroup">
+                <g id="Signal-1" transform="translate(0.000000, 181.000000)">
+                    <rect id="Rectangle-20" fill="#4D4D4D" x="0" y="0" width="18" height="40"></rect>
+                    <circle id="red" fill="#D0011B" cx="9" cy="8" r="5"></circle>
+                    <circle id="yellow" fill="#F8E81C" cx="9" cy="20" r="5"></circle>
+                    <circle id="green" fill="#7ED321" cx="9" cy="32" r="5"></circle>
+                </g>
+                <g id="Signal-2" transform="translate(21.000000, 9.000000) rotate(-90.000000) translate(-21.000000, -9.000000) translate(12.000000, -11.000000)">
+                    <rect id="Rectangle-20" fill="#4D4D4D" x="0" y="0" width="18" height="40"></rect>
+                    <circle id="red" fill="#D0011B" cx="9" cy="8" r="5"></circle>
+                    <circle id="yellow" fill="#F8E81C" cx="9" cy="20" r="5"></circle>
+                    <circle id="green" fill="#7ED321" cx="9" cy="32" r="5"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

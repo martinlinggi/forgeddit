@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Forgeddit</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
    <div id="header">
@@ -14,31 +14,44 @@
                <input type="button" id="doSearch" value="Search">
            </form>
        </div>
-       <div id="signIn">
+       <div ng-if="!isLogged" id="signIn">
            <ul>
-               <li><a href="#">Sign in</a></li>
+               <li><a href="#/login">Sign in</a></li>
                <li><a href="#">Create free account</a></li>
+           </ul>
+       </div>
+       <div ng-if="isLogged" id="signOut">
+           <ul>
+               <li ng-bind="username"></li>
+               <li><a ng-click="logout()" href="#/logout">Sign out</a></li>
            </ul>
        </div>
    </div>
 
-   <div id="navigation">
-   </div>
-
-   <div id="content">
-       <div class="box">
-           <send-link-view></send-link-view>
-       </div>
-       <div class="box">
-           <link-view></link-view>
-       </div>
-   </div>
+   <div id="content" ng-view></div>
 
    <div id="footer"></div>
 
-
-   <script src="bower_components/jquery/dist/jquery.js"></script>
    <script src="bower_components/angular/angular.js"></script>
-   <script src="scripts/forgeddit.js"></script>
+   <script src="bower_components/angular-route/angular-route.js"></script>
+
+   <script src="scripts/app.js"></script>
+   <script src="scripts/services/authentication_service.js"></script>
+   <script src="scripts/services/token_interceptor.js"></script>
+   <script src="scripts/services/user_service.js"></script>
+   <script src="scripts/services/user_data_service.js"></script>
+   <script src="scripts/services/forgeddit_data_service.js"></script>
+   <script src="scripts/services/time_calculation_service.js"></script>
+   <script src="scripts/directives/admin_user_list.js"></script>
+   <script src="scripts/directives/link_content.js"></script>
+   <script src="scripts/directives/link_add.js"></script>
+   <script src="scripts/directives/link_list.js"></script>
+   <script src="scripts/directives/link_vote.js"></script>
+   <script src="scripts/controllers/app_ctrl.js"></script>
+   <script src="scripts/controllers/admin_user_list_ctrl.js"></script>
+   <script src="scripts/controllers/user_admin_ctrl.js"></script>
+   <script src="scripts/controllers/link_list_ctrl.js"></script>
+   <script src="scripts/controllers/link_add_ctrl.js"></script>
+   <script src="scripts/controllers/link_vote_ctrl.js"></script>
 </body>
 </html>
