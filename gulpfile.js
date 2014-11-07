@@ -7,7 +7,7 @@ var minifycss = require('gulp-minify-css');
 //var concat = require('gulp-concat');
 var notify = require('gulp-notify');
 //var cache = require('gulp-cache');
-//var livereload = require('gulp-livereload');
+var livereload = require('gulp-livereload');
 //var sourcemaps = require('gulp-sourcemaps');
 //var clean = require('gulp-clean');
 
@@ -60,10 +60,12 @@ gulp.task('html-files', function () {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('app/**/*.html', ['html-files']);
+    livereload.listen();
     gulp.watch('app/styles/**/*.scss', ['styles']);
-    gulp.watch('app/scripts/**/*.js', ['scripts']);
-    gulp.watch('app/images/**/*', ['images']);
+    gulp.watch('app/css/**/*.css').on('change', livereload.changed);
+    gulp.watch('app/**/*.html', ['html-files']).on('change', livereload.changed);
+    gulp.watch('app/scripts/**/*.js', ['scripts']).on('change', livereload.changed);
+    gulp.watch('app/images/**/*', ['images']).on('change', livereload.changed);
 });
 
 gulp.task('build', ['clean'], function() {

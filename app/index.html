@@ -2,10 +2,10 @@
 <html ng-app="forgedditApp">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Forgeddit</title>
+    <title>Hello Forgeddit</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
+<body ng-controller="AppCtrl">
    <div id="header">
        <div id="logo"></div>
        <div id="search">
@@ -16,7 +16,7 @@
        </div>
        <div ng-if="!isLogged" id="signIn">
            <ul>
-               <li><a href="#/login">Sign in</a></li>
+               <li><a href="#/login">Sign in Friend</a></li>
                <li><a href="#">Create free account</a></li>
            </ul>
        </div>
@@ -49,6 +49,8 @@
    <script src="scripts/directives/link_vote.js"></script>
    <script src="scripts/controllers/app_ctrl.js"></script>
    <script src="scripts/controllers/admin_user_list_ctrl.js"></script>
+   <script src="scripts/controllers/admin_new_user_ctrl.js"></script>
+   <script src="scripts/controllers/admin_edit_user_ctrl.js"></script>
    <script src="scripts/controllers/user_admin_ctrl.js"></script>
    <script src="scripts/controllers/link_list_ctrl.js"></script>
    <script src="scripts/controllers/link_add_ctrl.js"></script>

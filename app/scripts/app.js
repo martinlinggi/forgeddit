@@ -34,10 +34,16 @@ forgedditApp.config(function($routeProvider) {
         })
 
         .when ('/admin/users', {
-        templateUrl: 'templates/admin/user_list_view.html',
-        controller: 'AdminUserListCtrl',
-        access: { requiredLogin: false}
-    })
+            templateUrl: 'templates/admin/user_list_view.html',
+            controller: 'AdminUserListCtrl',
+            access: { requiredLogin: false}
+        })
+
+        .when ('/admin/users/:username', {
+            templateUrl: '../templates/admin/user_form_view.html',
+            controller: 'AdminEditUserCtrl',
+            access: { requiredLogin: false}
+        })
 
         .otherwise({
             redirectTo: '/'

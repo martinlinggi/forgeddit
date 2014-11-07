@@ -1,0 +1,24 @@
+<div class="boxHeader">New User: {{user.name}}</div>
+<div class="boxContent">
+    <form name="userForm" novalidate="">
+
+        <p ng-bind="user.name"></p>
+
+        <label for="inputUserRole">Role</label>
+        <select id="inputUserRole" ng-model="user.role">
+            <option>Administrator</option>
+            <option>User</option>
+        </select>
+
+        <label for="inputPassword" class="col-sm-4 control-label">Password</label>
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="user.password">
+
+        <button class="cancel-btn"
+                ng-click="cancelAction()">Abbrechen</button>
+        <button class="submit-btn"
+                ng-click="submitAction()"
+                ng-disabled="userForm.$invalid">{{submitBtnLabel}}</button>
+        <p>{{isUniqueUserName}}</p>
+
+    </form>
+</div>

@@ -2,7 +2,8 @@
  * Created by ma-li on 23.10.14.
  */
 
-forgedditApp.factory('UserService', ['$http', 'API_URL', function($http, API_URL) {
+forgedditApp.factory('UserService', ['$http', 'API_URL', 'AuthTokenService',
+    function($http, API_URL, AuthTokenService) {
 
     var srv = {};
 
@@ -20,4 +21,5 @@ forgedditApp.factory('UserService', ['$http', 'API_URL', function($http, API_URL
 
         }
     }
+
 }]);

@@ -129,13 +129,13 @@ db.insert({
 });
 
 ForgedditStore.getAllLinks = function(func) {
-    console.log('ForgedditStore - getAllLinks()');
+    console.log('forgedditStore - getAllLinks()');
     db.find({title: { $exists: true }}, func);
 };
 
 ForgedditStore.addLink = function(link, func) {
     db.insert(link, func);
-    console.log('ForgedditStore - addLink()');
+    console.log('forgedditStore - addLink()');
 };
 
 ForgedditStore.voteLink = function(linkId, vote, func) {
@@ -152,12 +152,12 @@ ForgedditStore.addComment = function(linkId, comment, func) {
 
 // User related functions
 ForgedditStore.getAllUsers = function(func) {
-    console.log('ForgedditStore - getAllUsers()');
+    console.log('forgedditStore - getAllUsers()');
     db.find({name: { $exists: true }}, func);
 };
 
 ForgedditStore.findUser = function(name, func) {
-    console.log('ForgedditStore - findUser() ' + name);
+    console.log('forgedditStore - findUser() ' + name);
     db.findOne({name: name }, func);
 };
 

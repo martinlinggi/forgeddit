@@ -12,16 +12,22 @@ forgedditApp.factory('UserDataService', ['$http', function($http) {
         return $http.get(srv._baseUrl + '/api/users');
     };
 
+    srv.getUser = function(userName) {
+        console.log('GET user: ', userName);
+        return $http.get(srv._baseUrl + '/api/users/' + userName);
+    };
+
     srv.addUser = function(newUser) {
+        console.log('POST new user: ', newUser);
         return $http.post(srv._baseUrl + '/api/users', newUser)
     };
 
-    srv.updateUser = function(user) {
-        return $http.put(srv._baseUrl + '/api/users/' + user.name, user)
+    srv.updateUser = function(username, user) {
+        return $http.put(srv._baseUrl + '/api/users/' + username, user)
     };
 
-    srv.addUser = function(user) {
-        return $http.post(srv._baseUrl + '/api/users/' + user.name, user)
+    srv.deleteUser = function(user) {
+        return $http.delete(srv._baseUrl + '/api/users/' + user.name)
     };
 
     //public API
@@ -29,11 +35,14 @@ forgedditApp.factory('UserDataService', ['$http', function($http) {
         getUsers: function() {
             return srv.getUsers();
         },
-        addUser: function(newUser) {
-            return srv.addLink(newUser);
+        getUser: function(userName) {
+            return srv.getUser(userName);
         },
-        updateUser: function(user) {
-            return srv.updateUser(user);
+        addUser: function(newUser) {
+            return srv.addUser(newUser);
+        },
+        updateUser: function(username, user) {
+            return srv.updateUser(username, user);
         },
         deleteUser: function(user) {
             return srv.deleteUser(user);

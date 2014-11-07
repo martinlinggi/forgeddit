@@ -4,7 +4,7 @@
 
 
 forgedditApp.controller('AdminUserCtrl', ['$scope', '$location', '$window', 'UserService', 'AuthenticationService',
-    function AdminUserCtrl($scope, $location, $window, UserService, AuthenticationService) {
+    function($scope, $location, $window, UserService, AuthenticationService) {
 
         //Admin User Controller (login, logout)
         $scope.logIn = function logIn(username, password) {
@@ -19,7 +19,7 @@ forgedditApp.controller('AdminUserCtrl', ['$scope', '$location', '$window', 'Use
                     console.log(data);
                 });
             }
-        }
+        };
 
         $scope.logout = function logout() {
             if (AuthenticationService.isLogged) {
