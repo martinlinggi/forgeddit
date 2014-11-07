@@ -2,13 +2,12 @@
  * Created by ma-li on 23.10.14.
  */
 
-forgedditApp.factory('UserService', ['$http', 'API_URL', 'AuthTokenService',
-    function($http, API_URL, AuthTokenService) {
+forgedditApp.factory('UserService', ['$http', function($http) {
 
     var srv = {};
 
     srv.logIn = function(username, password) {
-        return $http.post(API_URL + '/api/users/login', {username: username, password: password});
+        return $http.post('/api/users/login', {username: username, password: password});
     };
 
     // public API

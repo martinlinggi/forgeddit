@@ -5,8 +5,6 @@
 
 var forgedditApp = angular.module('forgedditApp', ['ngRoute']);
 
-forgedditApp.constant('API_URL', 'http://localhost:3000');
-
 forgedditApp.config(function ($httpProvider) {
     $httpProvider.interceptors.push('TokenInterceptor');
 });

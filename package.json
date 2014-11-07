@@ -4,6 +4,7 @@
   "description": "A simple reddit clone for learning purposes",
   "main": "app.js",
   "scripts": {
+    "start": "node www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "martin linggi",
@@ -33,5 +34,8 @@
     "karma-jasmine": "^0.1.5",
     "karma-ng-scenario": "^0.1.0",
     "sass": "^0.5.0"
+  },
+  "engines": {
+      "node": "=0.10.28"
   }
 }
