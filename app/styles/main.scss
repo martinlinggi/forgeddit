@@ -12,7 +12,7 @@ $colorLinkVisited: #38597a;
 $defaultColor: #151515;
 
 // Header
-$colorHeaderLineBackGround: #151515;
+$colorHeaderLineBackGround: #F51515;
 
 // Contentbox Header
 $colorContentBoxHeaderBackground: #c8c8c8;
@@ -66,10 +66,10 @@ $maxWith: 75em;
 }
 
 @mixin box-shadow($colorShadow) {
-  -moz-box-shadow:inset 0px 1px 0px 0px $colorShadow;
-  -webkit-box-shadow:inset 0px 1px 0px 0px $colorShadow;
-  -ms-box-shadow:inset 0px 1px 0px 0px $colorShadow;
-  box-shadow:inset 0px 1px 0px 0px $colorShadow;
+  -moz-box-shadow:inset 0 1px 0 0 $colorShadow;
+  -webkit-box-shadow:inset 0 1px 0 0 $colorShadow;
+  -ms-box-shadow:inset 0 1px 0 0 $colorShadow;
+  box-shadow:inset 0 1 0 0 $colorShadow;
 }
 
 /**********************************************************
@@ -98,8 +98,8 @@ $maxWith: 75em;
  * General settings
  **********************************************************/
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -181,7 +181,7 @@ button {
 
 #doSearch {
   height: 19px;
-  @include border-radius(0px);
+  @include border-radius(0);
 }
 
 #searchText {
@@ -210,7 +210,7 @@ button {
   #signIn {
     float: right;
     margin-top: 54px;
-    padding: 0px 10px;
+    padding: 0 10px;
     height: 19px;
     background-color: $colorHeaderLineBackGround;
     a {
@@ -256,7 +256,7 @@ button {
 }
 
 #addLink {
-  float: inline;
+  float: left;
   form {
     padding-top: 1em;
     padding-bottom: 1em;

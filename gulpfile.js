@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var sass = require('gulp-ruby-sass');
-var minifycss = require('gulp-minify-css');
-//var jshint = require('gulp-jshint');
+//var minifycss = require('gulp-minify-css');
+var jshint = require('gulp-jshint');
 //var uglify = require('gulp-uglify');
 //var imagemin = require('gulp-imagemin');
 //var concat = require('gulp-concat');
@@ -10,6 +10,7 @@ var notify = require('gulp-notify');
 var livereload = require('gulp-livereload');
 //var sourcemaps = require('gulp-sourcemaps');
 //var clean = require('gulp-clean');
+var nodemon = require('nodemon');
 
 // var connect = require('gulp-connect');
 // var concat = require('gulp-concat');
@@ -21,11 +22,13 @@ gulp.task('clean', function() {
 
 gulp.task('styles', function(){
     return gulp.src('app/styles/main.scss')
-        .pipe(sass({style: 'expanded'}))
+        .pipe(sass({
+            style: 'compact',
+            sourcemap: true,
+            sourcemapPath: '../styles',
+            precision: 10
+            }))
         .pipe(gulp.dest('app/css'))
-        .pipe(gulp.dest('dist/app/css'))
-        .pipe(minifycss())
-        .pipe(gulp.dest('dist/app/css'))
         .pipe(notify({message: 'Styles task complete'}));
 });
 
@@ -33,12 +36,6 @@ gulp.task('scripts', function() {
     return gulp.src('app/scripts/**/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
-        .pipe(sourcemaps.init())
-        .pipe(concat('main.js'))
-        .pipe(gulp.dest('dist/scripts'))
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('dist/scripts'))
         .pipe(notify({message: 'Scripts task complete'}));
 });
 
@@ -70,6 +67,14 @@ gulp.task('watch', function() {
 
 gulp.task('build', ['clean'], function() {
     gulp.start('styles', 'scripts', 'images', 'bower-components', 'html-files');
+});
+
+// Runs the styles task, starts the server and restarts it automagically after changes happened
+gulp.task('dev', ['styles', 'watch'], function(){
+    nodemon({ script: 'server.js', ext: 'html js', ignore: ['gulpfile.js', 'test/*', 'app/*'] })
+        .on('restart', function () {
+            console.log('Developement-Server restarted!!');
+        })
 });
 
 gulp.task('connect', function() {

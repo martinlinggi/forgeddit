@@ -2,27 +2,45 @@
  * Created by martinlinggi on 07.11.14.
  */
 
-forgedditApp.factory('AuthTokenService', function AuthTokenFactory($window) {
+(function(){
     'use strict';
-    var store = $window.localStorage;
-    var key = 'auth-token';
 
-    return {
-        getToken: getToken,
-        setToken: setToken
-    };
+    angular.module('forgedditApp').factory('AuthTokenService', function AuthTokenFactory($window) {
 
-    function getToken() {
-        return store.getItem(key);
-    }
+        var store = $window.sessionStorage;
+        var key = 'auth-token';
+        var isAuth = false;
 
-    function setToken(token) {
-        if (token) {
-            store.setItem(key, token);
-        } else {
-            store.removeItem(key);
+        function getToken() {
+            return store.getItem(key);
         }
-    }
 
-});
+        function setToken(token) {
+            if (token) {
+                store.setItem(key, token);
+            } else {
+                store.removeItem(key);
+            }
+        }
+
+        function isAuthenticated()
+        {
+            return isAuth;
+        }
+
+        function setAuthenticated(state)
+        {
+            isAuth = state;
+        }
+
+        // Public API
+        return {
+            getToken: getToken,
+            setToken: setToken,
+            isAuthenticated: isAuthenticated,
+            setAuthenticated: setAuthenticated
+        };
+
+    });
+}());
 

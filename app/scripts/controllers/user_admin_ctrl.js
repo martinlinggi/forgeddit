@@ -2,31 +2,30 @@
  * Created by ma-li on 23.10.14.
  */
 
+(function() {
+    'use strict';
 
-forgedditApp.controller('AdminUserCtrl', ['$scope', '$location', '$window', 'UserService', 'AuthenticationService',
-    function($scope, $location, $window, UserService, AuthenticationService) {
+    angular.module('forgedditApp').controller('AdminUserCtrl', ['$scope', '$location', '$window', 'UserService',
+        function ($scope, $location, $window, UserService) {
 
-        //Admin User Controller (login, logout)
-        $scope.logIn = function logIn(username, password) {
-            if (username !== undefined && password !== undefined) {
+            //Admin User Controller (login, logout)
+            $scope.login = function (username, password) {
+                if (username !== undefined && password !== undefined) {
 
-                UserService.logIn(username, password).success(function(data) {
-                    AuthenticationService.isLogged = true;
-                    $window.sessionStorage.token = data.token;
-                    $location.path("/admin");
-                }).error(function(status, data) {
-                    console.log(status);
-                    console.log(data);
-                });
-            }
-        };
+                    UserService.login(username, password).then(function (response) {
+                        $location.path('/admin');
+                    }).error(function (status, data) {
+                        console.log(status);
+                        console.log(data);
+                    });
+                }
+            };
 
-        $scope.logout = function logout() {
-            if (AuthenticationService.isLogged) {
-                AuthenticationService.isLogged = false;
-                delete $window.sessionStorage.token;
-                $location.path("/");
-            }
+            $scope.logout = function () {
+                UserService.logout();
+                $location.path('/');
+            };
         }
-    }
-]);
+    ]);
+
+}());

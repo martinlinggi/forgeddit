@@ -2,43 +2,47 @@
  * Created by martinlinggi on 31.10.14.
  */
 
-forgedditApp.controller('AdminEditUserCtrl', ['$scope', '$routeParams', '$location', 'UserDataService',
-    function($scope, $routeParams, $location, UserDataService) {
-    $scope.user = {};
-    $scope.user.role = 'User';
-    $scope.isEditMode = true;
+(function() {
+    'use strict';
 
-    $scope.submitBtnLabel = 'Save';
+    angular.module('forgedditApp').controller('AdminEditUserCtrl', ['$scope', '$routeParams', '$location', 'UserDataService',
+        function ($scope, $routeParams, $location, UserDataService) {
+            $scope.user = {};
+            $scope.user.role = 'User';
+            $scope.isEditMode = true;
 
-    var userName = $routeParams.username;
+            $scope.submitBtnLabel = 'Save';
 
-    UserDataService.getUser(userName)
-        .then(function(res) {
-            $scope.user = res.data;
-        }, function(error) {
-            console.log('An error occured!', error);
-        });
+            var userName = $routeParams.username;
 
-    $scope.submitAction = function() {
-        var user = $scope.user;
-        user.active = true;
-        user.registration_date = new Date().getTime();
-        user.last_login_date = 0;
-        console.log('Update ', user.name);
-        UserDataService.updateUser(userName, user)
-            .then(function() {
-                console.log('  ok.');
+            UserDataService.getUser(userName)
+                .then(function (res) {
+                    $scope.user = res.data;
+                }, function (error) {
+                    console.log('An error occured!', error);
+                });
+
+            $scope.submitAction = function () {
+                var user = $scope.user;
+                user.active = true;
+                user.registrationDate = new Date().getTime();
+                user.lastLoginDate = 0;
+                console.log('Update ', user.name);
+                UserDataService.updateUser(userName, user)
+                    .then(function () {
+                        console.log('  ok.');
+                        goToAdminListView();
+                    }, function (error) {
+                        console.log('An error occured!', error);
+                    });
+            };
+
+            $scope.cancelAction = function () {
                 goToAdminListView();
-            }, function(error) {
-                console.log('An error occured!', error);
-            });
-    };
+            };
 
-    $scope.cancelAction = function() {
-        goToAdminListView();
-    };
-
-    var goToAdminListView = function() {
-        $location.path('/admin/users');
-    }
-}]);
+            var goToAdminListView = function () {
+                $location.path('/admin/users');
+            };
+        }]);
+}());

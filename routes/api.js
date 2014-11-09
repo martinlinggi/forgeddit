@@ -20,19 +20,17 @@ router.post('/links', function(req, res) {
     linkData.url = req.body.url;
     linkData.id = linkData.user + '_' + time;
     linkData.group = "test-group";
-    linkData.rate  =0;
+    linkData.rate  = 0;
     linkData.time = time;
     linkData.comments = [];
 
     ForgedditStore.addLink(linkData, function(err, doc) {
         res.json(doc);
     });
-
 });
 
 // votes a link
-router.put('/links/:linkId/vote', function(req, res) {
-    console.log('voting received: ', linkId, req.body.value);
+router.put('/links/:linkId/vote/', function(req, res) {
     var vote = req.body.value;
     var linkId = req.params.linkId;
     ForgedditStore.voteLink(linkId, vote, function(err, numReplaced) {
@@ -40,7 +38,7 @@ router.put('/links/:linkId/vote', function(req, res) {
         });
     });
 
-// votes a link
+// add a comment
 router.route('/links/:linkId/comments')
     .post(function(req, res) {
         console.log('comment received: ' + req.params.linkId);
@@ -51,7 +49,6 @@ router.route('/links/:linkId/comments')
         ForgedditStore.addComment(req.params.linkId, comment, function(err, numReplaced) {
             res.json(numReplaced);
         });
-
     });
 
 module.exports = router;

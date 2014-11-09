@@ -2,11 +2,15 @@
  * Created by ma-li on 23.10.14.
  */
 
+(function() {
+    'use strict';
 
-forgedditApp.directive('linkListView', function() {
-    return {
-        restrict: 'E',
-        templateUrl: 'templates/link_list_view.html',
-        controller: 'LinkListCtrl'
-    };
-});
+    angular.module('forgedditApp').directive('linkListView', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'templates/link_list_view.html',
+            controller: 'LinkListCtrl'
+        };
+    });
+
+}());
