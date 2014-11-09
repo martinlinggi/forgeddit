@@ -14,8 +14,8 @@ userDb.insert({
     "password": "admin_secret",
     "role": "Administrator",
     "active": true,
-    "registration_date": new Date(2014,08,01,15,34,0,0).getTime(),
-    "last_login": new Date(2014,10,20,08,21,0,0).getTime()
+    "registrationDate": new Date(2014,08,01,15,34,0,0).getTime(),
+    "lastLogin": new Date(2014,10,20,08,21,0,0).getTime()
 }, function(err, doc) {
     if (err) {
         console.dir(err);
@@ -30,8 +30,8 @@ userDb.insert({
     "password": "tinMan",
     "role": "User",
     "active": true,
-    "registration_date": new Date(2014,10,21,21,28,0,0).getTime(),
-    "last_login": new Date(2014,10,21,21,28,0,0).getTime()
+    "registrationDate": new Date(2014,10,21,21,28,0,0).getTime(),
+    "lastLogin": new Date(2014,10,21,21,28,0,0).getTime()
 }, function(err, doc) {
     if (err) {
         console.dir(err);
@@ -46,8 +46,8 @@ userDb.insert({
     "password": "MaliMaster",
     "role": "User",
     "active": true,
-    "registration_date": new Date(2014,09,3,14,47,0,0).getTime(),
-    "last_login": new Date(2014,11,20,13,32,56,0).getTime()
+    "registrationDate": new Date(2014,09,3,14,47,0,0).getTime(),
+    "lastLogin": new Date(2014,11,20,13,32,56,0).getTime()
 }, function(err, doc) {
     if (err) {
         console.dir(err);

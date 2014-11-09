@@ -1,4 +1,6 @@
 /**
+ * @brief This controller is used to edit an existing user
+ *
  * Created by martinlinggi on 31.10.14.
  */
 
