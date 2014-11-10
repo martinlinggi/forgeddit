@@ -9,18 +9,16 @@
 
         var srv = {};
 
-        srv._baseUrl = 'http://localhost:3000';
-
         srv.getLinks = function () {
-            return $http.get(srv._baseUrl + '/api/links');
+            return $http.get('/api/links');
         };
 
         srv.addLink = function (newLink) {
-            return $http.post(srv._baseUrl + '/api/links', newLink);
+            return $http.post('/api/links', newLink);
         };
 
         srv.voteLink = function (id, value) {
-            return $http.put(srv._baseUrl + '/api/links/' + id + '/vote', {value: value});
+            return $http.put('/api/links/' + id + '/vote', {value: value});
         };
 
         //public API

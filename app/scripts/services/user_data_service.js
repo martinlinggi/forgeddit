@@ -9,28 +9,26 @@
 
         var srv = {};
 
-        srv._baseUrl = 'http://localhost:3000';
-
         srv.getUsers = function () {
-            return $http.get(srv._baseUrl + '/api/users');
+            return $http.get('/api/users');
         };
 
         srv.getUser = function (userName) {
             console.log('GET user: ', userName);
-            return $http.get(srv._baseUrl + '/api/users/' + userName);
+            return $http.get('/api/users/' + userName);
         };
 
         srv.addUser = function (newUser) {
             console.log('POST new user: ', newUser);
-            return $http.post(srv._baseUrl + '/api/users', newUser);
+            return $http.post('/api/users', newUser);
         };
 
         srv.updateUser = function (username, user) {
-            return $http.put(srv._baseUrl + '/api/users/' + username, user);
+            return $http.put('/api/users/' + username, user);
         };
 
         srv.deleteUser = function (user) {
-            return $http.delete(srv._baseUrl + '/api/users/' + user.name);
+            return $http.delete('/api/users/' + user.name);
         };
 
         //public API
