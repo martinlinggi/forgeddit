@@ -5,7 +5,7 @@
 (function(){
     'use strict';
 
-    angular.module('forgedditApp').factory('AuthTokenService', function AuthTokenFactory($window) {
+    angular.module('forgedditApp').factory('AuthTokenService', ['$window', function AuthTokenFactory($window) {
 
         var store = $window.sessionStorage;
         var key = 'auth-token';
@@ -41,6 +41,6 @@
             setAuthenticated: setAuthenticated
         };
 
-    });
+    }]);
 }());
 

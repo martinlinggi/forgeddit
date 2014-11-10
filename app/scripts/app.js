@@ -1,5 +1,12 @@
 /**
- * Main-Function of the application
+ * @brief  Main-script of the of the web-client
+ *
+ * Initializes Angular
+ * - Authentication-Token
+ * - Routes
+ *
+ * @file app.js
+ * @author martin linggi
  */
 
 (function(){
@@ -7,43 +14,37 @@
 
     var forgedditApp = angular.module('forgedditApp', ['ngRoute']);
 
-    // Authentication-Token
+    // Configuration of authentication-token
     forgedditApp.config(function ($httpProvider) {
         $httpProvider.interceptors.push('TokenInterceptor');
     });
 
-    // Routes
+    // Configuration of the routes
     forgedditApp.config(function($routeProvider) {
         $routeProvider
 
             .when ('/', {
             templateUrl: 'templates/link_view.html',
-            controller: 'AppCtrl',
-            access: { requiredLogin: false}
+            controller: 'AppCtrl'
         })
 
             .when ('/login', {
-            templateUrl: 'templates/login_view.html',
-            controller: 'AdminUserCtrl',
-            access: { requiredLogin: false}
-        })
-
-            .when ('/logout', {
-            templateUrl: 'templates/logout_view.html',
-            controller: 'AdminUserCtrl',
-            access: { requiredLogin: true}
+            templateUrl: 'templates/login_view.html'
         })
 
             .when ('/admin/users', {
             templateUrl: 'templates/admin/user_list_view.html',
-            controller: 'AdminUserListCtrl',
-            access: { requiredLogin: false}
+            controller: 'AdminUserListCtrl'
+        })
+
+            .when ('/admin/users/new', {
+            templateUrl: '../templates/admin/user_form_view.html',
+            controller: 'AdminNewUserCtrl'
         })
 
             .when ('/admin/users/:username', {
             templateUrl: '../templates/admin/user_form_view.html',
-            controller: 'AdminEditUserCtrl',
-            access: { requiredLogin: false}
+            controller: 'AdminEditUserCtrl'
         })
 
             .otherwise({
@@ -51,11 +52,4 @@
             });
     });
 
-    forgedditApp.run(function($rootScope, $location, AuthTokenService) {
-        $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
-            if (nextRoute.access.requiredLogin && !AuthTokenService.isLogged) {
-                $location.path('/login');
-            }
-        });
-    });
 }());

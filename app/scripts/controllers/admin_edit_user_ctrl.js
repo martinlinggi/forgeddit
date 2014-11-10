@@ -1,7 +1,8 @@
 /**
- * @brief This controller is used to edit an existing user
+ * @brief Angular-controller for editing an existing user
  *
- * Created by martinlinggi on 31.10.14.
+ * @file admin_edit_user_ctrl.js
+ * @author martin linggi
  */
 
 (function() {

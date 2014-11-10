@@ -4,66 +4,37 @@
 
 
 var DataStore = require('nedb');
+var path = require('path');
 
-var userDb = new DataStore();
+
+var userDb = new DataStore({filename: path.join(__dirname, '../db/user.db')});
+userDb.loadDatabase();
 
 var UserStore = {};
 
-userDb.insert({
-    "name": "admin",
-    "password": "admin_secret",
-    "role": "Administrator",
-    "active": true,
-    "registrationDate": new Date(2014,08,01,15,34,0,0).getTime(),
-    "lastLogin": new Date(2014,10,20,08,21,0,0).getTime()
-}, function(err, doc) {
-    if (err) {
-        console.dir(err);
+userDb.findOne({"name": "admin"},function(err, admin) {
+    if (admin === null){
+        userDb.insert({
+                "name": "admin",
+                "password": "admin_secret",
+                "role": "Administrator",
+                "active": true,
+                "registrationDate": new Date().getTime(),
+                "lastLogin": 0
+            }, function(err, doc) {
+                if (err) {
+                    console.dir(err);
+                }
+                else {
+                    console.log('user admin created');
+                }
+            });
+
     }
     else {
-        console.dir(doc);
+        console.log('user admin allready exists');
     }
 });
-
-userDb.insert({
-    "name": "tinMan",
-    "password": "tinMan",
-    "role": "User",
-    "active": true,
-    "registrationDate": new Date(2014,10,21,21,28,0,0).getTime(),
-    "lastLogin": new Date(2014,10,21,21,28,0,0).getTime()
-}, function(err, doc) {
-    if (err) {
-        console.dir(err);
-    }
-    else {
-        console.dir(doc);
-    }
-});
-
-userDb.insert({
-    "name": "MaliMaster",
-    "password": "MaliMaster",
-    "role": "User",
-    "active": true,
-    "registrationDate": new Date(2014,09,3,14,47,0,0).getTime(),
-    "lastLogin": new Date(2014,11,20,13,32,56,0).getTime()
-}, function(err, doc) {
-    if (err) {
-        console.dir(err);
-    }
-    else {
-        console.dir(doc);
-    }
-});
-
-// User related functions
-UserStore.getAllUsers = getAllUsers;
-UserStore.findUser = findUser;
-UserStore.addUser = addUser;
-UserStore.updateUser = updateUser;
-
-
 
 function getAllUsers(func) {
     console.log('UserStore - getAllUsers()');
@@ -92,6 +63,10 @@ function deleteUser(name, user, func)
     userDb.update({name: name}, user, {}, func);
 }
 
-
+// User related functions
+UserStore.getAllUsers = getAllUsers;
+UserStore.findUser = findUser;
+UserStore.addUser = addUser;
+UserStore.updateUser = updateUser;
 
 module.exports = UserStore;

@@ -9,6 +9,7 @@
         function login(username, password) {
             return $http.post('/api/users/login', {username: username, password: password})
                 .then(function success(response) {
+                    console.log('login: ' + response);
                     AuthTokenService.setToken(response.data.token);
                     AuthTokenService.setAuthenticated(true);
                     return response;
@@ -22,7 +23,7 @@
 
         function getUser() {
             if (AuthTokenService.getToken()) {
-                return $http.get('/me');
+                return $http.get('/api/users/me');
             } else {
                 return $q.reject({ data: 'client has no auth token' });
             }

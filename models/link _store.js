@@ -24,7 +24,7 @@ db.insert({
         console.dir(err);
     }
     else {
-        console.dir(doc);
+        console.log('Link: "' + doc.title + '" added');
     }
 });
 
@@ -41,7 +41,7 @@ db.insert({
         console.dir(err);
     }
     else {
-        console.dir(doc);
+        console.log('Link: "' + doc.title + '" added');
     }
 });
 
@@ -58,7 +58,7 @@ db.insert({
         console.dir(err);
     }
     else {
-        console.dir(doc);
+        console.log('Link: "' + doc.title + '" added');
     }
 });
 
@@ -76,55 +76,7 @@ db.insert({
         console.dir(err);
     }
     else {
-        console.dir(doc);
-    }
-});
-
-db.insert({
-    "name": "admin",
-    "password": "admin_secret",
-    "role": "Administrator",
-    "active": true,
-    "registration_date": new Date(2014,08,01,15,34,0,0),
-    "last_login": new Date(2014,10,20,08,21,0,0)
-}, function(err, doc) {
-    if (err) {
-        console.dir(err);
-    }
-    else {
-        console.dir(doc);
-    }
-});
-
-db.insert({
-    "name": "tinMan",
-    "password": "tinMan",
-    "role": "User",
-    "active": true,
-    "registration_date": new Date(2014,10,21,21,28,0,0),
-    "last_login": new Date(2014,10,21,21,28,0,0)
-}, function(err, doc) {
-    if (err) {
-        console.dir(err);
-    }
-    else {
-        console.dir(doc);
-    }
-});
-
-db.insert({
-    "name": "MaliMaster",
-    "password": "MaliMaster",
-    "role": "User",
-    "active": true,
-    "registration_date": new Date(2014,09,3,14,47,0,0),
-    "last_login": new Date(2014,11,20,13,32,56,0)
-}, function(err, doc) {
-    if (err) {
-        console.dir(err);
-    }
-    else {
-        console.dir(doc);
+        console.log('Link: "' + doc.title + '" added');
     }
 });
 
@@ -149,17 +101,5 @@ ForgedditStore.voteLink = function(linkId, vote, func) {
 ForgedditStore.addComment = function(linkId, comment, func) {
     db.update({ _id: linkId }, { $push: { comments: comment } }, {}, func);
 };
-
-// User related functions
-ForgedditStore.getAllUsers = function(func) {
-    console.log('forgedditStore - getAllUsers()');
-    db.find({name: { $exists: true }}, func);
-};
-
-ForgedditStore.findUser = function(name, func) {
-    console.log('forgedditStore - findUser() ' + name);
-    db.findOne({name: name }, func);
-};
-
 
 module.exports = ForgedditStore;

@@ -40,8 +40,8 @@ button:hover:enabled { background-color: #dfdfdf; }
 /********************************************************** Layout *********************************************************/
 #header { display: block; background: url("../images/ForgeddIt-Logo-bg.png") repeat-x; }
 #header #logo { float: left; height: 74px; width: 304px; background-image: url("../images/ForgeddIt-Logo.png"); }
-#header #search, #header #signIn { float: right; margin-top: 54px; padding: 0 10px; height: 19px; background-color: #f51515; }
-#header #search a:link, #header #search a:hover, #header #search a:visited, #header #signIn a:link, #header #signIn a:hover, #header #signIn a:visited { color: #80b5ea; }
+#header #search, #header #signIn, #header #signOut { float: right; margin-top: 54px; padding: 0 10px; height: 19px; background-color: #151515; }
+#header #search a:link, #header #search a:hover, #header #search a:visited, #header #signIn a:link, #header #signIn a:hover, #header #signIn a:visited, #header #signOut a:link, #header #signOut a:hover, #header #signOut a:visited { color: #80b5ea; }
 
 #navigation { display: block; background-color: #c8c8c8; margin-top: 1em; }
 
@@ -63,7 +63,7 @@ button:hover:enabled { background-color: #dfdfdf; }
 .actionList li { display: inline; list-style: none; margin-right: 1em; font-weight: bold; cursor: pointer; color: #528fcc; }
 .actionList li:hover { color: #80b5ea; }
 
-#signIn li { display: inline; list-style: none; margin-right: 1em; }
+#signIn li, #signOut li { display: inline; list-style: none; margin-right: 1em; }
 
 .linkItem { border-top: 1px solid #e1e1e1; padding-top: 0.6em; padding-bottom: 0.6em; list-style: none; }
 .linkItem .rate { float: left; text-align: center; width: 3em; }

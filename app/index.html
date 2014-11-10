@@ -22,7 +22,8 @@
        </div>
        <div ng-if="isLogged" id="signOut">
            <ul>
-               <li ng-bind="username"></li>
+               <li><a ng-href="#/admin/user/{{username}}">{{username}}</a></li>
+               <li ng-if="isAdmin"><a href="#/admin/users">Admin</a></li>
                <li><a ng-click="logout()" href="#/logout">Sign out</a></li>
            </ul>
        </div>
@@ -51,7 +52,6 @@
    <script src="scripts/controllers/admin_user_list_ctrl.js"></script>
    <script src="scripts/controllers/admin_new_user_ctrl.js"></script>
    <script src="scripts/controllers/admin_edit_user_ctrl.js"></script>
-   <script src="scripts/controllers/user_admin_ctrl.js"></script>
    <script src="scripts/controllers/link_list_ctrl.js"></script>
    <script src="scripts/controllers/link_add_ctrl.js"></script>
    <script src="scripts/controllers/link_vote_ctrl.js"></script>

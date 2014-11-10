@@ -12,7 +12,7 @@ $colorLinkVisited: #38597a;
 $defaultColor: #151515;
 
 // Header
-$colorHeaderLineBackGround: #F51515;
+$colorHeaderLineBackGround: #151515;
 
 // Contentbox Header
 $colorContentBoxHeaderBackground: #c8c8c8;
@@ -207,7 +207,8 @@ button {
   }
 
   #search,
-  #signIn {
+  #signIn,
+  #signOut {
     float: right;
     margin-top: 54px;
     padding: 0 10px;
@@ -297,7 +298,8 @@ button {
   }
 }
 
-#signIn li {
+#signIn li,
+#signOut li{
   display: inline;
   list-style: none;
   margin-right: 1em;

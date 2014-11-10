@@ -9,6 +9,7 @@
         $scope.user = {};
         $scope.user.role = 'User';
         $scope.isUniqueUserName = true;
+        $scope.isEditMode = false;
 
         $scope.submitBtnLabel = 'Save';
 

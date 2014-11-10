@@ -9,7 +9,6 @@ var expressJwt = require('express-jwt');
 var debug = require('debug')('express-template');
 var io = require('socket.io');
 
-
 var routes = require('./routes/index');
 var api = require('./routes/api');
 var user = require('./routes/user');
@@ -27,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'app')));
 app.use('/', routes);
 app.use('/api', api);
 app.use('/api/users', user);
-app.use(expressJwt({secret:user.jwtSecret}).unless({path: ['/api/users/login']}));
+app.use(expressJwt({secret:user.jwtSecret}).unless({path: ['/', '/api/users/me', '/api/users/login']}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -57,11 +56,13 @@ app.use(function(err, req, res) {
     res.send('<h1>' + err.status + '</h1><p>' + err.message + '</p>');
 });
 
+// Start the server
 app.set('port', process.env.PORT || 3000);
 var server = app.listen(app.get('port'), function() {
     debug('Express server listening on port ' + server.address().port);
 });
 
+// Attach Websockets to the server
 var servIO = io.listen(server);
 servIO.sockets.on('connection', function (socket) {
     debug('A new user connected!');
