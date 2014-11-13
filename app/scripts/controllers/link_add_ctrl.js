@@ -1,32 +1,48 @@
 /**
- * Created by ma-li on 23.10.14.
+ * @brief Angular-controller for adding a new link
+ *
+ * @file link_add_ctrl.js
+ * @author martin linggi
  */
+
 
 (function() {
     'use strict';
 
 
-    angular.module('forgedditApp').controller('addLinkController', ['$scope', 'ForgedditDataService', function ($scope, ForgedditDataService) {
-        $scope.title = '';
-        $scope.url = '';
-        $scope.sendLink = function () {
-            console.log('send clicked');
-            var newLink = {
-                title: $scope.title,
-                url: $scope.url,
-                user: 'testuser'
-            };
-            ForgedditDataService.addLink(newLink)
-                .success(function () {
-                    console.log('Success: link added');
-                })
-                .error(function () {
-                    console.log('Error: link not added');
-// TODO Fix Error when send link does not work
-                });
-        };
+    angular.module('forgedditApp').controller('addLinkController', ['$scope', 'ForgedditDataService',
+        function ($scope, ForgedditDataService) {
 
-    }]);
+            //=====================================================================
+            // private functions
+            //=====================================================================
+
+            function sendLink() {
+                console.log('send clicked');
+                var newLink = {
+                    title: $scope.title,
+                    url: $scope.url,
+                    user: 'testuser'
+                };
+                ForgedditDataService.addLink(newLink)
+                    .success(function () {
+                        console.log('Success: link added');
+                    })
+                    .error(function () {
+                        console.log('Error: link not added');
+// TODO Fix Error when send link does not work
+                    });
+            }
+
+            //=====================================================================
+            // Controller API
+            //=====================================================================
+
+            $scope.title = '';
+            $scope.url = '';
+            $scope.sendLink = sendLink;
+
+        }]);
 
 }());
 

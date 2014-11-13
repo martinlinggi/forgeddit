@@ -1,16 +1,27 @@
 /**
- * Created by martinlinggi on 07.11.14.
+ * @brief Angular-Service for the authentication token management
+ *
+ * @file auth_token_service.js
+ * @author martin linggi
  */
+
 
 (function(){
     'use strict';
 
     angular.module('forgedditApp').factory('AuthTokenService', ['$window', function AuthTokenFactory($window) {
 
+        //=====================================================================
+        // private variables
+        //=====================================================================
+
         var store = $window.sessionStorage;
         var key = 'auth-token';
         var isAuth = false;
 
+        //=====================================================================
+        // private functions
+        //=====================================================================
         function getToken() {
             return store.getItem(key);
         }
@@ -33,7 +44,9 @@
             isAuth = state;
         }
 
-        // Public API
+        //=====================================================================
+        // Service API
+        //=====================================================================
         return {
             getToken: getToken,
             setToken: setToken,

@@ -11,6 +11,8 @@ var sessionStore = require ('../models/session_store.js');
 
 var jwtSecret = 'xkfo02fySirnyk&aj4iZkjeo';
 
+var i;
+
 // login
 router.post('/login', function(req, res) {
 

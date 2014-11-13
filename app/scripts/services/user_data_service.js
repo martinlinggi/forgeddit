@@ -1,5 +1,8 @@
 /**
- * Created by martinlinggi on 26.10.14.
+ * @brief Angular-Service for the REST API of the user data
+ *
+ * @file user_data_service.js
+ * @author martin linggi
  */
 (function() {
     'use strict';
@@ -7,47 +10,40 @@
 
     angular.module('forgedditApp').factory('UserDataService', ['$http', function ($http) {
 
-        var srv = {};
-
-        srv.getUsers = function () {
+        //=====================================================================
+        // private functions
+        //=====================================================================
+        function getUsers() {
             return $http.get('/api/users');
-        };
+        }
 
-        srv.getUser = function (userName) {
+        function getUser(userName) {
             console.log('GET user: ', userName);
             return $http.get('/api/users/' + userName);
-        };
+        }
 
-        srv.addUser = function (newUser) {
+        function addUser(newUser) {
             console.log('POST new user: ', newUser);
             return $http.post('/api/users', newUser);
-        };
+        }
 
-        srv.updateUser = function (username, user) {
+        function updateUser(username, user) {
             return $http.put('/api/users/' + username, user);
-        };
+        }
 
-        srv.deleteUser = function (user) {
+        function deleteUser(user) {
             return $http.delete('/api/users/' + user.name);
-        };
+        }
 
-        //public API
+        //=====================================================================
+        // Service API
+        //=====================================================================
         return {
-            getUsers: function () {
-                return srv.getUsers();
-            },
-            getUser: function (userName) {
-                return srv.getUser(userName);
-            },
-            addUser: function (newUser) {
-                return srv.addUser(newUser);
-            },
-            updateUser: function (username, user) {
-                return srv.updateUser(username, user);
-            },
-            deleteUser: function (user) {
-                return srv.deleteUser(user);
-            }
+            getUsers: getUsers,
+            getUser: getUser,
+            addUser: addUser,
+            updateUser: updateUser,
+            deleteUser: deleteUser
         };
 
     }]);

@@ -1,11 +1,18 @@
 /**
- * Created by martinlinggi on 24.10.14.
+ * @brief Angular-Service for the calculation of the duration since a given date
+ *
+ * @file time_calculation_service.js
+ * @author martin linggi
  */
+
 (function() {
     'use strict';
 
     angular.module('forgedditApp').factory('TimeCalculationService', function () {
 
+        //=====================================================================
+        // private functions
+        //=====================================================================
         function getDuration(time) {
             var millis = new Date().getTime() - time;
             var oneSec = 1000;
@@ -47,11 +54,11 @@
             }
         }
 
-        //public API
+        //=====================================================================
+        // Service API
+        //=====================================================================
         return {
-            getDuration: function (time) {
-                return getDuration(time);
-            }
+            getDuration: getDuration
         };
 
     });

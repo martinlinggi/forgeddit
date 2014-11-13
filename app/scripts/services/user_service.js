@@ -1,11 +1,17 @@
 /**
- * Created by ma-li on 23.10.14.
+ * @brief Angular-Service for the login and logout of the user
+ *
+ * @file user_service.js
+ * @author martin linggi
  */
 (function() {
     'use strict';
 
     angular.module('forgedditApp').factory('UserService', ['$http', '$q', 'AuthTokenService', function ($http, $q, AuthTokenService) {
 
+        //=====================================================================
+        // private functions
+        //=====================================================================
         function login(username, password) {
             return $http.post('/api/users/login', {username: username, password: password})
                 .then(function success(response) {
@@ -29,6 +35,9 @@
             }
         }
 
+        //=====================================================================
+        // Service API
+        //=====================================================================
         return {
             login: login,
             logout: logout,

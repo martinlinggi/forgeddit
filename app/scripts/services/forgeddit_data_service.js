@@ -1,37 +1,38 @@
 /**
- * Created by ma-li on 06.10.14.
+ * @brief Angular-Service for the REST-API of the link data
+ *
+ * @file forgeddit_data_service.js
+ * @author martin linggi
  */
+
 
 (function() {
     'use strict';
 
     angular.module('forgedditApp').factory('ForgedditDataService', ['$http', function ($http) {
 
-        var srv = {};
-
-        srv.getLinks = function () {
+        //=====================================================================
+        // private functions
+        //=====================================================================
+        function getLinks() {
             return $http.get('/api/links');
-        };
+        }
 
-        srv.addLink = function (newLink) {
+        function addLink(newLink) {
             return $http.post('/api/links', newLink);
-        };
+        }
 
-        srv.voteLink = function (id, value) {
+        function voteLink(id, value) {
             return $http.put('/api/links/' + id + '/vote', {value: value});
-        };
+        }
 
-        //public API
+        //=====================================================================
+        // Service API
+        //=====================================================================
         return {
-            getLinks: function () {
-                return srv.getLinks();
-            },
-            addLink: function (newLink) {
-                return srv.addLink(newLink);
-            },
-            voteLink: function (id, value) {
-                return srv.voteLink(id, value);
-            }
+            getLinks: getLinks,
+            addLink: addLink,
+            voteLink: voteLink
         };
 
     }]);

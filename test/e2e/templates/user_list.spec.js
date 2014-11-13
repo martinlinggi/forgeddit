@@ -19,7 +19,7 @@ describe("E2E: User list view", function() {
     });
 
     it('should show the correct user information', function() {
-// Do the other book details (isbn, author) match?
+// Do the other user details match?
         for (var i = 0, n = expectedUsers.length; i < n; i++) {
             expect(repeater(selector).row(i))
                 .toEqual(

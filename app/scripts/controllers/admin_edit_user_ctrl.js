@@ -10,22 +10,26 @@
 
     angular.module('forgedditApp').controller('AdminEditUserCtrl', ['$scope', '$routeParams', '$location', 'UserDataService',
         function ($scope, $routeParams, $location, UserDataService) {
-            $scope.user = {};
-            $scope.user.role = 'User';
-            $scope.isEditMode = true;
 
-            $scope.submitBtnLabel = 'Save';
 
-            var userName = $routeParams.username;
+            //=====================================================================
+            // private functions
+            //=====================================================================
+            function goToAdminListView() {
+                $location.path('/admin/users');
+            }
 
-            UserDataService.getUser(userName)
-                .then(function (res) {
-                    $scope.user = res.data;
-                }, function (error) {
-                    console.log('An error occured!', error);
-                });
+            function getUsers() {
+                var userName = $routeParams.username;
+                UserDataService.getUser(userName)
+                    .then(function (res) {
+                        $scope.user = res.data;
+                    }, function (error) {
+                        console.log('An error occured!', error);
+                    });
+            }
 
-            $scope.submitAction = function () {
+            function submitAction() {
                 var user = $scope.user;
                 user.active = true;
                 user.registrationDate = new Date().getTime();
@@ -38,14 +42,24 @@
                     }, function (error) {
                         console.log('An error occured!', error);
                     });
-            };
+            }
 
-            $scope.cancelAction = function () {
+            function cancelAction(){
                 goToAdminListView();
-            };
+            }
 
-            var goToAdminListView = function () {
-                $location.path('/admin/users');
-            };
+            //=====================================================================
+            // Controller API
+            //=====================================================================
+            $scope.user = {};
+            $scope.user.role = 'User';
+            $scope.isEditMode = true;
+            $scope.submitBtnLabel = 'Save';
+
+            $scope.submitAction = submitAction;
+            $scope.cancelAction = cancelAction;
+
+            getUsers();
+
         }]);
 }());

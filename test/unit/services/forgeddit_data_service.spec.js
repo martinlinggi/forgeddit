@@ -3,7 +3,6 @@
  */
 
 describe('Service: ForgedditDataService', function() {
-    var baseUrl = 'http://localhost:3000';
 
     var ForgedditDataService;
     var $httpBackend;
@@ -21,15 +20,15 @@ describe('Service: ForgedditDataService', function() {
     beforeEach(function () {
 
         $httpBackend.when(
-            'GET', baseUrl + '/api/links'
+            'GET', '/api/links'
         ).respond(testLinks);
 
         $httpBackend.when(
-            'POST', baseUrl + '/api/links'
+            'POST', '/api/links'
         ).respond(true);
 
         $httpBackend.when(
-            'PUT', baseUrl + '/api/links/' + testLink._id + '/vote'
+            'PUT', '/api/links/' + testLink._id + '/vote'
         ).respond(true);
 
     });
@@ -60,7 +59,7 @@ describe('Service: ForgedditDataService', function() {
         describe('getLinks()', function () {
 
             it('should return a proper array of link objects', function () {
-                $httpBackend.expectGET(baseUrl + '/api/links');
+                $httpBackend.expectGET('/api/links');
 
                 var links;
                 ForgedditDataService.getLinks().then(function (res) {
@@ -75,7 +74,7 @@ describe('Service: ForgedditDataService', function() {
         describe('addLink()', function() {
 
             it('should properly store the passed link object', function() {
-                $httpBackend.expectPOST(baseUrl + '/api/links', newLink);
+                $httpBackend.expectPOST('/api/links', newLink);
                 ForgedditDataService.addLink(newLink);
                 $httpBackend.flush();
             });
@@ -85,7 +84,7 @@ describe('Service: ForgedditDataService', function() {
 
             it('should properly vote the passed link object', function() {
                 var id = testLink._id;
-                $httpBackend.expectPUT(baseUrl + '/api/links/' + id + '/vote', {value:1});
+                $httpBackend.expectPUT('/api/links/' + id + '/vote', {value:1});
                 ForgedditDataService.voteLink(id, 1);
                 $httpBackend.flush();
             });
