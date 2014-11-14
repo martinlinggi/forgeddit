@@ -7,25 +7,48 @@
 (function() {
     'use strict';
 
-    angular.module('forgedditApp').factory('TokenInterceptor', ['AuthTokenService', function (AuthTokenService) {
+    angular.module('forgedditApp').factory('TokenInterceptor', ['$q', '$location', 'AuthTokenService', function ($q, $location, AuthTokenService) {
 
         //=====================================================================
         // private functions
         //=====================================================================
-        function addToken(config) {
+        function request(config) {
+            config.headers = config.headers || {};
             var token = AuthTokenService.getToken();
             if (token) {
-                config.headers = config.headers || {};
                 config.headers.Authorization = 'Bearer ' + token;
             }
             return config;
+        }
+
+        function requestError(rejection) {
+            return $q.reject(rejection);
+        }
+
+        function response(res) {
+            if (res !== null && res.status === 200 && AuthTokenService.getToken() && !AuthTokenService.isAuthenticated()) {
+               AuthTokenService.setAuthenticated(true);
+            }
+            return res || $q.when(res);
+        }
+
+        function responseError(rejection) {
+            if (rejection !== null && rejection.status === 401 && AuthTokenService.getToken() && AuthTokenService.isAuthenticated()) {
+                AuthTokenService.setToken();
+                AuthTokenService.setAuthenticated(false);
+                $location.path('/');
+            }
+            return $q.reject(rejection);
         }
 
         //=====================================================================
         // Service API
         //=====================================================================
         return {
-            request: addToken
+            request: request,
+            requestError: requestError,
+            response: response,
+            responseError: responseError
         };
     }]);
 }());

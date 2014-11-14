@@ -13,13 +13,7 @@
         // private functions
         //=====================================================================
         function login(username, password) {
-            return $http.post('/api/users/login', {username: username, password: password})
-                .then(function success(response) {
-                    console.log('login: ' + response);
-                    AuthTokenService.setToken(response.data.token);
-                    AuthTokenService.setAuthenticated(true);
-                    return response;
-                });
+            return $http.post('/api/users/login', {username: username, password: password});
         }
 
         function logout() {

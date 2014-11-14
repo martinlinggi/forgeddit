@@ -11,6 +11,7 @@ var livereload = require('gulp-livereload');
 //var sourcemaps = require('gulp-sourcemaps');
 //var clean = require('gulp-clean');
 var nodemon = require('nodemon');
+var karma = require('gulp-karma');
 
 // var connect = require('gulp-connect');
 // var concat = require('gulp-concat');
@@ -76,6 +77,45 @@ gulp.task('dev', ['styles', 'watch'], function(){
             console.log('Developement-Server restarted!!');
         })
 });
+
+var unitTestFiles = [
+    'app/bower_components/angular/angular.js',
+    'app/bower_components/angular-route/angular-route.js',
+    'node_modules/angular-mocks/angular-mocks.js',
+    'app/scripts/app.js',
+    'app/scripts/**/*.js',
+    'test/unit/**/*.js'
+];
+
+gulp.task('test-unit', function() {
+    return gulp.src(unitTestFiles)
+        .pipe(karma({
+            configFile: 'karma.conf.js',
+            action: 'run'
+        }))
+        .on('error', function(err) {
+            // Make sure failed tests cause gulp to exit non-zero
+            throw err;
+        })
+});
+
+var e2eTestFiles = [
+    'test/e2e/**/*.js'
+];
+
+gulp.task('test-e2e', function() {
+    return gulp.src(e2eTestFiles)
+        .pipe(karma({
+            configFile: 'karma-e2e.conf.js',
+            action: 'run'
+        }))
+        .on('error', function(err) {
+            // Make sure failed tests cause gulp to exit non-zero
+            throw err;
+        })
+});
+
+gulp.task('test', ['test-unit', 'test-e2e']);
 
 gulp.task('connect', function() {
     connect.server( {root: 'app/', port: 8888});

@@ -20,36 +20,49 @@
     });
 
     // Configuration of the routes
-    forgedditApp.config(function($routeProvider) {
+    forgedditApp.config(['$locationProvider', '$routeProvider', function($location, $routeProvider) {
         $routeProvider
 
             .when ('/', {
             templateUrl: 'templates/link_view.html',
-            controller: 'AppCtrl'
+            controller: 'AppCtrl',
+            access: {requiredLogin: false}
         })
 
             .when ('/login', {
-            templateUrl: 'templates/login_view.html'
+            templateUrl: 'templates/login_view.html',
+            access: {requiredLogin: false}
         })
 
             .when ('/admin/users', {
             templateUrl: 'templates/admin/user_list_view.html',
-            controller: 'AdminUserListCtrl'
+            controller: 'AdminUserListCtrl',
+            access: {requiredLogin: false}
         })
 
             .when ('/admin/users/new', {
             templateUrl: '../templates/admin/user_form_view.html',
-            controller: 'AdminNewUserCtrl'
+            controller: 'AdminNewUserCtrl',
+            access: {requiredLogin: false}
         })
 
             .when ('/admin/users/:username', {
             templateUrl: '../templates/admin/user_form_view.html',
-            controller: 'AdminEditUserCtrl'
+            controller: 'AdminEditUserCtrl',
+            access: {requiredLogin: false}
         })
 
             .otherwise({
-                redirectTo: '/'
+                redirectTo: '/',
+                access: {requiredLogin: false}
             });
-    });
+    }]);
 
+    forgedditApp.run(function($rootScope, $location, AuthTokenService) {
+        $rootScope.$on("$routeChangeStart", function(event, nextRoute, currentRoute) {
+            if (nextRoute.access.requiredLogin && !AuthTokenService.isLogged) {
+                $location.path("/admin/login");
+            }
+        });
+    });
 }());

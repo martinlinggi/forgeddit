@@ -9,7 +9,7 @@
 (function(){
     'use strict';
 
-    angular.module('forgedditApp').factory('AuthTokenService', ['$window', function AuthTokenFactory($window) {
+    angular.module('forgedditApp').factory('AuthTokenService', ['$window', function ($window) {
 
         //=====================================================================
         // private variables

@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var cors = require('cors');
 var expressJwt = require('express-jwt');
 var debug = require('debug')('express-template');
 var io = require('socket.io');
@@ -16,18 +15,17 @@ var user = require('./routes/user');
 var app = express();
 
 app.use(favicon(__dirname + '/app/favicon.ico'));
-app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app')));
 
+app.use(expressJwt({secret:user.jwtSecret}).unless({path: ['/', '/api/users/login', '/api/links']}));
 app.use('/', routes);
 app.use('/api', api);
 app.use('/api/users', user);
 console.log(user.jwtSecret);
-app.use(expressJwt({secret:user.jwtSecret}).unless({path: ['/api/users/login']}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

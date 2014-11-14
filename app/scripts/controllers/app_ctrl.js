@@ -28,15 +28,20 @@
 
             function login(username, password){
                 if (username !== undefined && password !== undefined) {
-
-                    UserService.login(username, password).then(function (response) {
-                        getUser();
-                        $location.path('/');
-                        $scope.login.email = '';
-                        $scope.login.password = '';
-                    }, function () {
-                    });
-                }
+                    UserService.login(username, password)
+                        .success(function(data) {
+                            AuthTokenService.setAuthenticated(true);
+                            AuthTokenService.setToken(data.token);
+                            $location.path('/');
+                            $scope.isLogged = true;
+                            $scope.login.email = '';
+                            $scope.login.password = '';
+                        })
+                        .error(function(status, data){
+                            console.log(status);
+                            console.log(data);
+                        });
+                    }
             }
 
             function logout() {
