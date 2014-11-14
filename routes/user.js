@@ -40,8 +40,6 @@
                     else {
                         console.log('update successful: ' + user.name + ' ' + numReplaced)
                     }
-
-
                 });
 
                 // Authentication succeded: Create and save the session-token and send answer

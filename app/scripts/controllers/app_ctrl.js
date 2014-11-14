@@ -5,10 +5,8 @@
 * @author martin linggi
 */
 
-
 (function() {
     'use strict';
-
 
     angular.module('forgedditApp').controller('AppCtrl', ['$scope', '$location', 'AuthTokenService', 'UserService',
         function ($scope, $location, AuthTokenService, UserService) {
@@ -33,9 +31,9 @@
                             AuthTokenService.setAuthenticated(true);
                             AuthTokenService.setToken(data.token);
                             $location.path('/');
-                            $scope.isLogged = true;
                             $scope.login.email = '';
                             $scope.login.password = '';
+                            getUser();
                         })
                         .error(function(status, data){
                             console.log(status);
