@@ -1,7 +1,20 @@
 <div class="box">
-    <div class="boxHeader">User Administration</div>
+    <h1 class="boxTitle">User Administration</h1>
     <div class="boxContent">
-        <table class="user-list">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Role</td>
+                <th>Last Login</th>
+                <th>Blocked</th>
+                <th><a ng-href="#/admin/users/new" class="icon">
+                    <span aria-hidden="true" class="icon icon-add-user"></span>
+                    <span class="screen-reader-text">Add a new User</span>
+                </a>
+                </th>
+            </tr>
+            </thead>
             <tbody>
             <tr ng-repeat="user in users | orderBy:user.name">
                 <td>
@@ -9,12 +22,16 @@
                        ng-bind="user.name"></a>
                 </td>
                 <td ng-bind="user.role"></td>
+                <td ng-bind="user.lastLogin | date:'dd.MM.yyyy HH:mm:ss'"></td>
+                <td ng-bind="!user.active"></td>
                 <td>
-                    <a ng-href="#/admin/users/{{user.name}}/delete">Delete</a>
+                    <a ng-href="#/admin/users/{{user.name}}/delete" class="icon">
+                        <span aria-hidden="true" class="icon icon-trash"></span>
+                        <span class="screen-reader-text">Delete User {{user.name}}</span>
+                    </a>
                 </td>
             </tr>
             </tbody>
         </table>
-        <a ng-href="#/admin/users/new">Add a new user</a>
     </div>
 </div>

@@ -7,10 +7,17 @@
 
 /********************************************************** Icon font *********************************************************/
 @font-face { font-family: "symbols"; src: url("../fonts/symbols.eot?#iefix") format("embedded-opentype"), url("../fonts/symbols.woff") format("woff"), url("../fonts/symbols.ttf") format("truetype"), url("../fonts/symbols.svg#svgFontName") format("svg"); }
+@font-face { font-family: "icons"; src: url("../fonts/ionicons.eot?#iefix") format("embedded-opentype"), url("../fonts/ionicons.woff") format("woff"), url("../fonts/ionicons.ttf") format("truetype"), url("../fonts/ionicons.svg#svgFontName") format("svg"); }
+.icon { display: inline-block; font-family: icons; }
+.icon .icon-trash:before { content: "\f252"; }
+.icon .icon-add-user:before { content: "\f211"; }
+
+.screen-reader-text { /* Reusable, toolbox kind of class */ position: absolute; top: -9999px; left: -9999px; }
+
 /********************************************************** General settings *********************************************************/
 * { margin: 0; padding: 0; }
 
-body { line-height: 150%; font-family: Helvetica, Verdana, sans-serif; font-size: 0.8em; }
+body { line-height: 150%; font-family: Helvetica, Verdana, sans-serif; font-size: 1.0rem; }
 
 a:link { color: #528fcc; }
 
@@ -18,7 +25,24 @@ a:visited { color: #38597a; }
 
 a:hover { color: #80b5ea; }
 
+h1 { font-Size: 1.2rem; font-weight: bold; }
+
+h2 { font-Size: 1.1rem; font-weight: bold; }
+
+h3 { font-Size: 1.0rem; font-weight: bold; }
+
 input[type=text], input[type=url], input[type=password] { display: inline; width: 33%; height: 2em; margin-left: 0.5em; }
+
+.table { width: 100%; }
+.table thead { border-bottom: 1px solid black; text-align: left; }
+
+.box { clear: left; content: ""; display: block; width: 100%; margin-top: 1.5rem; float: left; }
+
+.boxTitle { background-color: #c8c8c8; padding-left: 1rem; }
+
+.boxHeader { margin-top: 1em; padding-left: 1em; background-color: #c8c8c8; font-weight: bold; }
+
+.boxContent { background-color: whitesmoke; border: 1px solid #e1e1e1; padding: 1rem; }
 
 .imageScaleH { height: 100%; width: auto; }
 
@@ -47,19 +71,12 @@ button:hover:enabled { background-color: #dfdfdf; }
 
 #content { height: 1%; display: block; }
 
-.box { width: 100%; }
-
-.boxHeader { margin-top: 1em; padding-left: 1em; background-color: #c8c8c8; font-weight: bold; }
-
-.boxContent { clear: left; background-color: whitesmoke; border: 1px solid #e1e1e1; }
-
 #addLink { float: left; }
-#addLink form { padding-top: 1em; padding-bottom: 1em; }
-#addLink form label { margin-left: 1em; }
-#addLink form #sendLink { width: 10em; margin-right: 1em; margin-bottom: 1em; float: right; }
+#addLink form { padding-top: 1rem; margin-bottom: 1rem; }
+#addLink form label { margin-left: 1rem; }
+#addLink form #sendLink { width: 10rem; margin-right: 1rem; margin-bottom: 1rem; float: right; }
 
 /* Menü */
-.actionList { padding-left: 1em; }
 .actionList li { display: inline; list-style: none; margin-right: 1em; font-weight: bold; cursor: pointer; color: #528fcc; }
 .actionList li:hover { color: #80b5ea; }
 

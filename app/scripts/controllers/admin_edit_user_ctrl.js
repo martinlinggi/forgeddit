@@ -35,7 +35,7 @@
                 user.registrationDate = new Date().getTime();
                 user.lastLoginDate = 0;
                 console.log('Update ', user.name);
-                UserDataService.updateUser(userName, user)
+                UserDataService.updateUser(user.Name, user)
                     .then(function () {
                         console.log('  ok.');
                         goToAdminListView();
