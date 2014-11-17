@@ -9,6 +9,9 @@
 @font-face { font-family: "symbols"; src: url("../fonts/symbols.eot?#iefix") format("embedded-opentype"), url("../fonts/symbols.woff") format("woff"), url("../fonts/symbols.ttf") format("truetype"), url("../fonts/symbols.svg#svgFontName") format("svg"); }
 @font-face { font-family: "icons"; src: url("../fonts/ionicons.eot?#iefix") format("embedded-opentype"), url("../fonts/ionicons.woff") format("woff"), url("../fonts/ionicons.ttf") format("truetype"), url("../fonts/ionicons.svg#svgFontName") format("svg"); }
 .icon { display: inline-block; font-family: icons; }
+.icon .icon-arrow-up-a:before { content: "\f10c"; }
+.icon .icon-arrow-down-a:before { content: "\f103"; }
+.icon .icon-arrow-left-c:before { content: "\f108"; }
 .icon .icon-trash:before { content: "\f252"; }
 .icon .icon-add-user:before { content: "\f211"; }
 
@@ -35,6 +38,9 @@ input[type=text], input[type=url], input[type=password] { display: inline; width
 
 .table { width: 100%; }
 .table thead { border-bottom: 1px solid black; text-align: left; }
+.table tbody tr:last-child { border-bottom: 1px solid #e1e1e1; }
+.table tbody tr:nth-child(odd) { background-color: #ededed; }
+.table tbody tr:nth-child(even) { background-color: #fafafa; }
 
 .box { clear: left; content: ""; display: block; width: 100%; margin-top: 1.5rem; float: left; }
 
@@ -74,7 +80,6 @@ button:hover:enabled { background-color: #dfdfdf; }
 #addLink { float: left; }
 #addLink form { padding-top: 1rem; margin-bottom: 1rem; }
 #addLink form label { margin-left: 1rem; }
-#addLink form #sendLink { width: 10rem; margin-right: 1rem; margin-bottom: 1rem; float: right; }
 
 /* Menü */
 .actionList li { display: inline; list-style: none; margin-right: 1em; font-weight: bold; cursor: pointer; color: #528fcc; }
@@ -104,7 +109,7 @@ button:hover:enabled { background-color: #dfdfdf; }
 ul#linkList { clear: left; width: 100%; }
 ul#linkList .linkItem:last-child { border-bottom: 1px solid #e1e1e1; }
 ul#linkList .linkItem:nth-child(odd) { background-color: #ededed; }
-ul#linkList .linkItem:nth-child(even) { background-color: whitesmoke; }
+ul#linkList .linkItem:nth-child(even) { background-color: #fafafa; }
 
 /********************************************************** Responsive design *********************************************************/
 @media (max-width: 48em) { #header #logo { float: none; }
