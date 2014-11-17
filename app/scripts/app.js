@@ -37,19 +37,19 @@
             .when ('/admin/users', {
             templateUrl: 'templates/admin/user_list_view.html',
             controller: 'AdminUserListCtrl',
-            access: {requiredLogin: false}
+            access: {requiredLogin: true}
         })
 
             .when ('/admin/users/new', {
             templateUrl: '../templates/admin/user_form_view.html',
             controller: 'AdminNewUserCtrl',
-            access: {requiredLogin: false}
+            access: {requiredLogin: true}
         })
 
             .when ('/admin/users/:username', {
             templateUrl: '../templates/admin/user_form_view.html',
             controller: 'AdminEditUserCtrl',
-            access: {requiredLogin: false}
+            access: {requiredLogin: true}
         })
 
             .otherwise({
@@ -60,7 +60,7 @@
 
     forgedditApp.run(function($rootScope, $location, AuthTokenService) {
         $rootScope.$on("$routeChangeStart", function(event, nextRoute, currentRoute) {
-            if (nextRoute.access.requiredLogin && !AuthTokenService.isLogged) {
+            if (nextRoute.access.requiredLogin && !AuthTokenService.isAuthenticated()) {
                 $location.path("/admin/login");
             }
         });
