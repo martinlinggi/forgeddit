@@ -9,7 +9,7 @@
                 <th>Last Login</th>
                 <th>Blocked</th>
                 <th><a ng-href="#/admin/users/new" class="icon">
-                    <span aria-hidden="true" class="icon icon-add-user"></span>
+                    <span aria-hidden="true" title="Add a new user" class="icon icon-add-user"></span>
                     <span class="screen-reader-text">Add a new User</span>
                 </a>
                 </th>
@@ -26,12 +26,16 @@
                 <td ng-bind="!user.active"></td>
                 <td>
                     <a ng-href="#/admin/users/{{user.name}}/delete" class="icon">
-                        <span aria-hidden="true" class="icon icon-trash"></span>
-                        <span class="screen-reader-text">Delete User {{user.name}}</span>
+                        <span aria-hidden="true" title="Delete user {{user.name}}" class="icon icon-trash"></span>
+                        <span class="screen-reader-text">Delete user {{user.name}}</span>
                     </a>
                 </td>
             </tr>
             </tbody>
         </table>
+        <a ng-href="#/" class="icon">
+            <span aria-hidden="true" title="Back to the link list" class="icon icon-arrow-left-c"> Back</span>
+            <span class="screen-reader-text">Back to the link list</span>
+        </a>
     </div>
 </div>
