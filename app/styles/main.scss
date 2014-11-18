@@ -8,6 +8,9 @@ $colorLink: #528fcc;
 $colorLinkHover: #80b5ea;
 $colorLinkVisited: #38597a;
 
+// Disabled
+$colorDisabled: #c8c8c8;
+
 // Layout Colors
 $defaultColor: #151515;
 
@@ -87,13 +90,6 @@ $maxWith: 75em;
  * Icon font
  **********************************************************/
 @font-face {
-  font-family: "symbols";
-  src: url("../fonts/symbols.eot?#iefix") format("embedded-opentype"),
-  url("../fonts/symbols.woff") format("woff"),
-  url("../fonts/symbols.ttf") format("truetype"),
-  url("../fonts/symbols.svg#svgFontName") format("svg");
-}
-@font-face {
   font-family: "icons";
   src: url("../fonts/ionicons.eot?#iefix") format("embedded-opentype"),
   url("../fonts/ionicons.woff") format("woff"),
@@ -104,6 +100,7 @@ $maxWith: 75em;
 .icon {
   display: inline-block;
   font-family: icons;
+  cursor: pointer;
 
   .icon-arrow-up-a:before { content: "\f10c"; }
   .icon-arrow-down-a:before { content: "\f103"; }
@@ -160,22 +157,19 @@ h3 {
   font-weight: bold;
 }
 
-
-input[type=text],
-input[type=url],
-input[type=password],
-{
-  display: inline;
-  width: 33%;
-  height: 2em;
-  margin-left: 0.5em;
+.disabled {
+  color: $colorDisabled;
 }
+
 
 .table {
   width: 100%;
   thead {
     border-bottom: 1px solid black;
     text-align: left;
+    th {
+      padding-left: 0.5rem;
+    }
   }
   tbody {
     tr:last-child{
@@ -188,6 +182,10 @@ input[type=password],
 
     tr:nth-child(even) {
       background-color: $colorLinkItemBackgroundEven;
+    }
+
+    td {
+      padding-left: 0.5rem;
     }
 
   }
@@ -229,6 +227,37 @@ input[type=password],
   width: 100%;
 }
 
+
+form {
+}
+
+form div {
+  padding-bottom: 1rem;
+}
+
+form label {
+  display: inline-block;
+  width: 10rem;
+  padding-right: 1rem;
+  text-align: right;
+  height : 2rem;
+}
+
+form button {
+  margin-left: 11rem;
+
+}
+
+input,
+select
+{
+  font-size: 1rem;
+  display: inline-block;
+  width: 33%;
+  height: 2rem;
+  background: white;
+}
+
 // Buttons
 button {
   display: inline-block;
@@ -237,9 +266,12 @@ button {
   background-color: $colorButtonBackgroundDisabled;
   border: 1px solid $colorButtonBorder;
   @include border-radius(5px);
+  font-size: 1rem;
   font-style: normal;
   text-align: center;
   cursor: pointer;
+  padding-left: 1em;
+  padding-right: 1em;
   &:enabled {
     color: $colorButtonColor;
     background-color :$colorButtonBackground;
@@ -250,8 +282,7 @@ button {
   }
 }
 
-#sendLink,
-#sendComment {
+.active-button {
   &:enabled {
     color: $colorButtonColor;
     background-color: $colorButtonBackgroundHighlight;
@@ -262,6 +293,7 @@ button {
     background-color: $colorButtonHoverHighlight;
   }
 }
+
 
 #sendCommentText {
   margin-left: 0.5em;
@@ -327,19 +359,6 @@ button {
   display: block;
 }
 
-#addLink {
-  float: left;
-  form {
-    padding-top: 1rem;
-    margin-bottom: 1rem;
-    label {
-      margin-left: 1rem;
-    }
-
-  }
-}
-
-
 // Main Layout Footer
 #footer {
   @extend %mainLayout;
@@ -379,26 +398,6 @@ button {
     float: left;
     text-align: center;
     width: 3em;
-
-    .voteUp {
-      cursor: pointer;
-
-      &:before {
-        content: "\e001";
-        font-family: symbols;
-        cursor: pointer;
-      }
-    }
-
-    .voteDown {
-      cursor: pointer;
-
-      &:before {
-        content: "\e002";
-        font-family: symbols;
-        cursor: pointer;
-      }
-    }
   }
 
   .thumb {

@@ -1,26 +1,22 @@
 /**
- * @brief Angular-controller for editing an existing user
+ * @brief Angular-controller for deleting an user
  *
- * @file admin_edit_user_ctrl.js
+ * @file admin_delete_user_ctrl.js
  * @author martin linggi
  */
 
 (function() {
     'use strict';
 
-    angular.module('forgedditApp').controller('AdminEditUserCtrl', ['$scope', '$routeParams', '$location', 'UserDataService',
+    angular.module('forgedditApp').controller('AdminDeleteUserCtrl', ['$scope', '$routeParams', '$location', 'UserDataService',
         function ($scope, $routeParams, $location, UserDataService) {
 
 
             //=====================================================================
             // private functions
             //=====================================================================
-            function goBack() {
-                if ($location.path().indexOf('/admin/users') === 0) {
-                    $location.path('/admin/users');
-                } else {
-                    $location.path('/');
-                }
+            function goToAdminListView() {
+                $location.path('/admin/users');
             }
 
             function getUser() {
@@ -33,36 +29,26 @@
                     });
             }
 
-            function submitAction() {
-                var user = $scope.user;
-                user.active = true;
-                user.registrationDate = new Date().getTime();
-                user.lastLoginDate = 0;
-                console.log('Update ', user.name);
-                UserDataService.updateUser(user.name, user)
+            function deleteAction(username) {
+                UserDataService.deleteUserByName(username)
                     .then(function () {
                         console.log('  ok.');
-                        goBack();
+                        goToAdminListView();
                     }, function (error) {
                         console.log('An error occured!', error);
                     });
             }
 
             function cancelAction(){
-                goBack();
+                goToAdminListView();
             }
 
             //=====================================================================
             // Controller API
             //=====================================================================
             $scope.user = {};
-            $scope.user.role = 'User';
-            $scope.isEditMode = true;
-            $scope.submitBtnLabel = 'Save';
 
-            console.log('url: ' + $location.path());
-
-            $scope.submitAction = submitAction;
+            $scope.deleteAction = deleteAction;
             $scope.cancelAction = cancelAction;
 
             getUser();

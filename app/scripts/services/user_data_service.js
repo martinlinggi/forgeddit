@@ -31,8 +31,8 @@
             return $http.put('/api/users/' + username, user);
         }
 
-        function deleteUser(user) {
-            return $http.delete('/api/users/' + user.name);
+        function deleteUserByName(username) {
+            return $http.delete('/api/users/' + username);
         }
 
         //=====================================================================
@@ -43,7 +43,7 @@
             getUser: getUser,
             addUser: addUser,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUserByName: deleteUserByName
         };
 
     }]);

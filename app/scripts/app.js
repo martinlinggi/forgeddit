@@ -34,6 +34,18 @@
             access: {requiredLogin: false}
         })
 
+            .when ('/user/create', {
+            templateUrl: '../templates/admin/user_form_view.html',
+            controller: 'AdminNewUserCtrl',
+            access: {requiredLogin: false}
+        })
+
+            .when ('/user/:username', {
+            templateUrl: '../templates/admin/user_form_view.html',
+            controller: 'AdminEditUserCtrl',
+            access: {requiredLogin: true}
+        })
+
             .when ('/admin/users', {
             templateUrl: 'templates/admin/user_list_view.html',
             controller: 'AdminUserListCtrl',
@@ -52,6 +64,12 @@
             access: {requiredLogin: true}
         })
 
+            .when ('/admin/users/:username/delete', {
+            templateUrl: '../templates/admin/user_delete_view.html',
+            controller: 'AdminDeleteUserCtrl',
+            access: {requiredLogin: true}
+        })
+
             .otherwise({
                 redirectTo: '/',
                 access: {requiredLogin: false}
@@ -61,7 +79,7 @@
     forgedditApp.run(function($rootScope, $location, AuthTokenService) {
         $rootScope.$on("$routeChangeStart", function(event, nextRoute, currentRoute) {
             if (nextRoute.access.requiredLogin && !AuthTokenService.isAuthenticated()) {
-                $location.path("/admin/login");
+                $location.path("/");
             }
         });
     });

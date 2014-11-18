@@ -1,31 +1,33 @@
-<div ng-hide="isEditMode" class="boxHeader">New User: {{user.name}}</div>
-<div ng-show="isEditMode" class="boxHeader">Edit User: {{user.name}}</div>
+<div ng-hide="isEditMode" class="boxHeader">New User</div>
+<div ng-show="isEditMode" class="boxHeader">Edit User</div>
 <div class="boxContent">
-    <form name="userForm" novalidate="">
-
-        <div ng-hide="isEditMode">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" placeholder="Enter Username" ng-model="user.name">
+    <form name="userForm" class="css-form" novalidate>
+        <div ng-show="isEditMode">
+            <label for="usernameReadOnly">Username</label>
+            <input type="text" class="form-control" id="usernameReadOnly" placeholder="Enter Username" ng-model="user.name" readonly>
         </div>
-        <p ng-show="isEditMode" ng-bind="user.name"></p>
+        <div ng-show="!isEditMode">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter Username" ng-model="user.name" required>
+        </div>
 
+        <div ng-if="hasAdminRights">
+            <label for="inputUserRole">Role</label>
+            <select id="inputUserRole" ng-model="user.role">
+                <option>Administrator</option>
+                <option>User</option>
+            </select>
+        </div>
 
-
-        <label for="inputUserRole">Role</label>
-        <select id="inputUserRole" ng-model="user.role">
-            <option>Administrator</option>
-            <option>User</option>
-        </select>
-
-        <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Enter Password" ng-model="user.password">
-
-        <button class="cancel-btn"
-                ng-click="cancelAction()">Abbrechen</button>
-        <button class="submit-btn"
+        <div>
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Enter Password" ng-model="user.password" required>
+        </div>
+        <button class="active-button"
                 ng-click="submitAction()"
                 ng-disabled="userForm.$invalid">{{submitBtnLabel}}</button>
-        <p>{{isUniqueUserName}}</p>
+        <button class="cancel-button"
+                ng-click="cancelAction()">Abbrechen</button>
 
     </form>
 </div>

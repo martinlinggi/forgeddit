@@ -6,6 +6,7 @@
             <tr>
                 <th>Username</th>
                 <th>Role</td>
+                <th>Registration</td>
                 <th>Last Login</th>
                 <th>Blocked</th>
                 <th><a ng-href="#/admin/users/new" class="icon">
@@ -22,8 +23,9 @@
                        ng-bind="user.name"></a>
                 </td>
                 <td ng-bind="user.role"></td>
+                <td ng-bind="user.registrationDate | date:'dd.MM.yyyy HH:mm:ss'"></td>
                 <td ng-bind="user.lastLogin | date:'dd.MM.yyyy HH:mm:ss'"></td>
-                <td ng-bind="!user.active"></td>
+                <td ng-bind="!user.active?'Yes':'No'"></td>
                 <td>
                     <a ng-href="#/admin/users/{{user.name}}/delete" class="icon">
                         <span aria-hidden="true" title="Delete user {{user.name}}" class="icon icon-trash"></span>

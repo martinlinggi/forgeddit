@@ -54,9 +54,9 @@
         userDb.update({name: name}, user, {}, func);
     }
 
-    function deleteUser(name, user, func) {
-        console.log('UserStoreUserStore - deleteUser()');
-        userDb.update({name: name}, user, {}, func);
+    function deleteUser(name, func) {
+        console.log('UserStore - deleteUser()');
+        userDb.remove({name: name}, {}, func);
     }
 
     var UserStore = {};
@@ -64,6 +64,7 @@
     UserStore.findUser = findUser;
     UserStore.addUser = addUser;
     UserStore.updateUser = updateUser;
+    UserStore.deleteUser = deleteUser;
 
     module.exports = UserStore;
 

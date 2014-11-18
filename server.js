@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app')));
 
-app.use(expressJwt({secret:user.jwtSecret}).unless({path: ['/', '/api/users/login', '/api/links']}));
+app.use(expressJwt({secret:user.jwtSecret}).unless({path: ['/', '/api/users/login', '/api/links', '/api/users']}));
 app.use('/', routes);
 app.use('/api', api);
 app.use('/api/users', user);

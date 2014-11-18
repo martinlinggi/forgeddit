@@ -21,7 +21,7 @@
             AuthTokenService.setAuthenticated(false);
         }
 
-        function getUser() {
+        function getSessionData() {
             if (AuthTokenService.getToken()) {
                 return $http.get('/api/users/me');
             } else {
@@ -35,7 +35,7 @@
         return {
             login: login,
             logout: logout,
-            getUser: getUser
+            getSessionData: getSessionData
         };
 
     }]);

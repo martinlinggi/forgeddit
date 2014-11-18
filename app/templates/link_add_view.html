@@ -3,15 +3,17 @@
     <div id="addLink" class="boxContent">
         <form name="form" class="css-form" novalidate>
 
-            <label for="link">Link:</label>
-            <input ng-model= "url" type="url" id="link" placeholder="Enter link" required >
+            <div>
+                <label for="link">Link:</label>
+                <input ng-model= "url" type="url" id="link" placeholder="Enter link" required >
+            </div>
 
-            <label for="linkTitle">Title:</label>
-            <input ng-model="title" type="text" id="linkTitle" placeholder="Enter title" required>
+            <div>
+                <label for="linkTitle">Title:</label>
+                <input ng-model="title" type="text" id="linkTitle" placeholder="Enter title" required>
+            </div>
 
-            <button class="sendLink"
-                    ng-click="sendLink()"
-                    ng-disabled="form.$invalid">Send Link</button>
+            <button class="active-button" ng-click="sendLink()" ng-disabled="form.$invalid">Send Link</button>
 
         </form>
     </div>

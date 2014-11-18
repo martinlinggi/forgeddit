@@ -15,12 +15,12 @@
             // private functions
             //=====================================================================
 
-            function getUser() {
-                UserService.getUser().then(function(response) {
+            function getSession() {
+                UserService.getSessionData().then(function(response) {
                     console.dir(response.data);
                     $scope.isLogged = true;
                     $scope.username = response.data.username;
-                    $scope.isAdmin = response.data.role === 'Administrator';
+                    $scope.hasAdminRights = response.data.role === 'Administrator';
                 });
             }
 
@@ -33,7 +33,7 @@
                             $location.path('/');
                             $scope.login.email = '';
                             $scope.login.password = '';
-                            getUser();
+                            getSession();
                         })
                         .error(function(status, data){
                             console.log(status);
@@ -45,7 +45,7 @@
             function logout() {
                 UserService.logout();
                 $scope.isLogged = false;
-                $scope.isAdmin = false;
+                $scope.hasAdminRights = false;
                 $scope.username = '';
                 $location.path('/');
             }
@@ -55,12 +55,11 @@
             //=====================================================================
 
             $scope.isLogged = false;
-            $scope.isAdmin = false;
+            $scope.hasAdminRights = false;
             $scope.username = '';
             $scope.login = login;
             $scope.logout = logout;
-
-            getUser();
+            getSession();
 
 
         }

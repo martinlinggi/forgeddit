@@ -120,7 +120,8 @@
 
 // Updates a user record
     router.put('/:userName', function (req, res) {
-        userStore.updateUser(req.body, function (err, doc) {
+        var username = req.params.userName;
+        userStore.updateUser(username, req.body, function (err, doc) {
             console.log('addUser', doc);
             res.json(doc);
         })
@@ -129,6 +130,10 @@
 
 // Deletes a user record
     router.delete('/:userName', function (req, res) {
+        var username = req.params.userName;
+        userStore.deleteUser(username, function(err, numRemoved) {
+            res.json(numRemoved);
+        })
 
     });
 
