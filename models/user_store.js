@@ -1,14 +1,24 @@
 /**
- * Created by martinlinggi on 30.06.14.
+ * @brief Database functions for the user-management
+ *
+ * @file user_store.js
+ * @author martin linggi
  */
 
 (function() {
 
+    //=====================================================================
+    // private variables
+    //=====================================================================
     var DataStore = require('nedb');
     var path = require('path');
 
-    var userDb = new DataStore({filename: path.join(__dirname, '../db/user.db'), autoload: true});
+    var userDb = new DataStore({filename: path.join(__dirname, '../db/user.db')});
+    userDb.loadDatabase();
 
+    //=====================================================================
+    // private functions
+    //=====================================================================
     userDb.findOne({"name": "admin"}, function (err, admin) {
         if (admin === null) {
             userDb.insert({
@@ -59,6 +69,9 @@
         userDb.remove({name: name}, {}, func);
     }
 
+    //=====================================================================
+    // public API
+    //=====================================================================
     var UserStore = {};
     UserStore.getAllUsers = getAllUsers;
     UserStore.findUser = findUser;

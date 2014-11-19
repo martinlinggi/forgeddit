@@ -1,16 +1,26 @@
 /**
- * Created by martinlinggi on 30.06.14.
+ * @brief Database functions for the links
+ *
+ * @file link_store.js
+ * @author martin linggi
  */
 
 (function() {
 
+    //=====================================================================
+    // private variables
+    //=====================================================================
     var DataStore = require('nedb');
+    var path = require('path');
 
-    var db = new DataStore({filename: path.join(__dirname, '../db/link.db'), autoload: true});
+    var linkDb = new DataStore({filename: path.join(__dirname, '../db/link.db')});
+    linkDb.loadDatabase();
 
-
+    //=====================================================================
+    // private functions
+    //=====================================================================
     function insertInitialLinks() {
-        db.insert({
+        linkDb.insert({
             "title": "Sony streamt Spiele auf Fernseher",
             "url": "http://www.heise.de/newsticker/meldung/E3-Sony-streamt-Spiele-auf-Fernseher-zeigt-neue-PS4-Titel-2218073.html",
             "user": "MaLiMaster",
@@ -30,7 +40,7 @@
             }
         });
 
-        db.insert({
+        linkDb.insert({
             "title": "Kurios gesammelt",
             "url": "http://www.heise.de/newsticker/meldung/Messesplitter-Kurioses-und-Bemerkenswertes-von-der-Computex-2217665.html",
             "user": "MaLiMaster",
@@ -47,7 +57,7 @@
             }
         });
 
-        db.insert({
+        linkDb.insert({
             "title": "Giraffes in love",
             "url": "http://www.freemake.com/blog/wp-content/uploads/2013/07/animated-gifs-giraffes-51.gif",
             "user": "MaLiMaster",
@@ -64,7 +74,7 @@
             }
         });
 
-        db.insert({
+        linkDb.insert({
             "title": "Möchtegern Hausbauer",
             "url": "http://i.imgur.com/RJqRpbM.jpg",
             "user": "MaLiMaster",
@@ -86,7 +96,7 @@
 
     function initDb()
     {
-        db.find({}, function(err, links) {
+        linkDb.find({}, function(err, links) {
             if (!err && links.length == 0) {
                 insertInitialLinks();
             }
@@ -95,27 +105,31 @@
 
     function getAllLinks(func) {
         console.log('forgedditStore - getAllLinks()');
-        db.find({title: { $exists: true }}, func);
+        linkDb.find({title: { $exists: true }}, func);
     }
 
     function addLink(link, func) {
-        db.insert(link, func);
+        linkDb.insert(link, func);
         console.log('forgedditStore - addLink()');
     }
 
     function voteLink(linkId, vote, func) {
         console.log('id ' + linkId);
-        db.findOne({_id: linkId}, function (err, link) {
+        linkDb.findOne({_id: linkId}, function (err, link) {
             var newRate = link.rate + vote;
-            db.update({_id: linkId}, {$set: {rate: newRate}}, {multi: false}, func);
+            linkDb.update({_id: linkId}, {$set: {rate: newRate}}, {multi: false}, func);
         });
     }
 
     function addComment(linkId, comment, func) {
-        db.update({ _id: linkId }, { $push: { comments: comment } }, {}, func);
+        linkDb.update({ _id: linkId }, { $push: { comments: comment } }, {}, func);
     }
 
+    initDb();
+
+    //=====================================================================
     // public API
+    //=====================================================================
     var ForgedditStore = {};
     ForgedditStore.getAllLinks = getAllLinks;
     ForgedditStore.addLink = addLink;

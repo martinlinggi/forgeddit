@@ -3,7 +3,7 @@
     var express = require('express');
     var router = express.Router();
 
-    var ForgedditStore = require('../models/link _store.js');
+    var ForgedditStore = require('../models/link_store.js');
 
     /* GET all the links. */
     router.get('/links', function (req, res) {
