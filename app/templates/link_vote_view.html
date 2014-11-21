@@ -1,25 +1,32 @@
 <div class="rate">
+    <!-- Logged in NOT voted -->
     <a ng-if="isLogged && isVoteUpActive" ng-click="voteAction(+1)" class="icon">
         <span aria-hidden="true" title="Vote up" class="icon-arrow-up-a"></span>
         <span class="screen-reader-text">Vote Link up: {{link.title}}</span>
     </a>
+    <!-- Logged in ALREADY voted -->
     <div ng-if="isLogged && !isVoteUpActive" class="icon">
-        <span aria-hidden="true" title="Sign in vote" class="disabled icon-arrow-up-a"></span>
-        <span class="screen-reader-text">Sign in to vote link: {{link.title}}</span>
+        <span aria-hidden="true" title="Already voted" class="disabled icon-arrow-up-a"></span>
+        <span class="screen-reader-text">You have already voted up this link: {{link.title}}</span>
     </div>
+    <!-- NOT Logged in -->
     <div ng-if="!isLogged" class="icon">
         <span aria-hidden="true" title="Sign in vote" class="disabled icon-arrow-up-a"></span>
         <span class="screen-reader-text">Sign in to vote link: {{link.title}}</span>
     </div>
+    <!-- Vote Value -->
     <div>{{link.rate}}</div>
+    <!-- Logged in NOT voted -->
     <a ng-if="isLogged && isVoteDownActive" ng-click="voteAction(-1)" class="icon">
         <span aria-hidden="true" title="Vote down" class="icon icon-arrow-down-a"></span>
         <span class="screen-reader-text">Vote Link up: {{link.title}}</span>
     </a>
+    <!-- Logged in ALREADY voted -->
     <div ng-if="isLogged && !isVoteDownActive" class="icon">
-        <span aria-hidden="true" title="Sign in vote" class="disabled icon-arrow-down-a"></span>
-        <span class="screen-reader-text">Sign in to vote link: {{link.title}}</span>
+        <span aria-hidden="true" title="Already voted" class="disabled icon-arrow-down-a"></span>
+        <span class="screen-reader-text">You have already voted down this link: {{link.title}}</span>
     </div>
+    <!-- NOT Logged in -->
     <div ng-if="!isLogged" class="icon">
         <span aria-hidden="true" title="Sign in vote" class="disabled icon-arrow-down-a"></span>
         <span class="screen-reader-text">Sign in to vote link: {{link.title}}</span>
