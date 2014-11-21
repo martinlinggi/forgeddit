@@ -1,17 +1,25 @@
 <div class="rate">
-    <a ng-if="isLogged" ng-click="vote(link, +1)" class="icon">
+    <a ng-if="isLogged && isVoteUpActive" ng-click="voteAction(+1)" class="icon">
         <span aria-hidden="true" title="Vote up" class="icon-arrow-up-a"></span>
         <span class="screen-reader-text">Vote Link up: {{link.title}}</span>
     </a>
+    <div ng-if="isLogged && !isVoteUpActive" class="icon">
+        <span aria-hidden="true" title="Sign in vote" class="disabled icon-arrow-up-a"></span>
+        <span class="screen-reader-text">Sign in to vote link: {{link.title}}</span>
+    </div>
     <div ng-if="!isLogged" class="icon">
         <span aria-hidden="true" title="Sign in vote" class="disabled icon-arrow-up-a"></span>
         <span class="screen-reader-text">Sign in to vote link: {{link.title}}</span>
     </div>
     <div>{{link.rate}}</div>
-    <a ng-if="isLogged" ng-click="vote(link, -1)" class="icon">
+    <a ng-if="isLogged && isVoteDownActive" ng-click="voteAction(-1)" class="icon">
         <span aria-hidden="true" title="Vote down" class="icon icon-arrow-down-a"></span>
         <span class="screen-reader-text">Vote Link up: {{link.title}}</span>
     </a>
+    <div ng-if="isLogged && !isVoteDownActive" class="icon">
+        <span aria-hidden="true" title="Sign in vote" class="disabled icon-arrow-down-a"></span>
+        <span class="screen-reader-text">Sign in to vote link: {{link.title}}</span>
+    </div>
     <div ng-if="!isLogged" class="icon">
         <span aria-hidden="true" title="Sign in vote" class="disabled icon-arrow-down-a"></span>
         <span class="screen-reader-text">Sign in to vote link: {{link.title}}</span>

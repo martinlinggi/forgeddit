@@ -15,12 +15,17 @@
             // private functions
             //=====================================================================
 
-            function getSession() {
+            function getSession(redirect) {
                 UserService.getSessionData().then(function(response) {
                     console.dir(response.data);
                     $scope.isLogged = true;
                     $scope.username = response.data.username;
                     $scope.hasAdminRights = response.data.role === 'Administrator';
+                    AuthTokenService.setAuthenticated(true);
+                    UserService.setUserName(response.data.username);
+                    if (redirect) {
+                        $location.path('/');
+                    }
                 });
             }
 
@@ -28,12 +33,10 @@
                 if (username !== undefined && password !== undefined) {
                     UserService.login(username, password)
                         .success(function(data) {
-                            AuthTokenService.setAuthenticated(true);
                             AuthTokenService.setToken(data.token);
-                            $location.path('/');
                             $scope.login.email = '';
                             $scope.login.password = '';
-                            getSession();
+                            getSession(true);
                         })
                         .error(function(status, data){
                             console.log(status);
@@ -44,6 +47,8 @@
 
             function logout() {
                 UserService.logout();
+                UserService.setUserName('');
+                AuthTokenService.setAuthenticated(false);
                 $scope.isLogged = false;
                 $scope.hasAdminRights = false;
                 $scope.username = '';
@@ -60,8 +65,6 @@
             $scope.login = login;
             $scope.logout = logout;
             getSession();
-
-
         }
     ]);
 

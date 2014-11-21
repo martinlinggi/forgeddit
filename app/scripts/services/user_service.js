@@ -9,6 +9,10 @@
 
     angular.module('forgedditApp').factory('UserService', ['$http', '$q', 'AuthTokenService', function ($http, $q, AuthTokenService) {
 
+        var _userName = "";
+        var _isAuth = false;
+
+
         //=====================================================================
         // private functions
         //=====================================================================
@@ -29,13 +33,25 @@
             }
         }
 
+        function setUserName(userName){
+            _userName = userName;
+        }
+
+        function getUserName() {
+            return _userName;
+        }
+
+
         //=====================================================================
         // Service API
         //=====================================================================
         return {
             login: login,
             logout: logout,
-            getSessionData: getSessionData
+            getSessionData: getSessionData,
+            setUserName: setUserName,
+            getUserName: getUserName
+
         };
 
     }]);

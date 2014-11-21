@@ -15,33 +15,33 @@
         // private variables
         //=====================================================================
 
-        var store = $window.sessionStorage;
-        var key = 'auth-token';
-        var isAuth = false;
+        var _store = $window.sessionStorage;
+        var _key = 'auth-token';
+        var _isAuth;
 
         //=====================================================================
         // private functions
         //=====================================================================
         function getToken() {
-            return store.getItem(key);
+            return _store.getItem(_key);
         }
 
         function setToken(token) {
             if (token) {
-                store.setItem(key, token);
+                _store.setItem(_key, token);
             } else {
-                store.removeItem(key);
+                _store.removeItem(_key);
             }
         }
 
         function isAuthenticated()
         {
-            return isAuth;
+            return _isAuth;
         }
 
         function setAuthenticated(state)
         {
-            isAuth = state;
+            _isAuth = state;
         }
 
         //=====================================================================

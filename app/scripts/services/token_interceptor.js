@@ -7,7 +7,8 @@
 (function() {
     'use strict';
 
-    angular.module('forgedditApp').factory('TokenInterceptor', ['$q', '$location', 'AuthTokenService', function ($q, $location, AuthTokenService) {
+    angular.module('forgedditApp').factory('TokenInterceptor', ['$q', '$location', 'AuthTokenService',
+        function ($q, $location, AuthTokenService) {
 
         //=====================================================================
         // private functions
@@ -27,7 +28,7 @@
 
         function response(res) {
             if (res !== null && res.status === 200 && AuthTokenService.getToken() && !AuthTokenService.isAuthenticated()) {
-               AuthTokenService.setAuthenticated(true);
+                AuthTokenService.setAuthenticated(true);
             }
             return res || $q.when(res);
         }

@@ -9,8 +9,8 @@
     'use strict';
 
 
-    angular.module('forgedditApp').controller('LinkListCtrl', ['$scope', 'ForgedditDataService', 'TimeCalculationService',
-        function ($scope, ForgedditDataService, TimeCalculationService) {
+    angular.module('forgedditApp').controller('LinkListCtrl', ['$scope', 'ForgedditDataService', 'TimeCalculationService', 'AuthTokenService', 'UserService',
+        function ($scope, ForgedditDataService, TimeCalculationService, AuthTokenService, UserService) {
 
             //=====================================================================
             // private functions
@@ -34,13 +34,25 @@
                     });
             }
 
+            function getVotes() {
+                var userName = UserService.getUserName();
+                ForgedditDataService.getVotes(userName)
+                    .then(function (res) {
+                        $scope.alreadyVoteList = res.data;
+                    }, function (error) {
+                        console.log('An error occured!', error);
+                    });
+            }
+
 
             //=====================================================================
             // Controller API
             //=====================================================================
             $scope.getTimeAgo = getTimeAgo;
             $scope.sort = sort;
-
+            $scope.links = [];
+            $scope.alreadyVoteList = [];
+            getVotes();
             getLinks();
 
         }]);

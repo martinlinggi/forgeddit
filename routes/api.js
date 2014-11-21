@@ -4,6 +4,7 @@
     var router = express.Router();
 
     var ForgedditStore = require('../models/link_store.js');
+    var VoteStore = require('../models/vote_store.js');
 
     /* GET all the links. */
     router.get('/links', function (req, res) {
@@ -14,7 +15,6 @@
 
 // create a link
     router.post('/links', function (req, res) {
-
         var time = new Date().getTime();
         var linkData = {};
         linkData.user = req.body.user;
@@ -34,9 +34,12 @@
 // votes a link
     router.put('/links/:linkId/vote/', function (req, res) {
         var vote = req.body.value;
+        var userName = req.body.userName;
         var linkId = req.params.linkId;
         ForgedditStore.voteLink(linkId, vote, function (err, numReplaced) {
+            VoteStore.doVote(linkId, userName, vote);
             res.json(numReplaced);
+
         });
     });
 

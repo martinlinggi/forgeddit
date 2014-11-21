@@ -1,7 +1,7 @@
 /**
- * @brief Angular-Service for the REST-API of the link data
+ * @brief Angular-Service for the REST-API of the vote data
  *
- * @file forgeddit_data_service.js
+ * @file vote_data_service.js
  * @author martin linggi
  */
 
@@ -9,16 +9,12 @@
 (function() {
     'use strict';
 
-    angular.module('forgedditApp').factory('ForgedditDataService', ['$http', function ($http) {
+    angular.module('forgedditApp').factory('VoteDataService', ['$http', function ($http) {
 
         //=====================================================================
         // private functions
         //=====================================================================
-        function getLinks() {
-            return $http.get('/api/links');
-        }
-
-        function getVotes(userName) {
+        function getVotesByUserName(userName) {
             return $http.get('/api/votes/' + userName);
         }
 
@@ -26,16 +22,15 @@
             return $http.post('/api/links', newLink);
         }
 
-        function voteLink(id, userName, value) {
-            return $http.put('/api/links/' + id + '/vote', {value: value, userName: userName});
+        function voteLink(id, value) {
+            return $http.put('/api/links/' + id + '/vote', {value: value});
         }
 
         //=====================================================================
         // Service API
         //=====================================================================
         return {
-            getLinks: getLinks,
-            getVotes: getVotes,
+            getLinks: getVotesByUserName,
             addLink: addLink,
             voteLink: voteLink
         };
