@@ -29,6 +29,9 @@
                 console.log('status: 401');
                 res.status(401).end('Username or password incorrect');
             }
+            else if(user.blocked) {
+                res.status(401).end('User account is blocked');
+            }
             else {
 
                 // Update User-Info (last-login)

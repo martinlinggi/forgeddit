@@ -11,6 +11,11 @@
             <input type="text" class="form-control" id="username" placeholder="Enter Username" ng-model="user.name" required>
         </div>
 
+        <div>
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Enter Password" ng-model="user.password" required>
+        </div>
+
         <div ng-if="hasAdminRights">
             <label for="inputUserRole">Role</label>
             <select id="inputUserRole" ng-model="user.role">
@@ -19,10 +24,11 @@
             </select>
         </div>
 
-        <div>
-            <label for="inputPassword">Password</label>
-            <input type="password" class="form-control" id="inputPassword" placeholder="Enter Password" ng-model="user.password" required>
+        <div ng-if="hasAdminRights">
+            <label for="inputUserBlocked">Blocked</label>
+            <input type="checkbox" id="inputUserBlocked" ng-model="user.blocked">
         </div>
+
         <button class="active-button"
                 ng-click="submitAction()"
                 ng-disabled="userForm.$invalid">{{submitBtnLabel}}</button>

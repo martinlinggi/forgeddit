@@ -25,7 +25,7 @@
                 "name": "admin",
                 "password": "admin_secret",
                 "role": "Administrator",
-                "active": true,
+                "blocked": false,
                 "registrationDate": new Date().getTime(),
                 "lastLogin": 0
             }, function (err, doc) {

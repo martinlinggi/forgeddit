@@ -41,6 +41,7 @@
             //=====================================================================
             $scope.user = {};
             $scope.user.role = 'User';
+            $scope.user.blocked = false;
             $scope.isEditMode = false;
 
             $scope.submitBtnLabel = 'Save';

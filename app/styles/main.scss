@@ -11,6 +11,8 @@ $colorLinkVisited: #38597a;
 // Disabled
 $colorDisabled: #c8c8c8;
 
+$colorError: #d10000;
+
 // Layout Colors
 $defaultColor: #151515;
 
@@ -100,15 +102,17 @@ $maxWith: 75em;
 .icon {
   display: inline-block;
   font-family: icons;
+  font-size: 1.6rem;
   cursor: pointer;
-
-  .icon-arrow-up-a:before { content: "\f10c"; }
-  .icon-arrow-down-a:before { content: "\f103"; }
-  .icon-arrow-left-c:before { content: "\f108"; }
-  .icon-trash:before { content: "\f252";}
-  .icon-add-user:before { content: "\f211";}
-
 }
+
+.icon-arrow-up-a:before { content: "\f10c"; }
+.icon-arrow-down-a:before { content: "\f103"; }
+.icon-arrow-left-c:before { content: "\f108"; }
+.icon-information-circled:before { content: "\f149"; }
+.icon-trash:before { content: "\f252";}
+.icon-add-user:before { content: "\f211";}
+
 .screen-reader-text { /* Reusable, toolbox kind of class */
   position: absolute;
   top: -9999px;
@@ -161,6 +165,10 @@ h3 {
   color: $colorDisabled;
 }
 
+.error {
+  color: $colorError;
+}
+
 
 .table {
   width: 100%;
@@ -186,6 +194,10 @@ h3 {
 
     td {
       padding-left: 0.5rem;
+    }
+
+    td.centered {
+      text-align: center;
     }
 
   }

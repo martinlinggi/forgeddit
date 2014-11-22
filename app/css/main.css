@@ -7,12 +7,19 @@
 
 /********************************************************** Icon font *********************************************************/
 @font-face { font-family: "icons"; src: url("../fonts/ionicons.eot?#iefix") format("embedded-opentype"), url("../fonts/ionicons.woff") format("woff"), url("../fonts/ionicons.ttf") format("truetype"), url("../fonts/ionicons.svg#svgFontName") format("svg"); }
-.icon { display: inline-block; font-family: icons; cursor: pointer; }
-.icon .icon-arrow-up-a:before { content: "\f10c"; }
-.icon .icon-arrow-down-a:before { content: "\f103"; }
-.icon .icon-arrow-left-c:before { content: "\f108"; }
-.icon .icon-trash:before { content: "\f252"; }
-.icon .icon-add-user:before { content: "\f211"; }
+.icon { display: inline-block; font-family: icons; font-size: 1.6rem; cursor: pointer; }
+
+.icon-arrow-up-a:before { content: "\f10c"; }
+
+.icon-arrow-down-a:before { content: "\f103"; }
+
+.icon-arrow-left-c:before { content: "\f108"; }
+
+.icon-information-circled:before { content: "\f149"; }
+
+.icon-trash:before { content: "\f252"; }
+
+.icon-add-user:before { content: "\f211"; }
 
 .screen-reader-text { /* Reusable, toolbox kind of class */ position: absolute; top: -9999px; left: -9999px; }
 
@@ -35,6 +42,8 @@ h3 { font-Size: 1.0rem; font-weight: bold; }
 
 .disabled { color: #c8c8c8; }
 
+.error { color: #d10000; }
+
 .table { width: 100%; }
 .table thead { border-bottom: 1px solid black; text-align: left; }
 .table thead th { padding-left: 0.5rem; }
@@ -42,6 +51,7 @@ h3 { font-Size: 1.0rem; font-weight: bold; }
 .table tbody tr:nth-child(odd) { background-color: #ededed; }
 .table tbody tr:nth-child(even) { background-color: #fafafa; }
 .table tbody td { padding-left: 0.5rem; }
+.table tbody td.centered { text-align: center; }
 
 .box { clear: left; content: ""; display: block; width: 100%; margin-top: 1.5rem; float: left; }
 

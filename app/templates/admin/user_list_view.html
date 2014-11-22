@@ -25,8 +25,8 @@
                 <td ng-bind="user.role"></td>
                 <td ng-bind="user.registrationDate | date:'dd.MM.yyyy HH:mm:ss'"></td>
                 <td ng-bind="user.lastLogin | date:'dd.MM.yyyy HH:mm:ss'"></td>
-                <td ng-bind="!user.active?'Yes':'No'"></td>
-                <td>
+                <td class="centered"> <input type="checkbox" ng-model="user.blocked" disabled></td>
+                <td class="centered">
                     <a ng-href="#/admin/users/{{user.name}}/delete" class="icon">
                         <span aria-hidden="true" title="Delete user {{user.name}}" class="icon icon-trash"></span>
                         <span class="screen-reader-text">Delete user {{user.name}}</span>

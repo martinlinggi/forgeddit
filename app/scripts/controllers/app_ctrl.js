@@ -19,6 +19,7 @@
                 UserService.getSessionData().then(function(response) {
                     console.dir(response.data);
                     $scope.isLogged = true;
+                    $scope.message = '';
                     $scope.username = response.data.username;
                     $scope.hasAdminRights = response.data.role === 'Administrator';
                     AuthTokenService.setAuthenticated(true);
@@ -41,6 +42,7 @@
                         .error(function(status, data){
                             console.log(status);
                             console.log(data);
+                            $scope.message = status;
                         });
                     }
             }
@@ -62,6 +64,7 @@
             $scope.isLogged = false;
             $scope.hasAdminRights = false;
             $scope.username = '';
+            $scope.message = '';
             $scope.login = login;
             $scope.logout = logout;
             getSession();
