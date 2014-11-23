@@ -16,15 +16,15 @@
        </div>
        <div ng-if="!isLogged" id="signIn">
            <ul>
-               <li><a href="#/login">Sign in Friend</a></li>
-               <li><a href="#/user/create">Create free account</a></li>
+               <li><a ng-href="#/login">Sign in Friend</a></li>
+               <li><a ng-href="#/user/create">Create free account</a></li>
            </ul>
        </div>
        <div ng-if="isLogged" id="signOut">
            <ul>
                <li><a ng-href="#/user/{{username}}">{{username}}</a></li>
-               <li ng-if="hasAdminRights"><a href="#/admin/users">Admin</a></li>
-               <li><a ng-click="logout()" href="#/logout">Sign out</a></li>
+               <li ng-if="hasAdminRights"><a ng-href="#/admin/users">Admin</a></li>
+               <li><a ng-click="logout()" ng-href="#/logout">Sign out</a></li>
            </ul>
        </div>
    </div>
@@ -43,6 +43,7 @@
    <script src="scripts/services/user_data_service.js"></script>
    <script src="scripts/services/forgeddit_data_service.js"></script>
    <script src="scripts/services/time_calculation_service.js"></script>
+   <script src="scripts/directives/focus.js"></script>
    <script src="scripts/directives/admin_user_list.js"></script>
    <script src="scripts/directives/link_content.js"></script>
    <script src="scripts/directives/link_add.js"></script>

@@ -15,8 +15,17 @@
             // private functions
             //=====================================================================
 
-            function goToAdminListView() {
-                $location.path('/admin/users');
+            function goBack() {
+                if ($location.path().indexOf('/admin/users') === 0) {
+                    $location.path('/admin/users');
+                } else {
+                    if ($location.path().indexOf('/user/create') === 0) {
+                        $location.path('/login');
+                    }
+                    else {
+                        $location.path('/');
+                    }
+                }
             }
 
             function submitAction() {
@@ -26,14 +35,14 @@
                 user.lastLoginDate = 0;
                 UserDataService.addUser(user)
                     .then(function () {
-                        goToAdminListView();
+                        goBack();
                     }, function (error) {
                         console.log('An error occured!', error);
                     });
             }
 
             function cancelAction() {
-                goToAdminListView();
+                goBack();
             }
 
             //=====================================================================
