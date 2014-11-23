@@ -184,6 +184,7 @@
                 name: username,
                 blocked: false,
                 role: role,
+                registrationDate: new Date().getTime(),
                 salt: salt,
                 hash: hash};
             userStore.addUser(user, function (err, doc) {
