@@ -34,17 +34,20 @@
             }
 
             function submitAction() {
+                $scope.userNameError = false;
+                $scope.message = '';
                 var user = $scope.user;
                 user.active = true;
                 user.registrationDate = new Date().getTime();
                 user.lastLoginDate = 0;
                 console.log('Update ', user.name);
                 UserDataService.updateUser(user.name, user)
-                    .then(function () {
-                        console.log('  ok.');
+                    .success(function () {
                         goBack();
-                    }, function (error) {
-                        console.log('An error occured!', error);
+                    })
+                    .error(function(status, data) {
+                        $scope.userNameError = true;
+                        $scope.message = status;
                     });
             }
 

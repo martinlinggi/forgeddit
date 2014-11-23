@@ -29,15 +29,19 @@
             }
 
             function submitAction() {
+                $scope.userNameError = false;
+                $scope.message = '';
                 var user = $scope.user;
                 user.active = true;
                 user.registrationDate = new Date().getTime();
                 user.lastLoginDate = 0;
                 UserDataService.addUser(user)
-                    .then(function () {
+                    .success(function () {
                         goBack();
-                    }, function (error) {
-                        console.log('An error occured!', error);
+                    })
+                    .error(function (data, status) {
+                        $scope.userNameError = true;
+                        $scope.message = data;
                     });
             }
 
@@ -52,6 +56,8 @@
             $scope.user.role = 'User';
             $scope.user.blocked = false;
             $scope.isEditMode = false;
+            $scope.userNameError = false;
+            $scope.message = '';
 
             $scope.submitBtnLabel = 'Save';
 

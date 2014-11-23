@@ -5,12 +5,50 @@
 (function() {
     var jwt = require('jsonwebtoken');
     var express = require('express');
+    var crypto = require('crypto');
     var router = express.Router();
 
     var userStore = require('../models/user_store.js');
     var sessionStore = require('../models/session_store.js');
 
     var jwtSecret = 'xkfo02fySirnyk&aj4iZkjeo';
+
+    var hashLen = 128;
+    var hashIterations = 12000;
+
+
+
+    //=====================================================================
+    // Helper functions
+    //=====================================================================
+
+    function hash(pwd, salt, func) {
+        if (3 == arguments.length) {
+            crypto.pbkdf2(pwd, salt, hashIterations, hashLen, func);
+        } else {
+            func = salt;
+            crypto.randomBytes(hashLen, function(err, salt){
+                if (err) return func(err);
+                salt = salt.toString('base64');
+                crypto.pbkdf2(pwd, salt, hashIterations, hashLen, function(err, hash){
+                    if (err) return func(err);
+                    func(null, salt, hash);
+                });
+            });
+        }
+    }
+
+    function userExists(req, res, next) {
+        console.log('userExists');
+        userStore.findUser(req.body.name, function (err, user) {
+            if (user) {
+                res.status(400).end('Username already exists');
+            }
+            else {
+                next();
+            }
+        });
+    }
 
 // login
     router.post('/login', function (req, res) {
@@ -114,7 +152,7 @@
     });
 
 // Appends a new user record
-    router.post('/', function (req, res) {
+    router.post('/', userExists, function (req, res) {
         userStore.addUser(req.body, function (err, doc) {
             console.log('addUser', doc);
             res.json(doc);
