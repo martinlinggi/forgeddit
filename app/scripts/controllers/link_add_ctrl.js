@@ -10,8 +10,8 @@
     'use strict';
 
 
-    angular.module('forgedditApp').controller('addLinkController', ['$scope', 'ForgedditDataService',
-        function ($scope, ForgedditDataService) {
+    angular.module('forgedditApp').controller('addLinkController', ['$scope', 'ForgedditDataService', 'UserService',
+        function ($scope, ForgedditDataService, UserService) {
 
             //=====================================================================
             // private functions
@@ -22,7 +22,7 @@
                 var newLink = {
                     title: $scope.title,
                     url: $scope.url,
-                    user: 'testuser'
+                    user: UserService.getUserName()
                 };
                 ForgedditDataService.addLink(newLink)
                     .success(function () {
