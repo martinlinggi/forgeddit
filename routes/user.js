@@ -38,6 +38,36 @@
         }
     }
 
+    function authenticate(username, password, func) {
+        // check if usename and password are given
+        if (!username || !password) {
+            return func(new Error('Must provide username or password'));
+        }
+
+        // check if username exists and password is correct
+        userStore.findUser(username, function (err, user) {
+            if (err) {
+                return func(new Error('User not found'));
+            }
+            if (user) {
+                hash(password, user.salt, function (err, hash) {
+                    if (err) return func(err);
+                    for (var i = 0, n = hash.length; i < n; i++)
+                    {
+                        if (hash[i] !== user.hash[i]) {
+                            console.log('pw-check: ' + i);
+                            func(new Error('invalid password'));
+                        }
+                    }
+                    return func(null, user);
+                });
+            }
+            else {
+                return func(new Error('User not found'));
+            }
+        });
+    }
+
     function userExists(req, res, next) {
         console.log('userExists');
         userStore.findUser(req.body.name, function (err, user) {
@@ -53,24 +83,17 @@
 // login
     router.post('/login', function (req, res) {
 
-        // check if usename and password are given
-        var body = req.body;
-        if (!body.username || !body.password) {
-            console.log('status: 400');
-            res.status(400).end('Must provide username or password');
-        }
+        var username = req.body.username;
+        var password = req.body.password;
 
-        // check if username exists and password is correct
-        userStore.findUser(body.username, function (err, user) {
-            console.log('findUser: ' + body.username);
-            if (!user || body.password !== user.password) {
-                console.log('status: 401');
-                res.status(401).end('Username or password incorrect');
-            }
-            else if(user.blocked) {
-                res.status(401).end('User account is blocked');
+        authenticate(username, password, function(err, user) {
+            if (err) {
+                res.status(401).end('Login failed. Please check your username and password');
             }
             else {
+                if (user.blocked) {
+                    res.status(401).end('Your account has been blocked. Please contact the administrator');
+                }
 
                 // Update User-Info (last-login)
                 user.lastLogin = new Date().getTime();
@@ -107,8 +130,6 @@
                     }
                 });
             }
-            console.log("ok: --- ");
-
         });
     });
 
@@ -153,10 +174,23 @@
 
 // Appends a new user record
     router.post('/', userExists, function (req, res) {
-        userStore.addUser(req.body, function (err, doc) {
-            console.log('addUser', doc);
-            res.json(doc);
-        })
+        var username = req.body.name;
+        var password = req.body.password;
+        var role = req.body.role;
+
+        hash(password, function (err, salt, hash) {
+            if (err) throw err;
+            var user = {
+                name: username,
+                blocked: false,
+                role: role,
+                salt: salt,
+                hash: hash};
+            userStore.addUser(user, function (err, doc) {
+                console.log('addUser', doc);
+                res.json(doc);
+            })
+        });
     });
 
 // Updates a user record
