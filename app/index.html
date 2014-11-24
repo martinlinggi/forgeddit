@@ -31,11 +31,72 @@
 
    <div id="content" ng-view></div>
 
-   <div id="footer"></div>
+  <div id="footer">
+	  <div id="modal1" ng-controller='MyCtrl' style="float:left;padding:10px;">
+      <a href="" ng-click="toggleModal()">Architektur</a>
+			<modal-dialog show='modalShown' width='750px' height='60%'>
+			<p>Modal Content Goes here 1<p>
+			</modal-dialog>
+	  </div>
+	  <div id="modal2" ng-controller='MyCtrl' style="float:left;padding:10px;">
+	  <a href="" ng-click="toggleModal()">Modules</a>
+			<modal-dialog show='modalShown' width='750px' height='60%'>
+			<p>Modal Content Goes here 2<p>
+			</modal-dialog>
+	  </div>
+
+	  <div id="modal3" ng-controller='MyCtrl' style="float:left;padding:10px;">
+	  <a href="" ng-click="toggleModal()">Build</a>
+			<modal-dialog show='modalShown' width='750px' height='60%'>
+			<p>Modal Content Goes here 3<p>
+			</modal-dialog>
+	  </div>
+	  	  <div id="modal4" ng-controller='MyCtrl' style="float:left;padding:10px;">
+	  <a href="" ng-click="toggleModal()">Database</a>
+			<modal-dialog show='modalShown' width='750px' height='60%'>
+			<p>Modal Content Goes here 4<p>
+			</modal-dialog>
+	  </div>
+	  <div id="modal5" ng-controller='MyCtrl' style="float:left;padding:10px;">
+	  <a href="" ng-click="toggleModal()">Webserver/Express</a>
+			<modal-dialog show='modalShown' width='750px' height='60%'>
+			<p>Modal Content Goes here 5<p>
+			</modal-dialog>
+	  </div>
+	  <div id="modal6" ng-controller='MyCtrl' style="float:left;padding:10px;">
+	  <a href="" ng-click="toggleModal()">Angular</a>
+			<modal-dialog show='modalShown' width='750px' height='60%'>
+			<p>Modal Content Goes here 6<p>
+			</modal-dialog>
+	  </div>
+	  <div id="modal7" ng-controller='MyCtrl' style="float:left;padding:10px;">
+	  <a href="" ng-click="toggleModal()">Linkliste</a>
+			<modal-dialog show='modalShown' width='750px' height='60%'>
+			<p>Modal Content Goes here 7<p>
+			</modal-dialog>
+	  </div>
+	  <div id="modal8" ng-controller='MyCtrl' style="float:left;padding:10px;">
+	  <a href="" ng-click="toggleModal()">Login/Logout</a>
+			<modal-dialog show='modalShown' width='750px' height='60%'>
+			<p>Modal Content Goes here 8<p>
+			</modal-dialog>
+	  </div>
+	  <div id="modal9" ng-controller='MyCtrl' style="float:left;padding:10px;">
+	  <a href="" ng-click="toggleModal()">Votes</a>
+			<modal-dialog show='modalShown' width='750px' height='60%'>
+			<p>Modal Content Goes here 9<p>
+			</modal-dialog>
+	  </div>
+	  <div id="modal8" ng-controller='MyCtrl' style="padding:10px;">
+	  <a href="" ng-click="toggleModal()">Comments</a>
+			<modal-dialog show='modalShown' width='750px' height='60%'>
+			<p>Modal Content Goes here 10<p>
+			</modal-dialog>
+	  </div>
+   </div>
 
    <script src="bower_components/angular/angular.js"></script>
    <script src="bower_components/angular-route/angular-route.js"></script>
-
    <script src="scripts/app.js"></script>
    <script src="scripts/services/auth_token_service.js"></script>
    <script src="scripts/services/token_interceptor.js"></script>
@@ -43,12 +104,12 @@
    <script src="scripts/services/user_data_service.js"></script>
    <script src="scripts/services/forgeddit_data_service.js"></script>
    <script src="scripts/services/time_calculation_service.js"></script>
-   <script src="scripts/directives/focus.js"></script>
    <script src="scripts/directives/admin_user_list.js"></script>
    <script src="scripts/directives/link_content.js"></script>
    <script src="scripts/directives/link_add.js"></script>
    <script src="scripts/directives/link_list.js"></script>
    <script src="scripts/directives/link_vote.js"></script>
+   <script src="scripts/directives/overlay.js"></script>
    <script src="scripts/controllers/app_ctrl.js"></script>
    <script src="scripts/controllers/admin_user_list_ctrl.js"></script>
    <script src="scripts/controllers/admin_new_user_ctrl.js"></script>
@@ -56,6 +117,7 @@
    <script src="scripts/controllers/admin_delete_user_ctrl.js"></script>
    <script src="scripts/controllers/link_list_ctrl.js"></script>
    <script src="scripts/controllers/link_add_ctrl.js"></script>
+   <script src="scripts/controllers/link_content_ctrl.js"></script>
    <script src="scripts/controllers/link_vote_ctrl.js"></script>
 </body>
 </html>
