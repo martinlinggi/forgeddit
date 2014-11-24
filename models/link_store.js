@@ -122,7 +122,8 @@
     }
 
     function addComment(linkId, comment, func) {
-        linkDb.update({ _id: linkId }, { $push: { comments: comment } }, {}, func);
+		console.log('forgedditStore: add comment to ' + linkId + ' comment:' + comment);
+        linkDb.update({ _id: linkId }, { $push: { comments: comment } }, {multi: false}, func);
     }
 
     initDb();
