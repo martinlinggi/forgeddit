@@ -76,6 +76,14 @@
             });
     }]);
 
+	forgedditApp.controller('MyCtrl', function($scope) {
+		console.log('Controller in app.js called');
+		$scope.modalShown = false;
+		$scope.toggleModal = function() {
+		$scope.modalShown = !$scope.modalShown;
+		};
+	});
+	
     forgedditApp.run(function($rootScope, $location, AuthTokenService) {
         $rootScope.$on("$routeChangeStart", function(event, nextRoute, currentRoute) {
             if (nextRoute.access.requiredLogin && !AuthTokenService.isAuthenticated()) {
