@@ -29,6 +29,10 @@
         function voteLink(id, userName, value) {
             return $http.put('/api/links/' + id + '/vote', {value: value, userName: userName});
         }
+		
+		function addComment(id, newComment) {
+            return $http.post('/api/links/' + id + '/comments', newComment);
+        }
 
         //=====================================================================
         // Service API
@@ -37,7 +41,8 @@
             getLinks: getLinks,
             getVotes: getVotes,
             addLink: addLink,
-            voteLink: voteLink
+            voteLink: voteLink,
+			addComment: addComment
         };
 
     }]);
