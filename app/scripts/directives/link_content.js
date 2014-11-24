@@ -16,7 +16,8 @@
 
         return {
             restrict: 'E',
-            templateUrl: 'templates/link_content_view.html'
+            templateUrl: 'templates/link_content_view.html',
+			controller: 'LinkContentCtrl'
         };
     });
 
