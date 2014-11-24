@@ -15,11 +15,11 @@
             <div class="commentText">{{comment.text}}</div>
         </div>
     </div>
-    <div ng-show="showComments" class="addComment">
+    <div ng-show="showAddComment" ng-if="isLogged" class="addComment">
         <form name="addComment" class="ccs-form">
-            <label for="comment">Link:</label>
-            <input ng-model= "newComment" type="text" id="comment" placeholder="Enter Comment" required >
-            <input ng-click="sendComment(link)" ng-disabled="addComment.$invalid" type="button" id="sendComment" value="Send Comment">
+            <label style="valign=top" for="comment">New Comment:</label>
+            <textarea rows="5" cols="80" ng-model="newComment" type="text" id="comment" placeholder="Enter Comment" required >
+			<button class="active-button" ng-click="sendComment(link)" ng-disabled="addComment.$invalid">Send Comment</button>
         </form>
     </div>
 </div>
