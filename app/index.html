@@ -6,97 +6,16 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body ng-controller="AppCtrl">
-   <div id="header">
-       <div id="logo"></div>
-       <div id="search">
-           <form>
-               <input type="text" id="searchText" placeholder="Search Forgeddit">
-               <input type="button" id="doSearch" value="Search">
-           </form>
-       </div>
-       <div ng-if="!isLogged" id="signIn">
-           <ul>
-               <li><a ng-href="#/login">Sign in Friend</a></li>
-               <li><a ng-href="#/user/create">Create free account</a></li>
-           </ul>
-       </div>
-       <div ng-if="isLogged" id="signOut">
-           <ul>
-               <li><a ng-href="#/user/{{username}}">{{username}}</a></li>
-               <li ng-if="hasAdminRights"><a ng-href="#/admin/users">Admin</a></li>
-               <li><a ng-click="logout()" ng-href="#/logout">Sign out</a></li>
-           </ul>
-       </div>
-   </div>
+
+   <header-div></header-div>
 
    <div id="content" ng-view></div>
 
-  <div id="footer">
-	  <div id="modal1" ng-controller='MyCtrl' style="float:left;padding:10px;">
-      <a href="" ng-click="toggleModal()">Architektur</a>
-			<modal-dialog show='modalShown' width='750px' height='60%'>
-			<p>Modal Content Goes here 1<p>
-			</modal-dialog>
-	  </div>
-	  <div id="modal2" ng-controller='MyCtrl' style="float:left;padding:10px;">
-	  <a href="" ng-click="toggleModal()">Modules</a>
-			<modal-dialog show='modalShown' width='750px' height='60%'>
-			<p>Modal Content Goes here 2<p>
-			</modal-dialog>
-	  </div>
-
-	  <div id="modal3" ng-controller='MyCtrl' style="float:left;padding:10px;">
-	  <a href="" ng-click="toggleModal()">Build</a>
-			<modal-dialog show='modalShown' width='750px' height='60%'>
-			<p>Modal Content Goes here 3<p>
-			</modal-dialog>
-	  </div>
-	  	  <div id="modal4" ng-controller='MyCtrl' style="float:left;padding:10px;">
-	  <a href="" ng-click="toggleModal()">Database</a>
-			<modal-dialog show='modalShown' width='750px' height='60%'>
-			<p>Modal Content Goes here 4<p>
-			</modal-dialog>
-	  </div>
-	  <div id="modal5" ng-controller='MyCtrl' style="float:left;padding:10px;">
-	  <a href="" ng-click="toggleModal()">Webserver/Express</a>
-			<modal-dialog show='modalShown' width='750px' height='60%'>
-			<p>Modal Content Goes here 5<p>
-			</modal-dialog>
-	  </div>
-	  <div id="modal6" ng-controller='MyCtrl' style="float:left;padding:10px;">
-	  <a href="" ng-click="toggleModal()">Angular</a>
-			<modal-dialog show='modalShown' width='750px' height='60%'>
-			<p>Modal Content Goes here 6<p>
-			</modal-dialog>
-	  </div>
-	  <div id="modal7" ng-controller='MyCtrl' style="float:left;padding:10px;">
-	  <a href="" ng-click="toggleModal()">Linkliste</a>
-			<modal-dialog show='modalShown' width='750px' height='60%'>
-			<p>Modal Content Goes here 7<p>
-			</modal-dialog>
-	  </div>
-	  <div id="modal8" ng-controller='MyCtrl' style="float:left;padding:10px;">
-	  <a href="" ng-click="toggleModal()">Login/Logout</a>
-			<modal-dialog show='modalShown' width='750px' height='60%'>
-			<p>Modal Content Goes here 8<p>
-			</modal-dialog>
-	  </div>
-	  <div id="modal9" ng-controller='MyCtrl' style="float:left;padding:10px;">
-	  <a href="" ng-click="toggleModal()">Votes</a>
-			<modal-dialog show='modalShown' width='750px' height='60%'>
-			<p>Modal Content Goes here 9<p>
-			</modal-dialog>
-	  </div>
-	  <div id="modal8" ng-controller='MyCtrl' style="padding:10px;">
-	  <a href="" ng-click="toggleModal()">Comments</a>
-			<modal-dialog show='modalShown' width='750px' height='60%'>
-			<p>Modal Content Goes here 10<p>
-			</modal-dialog>
-	  </div>
-   </div>
+   <footer-div></footer-div>
 
    <script src="bower_components/angular/angular.js"></script>
    <script src="bower_components/angular-route/angular-route.js"></script>
+
    <script src="scripts/app.js"></script>
    <script src="scripts/services/auth_token_service.js"></script>
    <script src="scripts/services/token_interceptor.js"></script>
@@ -104,6 +23,9 @@
    <script src="scripts/services/user_data_service.js"></script>
    <script src="scripts/services/forgeddit_data_service.js"></script>
    <script src="scripts/services/time_calculation_service.js"></script>
+   <script src="scripts/directives/focus.js"></script>
+   <script src="scripts/directives/footer.js"></script>
+   <script src="scripts/directives/header.js"></script>
    <script src="scripts/directives/admin_user_list.js"></script>
    <script src="scripts/directives/link_content.js"></script>
    <script src="scripts/directives/link_add.js"></script>
