@@ -105,7 +105,12 @@
 
     function getAllLinks(func) {
         console.log('forgedditStore - getAllLinks()');
-        linkDb.find({title: { $exists: true }}, func);
+        linkDb.find({}, func);
+    }
+
+    function getLink(id, func) {
+        console.log('forgedditStore - getLink()');
+        linkDb.findOne({_id: id}, func);
     }
 
     function addLink(link, func) {
@@ -133,6 +138,7 @@
     //=====================================================================
     var ForgedditStore = {};
     ForgedditStore.getAllLinks = getAllLinks;
+    ForgedditStore.getLink = getLink;
     ForgedditStore.addLink = addLink;
     ForgedditStore.voteLink = voteLink;
     ForgedditStore.addComment = addComment;
