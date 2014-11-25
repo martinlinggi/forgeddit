@@ -18,6 +18,10 @@
             return $http.get('/api/links');
         }
 
+        function getLink(id) {
+            return $http.get('/api/links/' + id);
+        }
+
         function getVotes(userName) {
             return $http.get('/api/votes/' + userName);
         }
@@ -39,6 +43,7 @@
         //=====================================================================
         return {
             getLinks: getLinks,
+            getLink: getLink,
             getVotes: getVotes,
             addLink: addLink,
             voteLink: voteLink,
