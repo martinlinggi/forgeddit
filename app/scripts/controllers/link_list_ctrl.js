@@ -9,8 +9,8 @@
     'use strict';
 
 
-    angular.module('forgedditApp').controller('LinkListCtrl', ['$scope', 'ForgedditDataService', 'TimeCalculationService', 'AuthTokenService', 'UserService',
-        function ($scope, ForgedditDataService, TimeCalculationService, AuthTokenService, UserService) {
+    angular.module('forgedditApp').controller('LinkListCtrl', ['$scope', 'ForgedditDataService', 'TimeCalculationService', 'AuthTokenService', 'UserService', 'SocketService',
+        function ($scope, ForgedditDataService, TimeCalculationService, AuthTokenService, UserService, SocketService) {
 
             //=====================================================================
             // private functions
@@ -107,6 +107,18 @@
                     });
             }
 
+            function updateLink(id) {
+                var link = {};
+                ForgedditDataService.getLink(id)
+                    .then(function (res) {
+                        for (var i = 0, n = $scope.links.length; i < n; i++) {
+                            if ($scope.links[i]._id === id){
+                                $scope.links[i] = res.data;
+                            }
+                        }
+                    })
+            }
+
 
             //=====================================================================
             // Controller API
@@ -119,6 +131,7 @@
             $scope.alreadyVoteList = [];
             getVotes();
             getLinks();
+            SocketService.on('updateLink', updateLink)
         }]);
 
 }());
