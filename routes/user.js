@@ -3,40 +3,16 @@
  */
 
 (function() {
-    var jwt = require('jsonwebtoken');
     var express = require('express');
-    var crypto = require('crypto');
     var router = express.Router();
 
+    var secret = require('./secret.js');
     var userStore = require('../models/user_store.js');
     var sessionStore = require('../models/session_store.js');
-
-    var jwtSecret = 'xkfo02fySirnyk&aj4iZkjeo';
-
-    var hashLen = 128;
-    var hashIterations = 12000;
-
-
 
     //=====================================================================
     // Helper functions
     //=====================================================================
-
-    function hash(pwd, salt, func) {
-        if (3 == arguments.length) {
-            crypto.pbkdf2(pwd, salt, hashIterations, hashLen, func);
-        } else {
-            func = salt;
-            crypto.randomBytes(hashLen, function(err, salt){
-                if (err) return func(err);
-                salt = salt.toString('base64');
-                crypto.pbkdf2(pwd, salt, hashIterations, hashLen, function(err, hash){
-                    if (err) return func(err);
-                    func(null, salt, hash);
-                });
-            });
-        }
-    }
 
     function authenticate(username, password, func) {
         // check if usename and password are given
@@ -50,7 +26,7 @@
                 return func(new Error('User not found'));
             }
             if (user) {
-                hash(password, user.salt, function (err, hash) {
+                secret.hash(password, user.salt, function (err, hash) {
                     if (err) return func(err);
                     for (var i = 0, n = hash.length; i < n; i++)
                     {
@@ -107,9 +83,7 @@
                 });
 
                 // Authentication succeded: Create and save the session-token and send answer
-                var token = jwt.sign({
-                    username: user.name
-                }, jwtSecret);
+                var token = secret.createToken(user.name);
                 var session = {};
                 session.token = token;
                 session.username = user.name;
@@ -157,7 +131,7 @@
 
 
 // Get users list
-    router.get('/', function (req, res) {
+    router.get('/', secret.secured(), function (req, res) {
         userStore.getAllUsers(function (err, users) {
             res.json(users);
             console.log('getAllUsers', users);
@@ -165,7 +139,7 @@
     });
 
 // Get a user
-    router.get('/:userName', function (req, res) {
+    router.get('/:userName', secret.secured(), function (req, res) {
         userStore.findUser(req.params.userName, function (err, user) {
             res.json(user);
             console.log('getUser', user);
@@ -173,12 +147,12 @@
     });
 
 // Appends a new user record
-    router.post('/', userExists, function (req, res) {
+    router.post('/', secret.secured(), userExists, function (req, res) {
         var username = req.body.name;
         var password = req.body.password;
         var role = req.body.role;
 
-        hash(password, function (err, salt, hash) {
+        secret.hash(password, function (err, salt, hash) {
             if (err) throw err;
             var user = {
                 name: username,
@@ -195,7 +169,7 @@
     });
 
 // Updates a user record
-    router.put('/:userName', function (req, res) {
+    router.put('/:userName', secret.secured(), function (req, res) {
         var username = req.params.userName;
         userStore.updateUser(username, req.body, function (err, doc) {
             console.log('addUser', doc);
@@ -205,15 +179,13 @@
     });
 
 // Deletes a user record
-    router.delete('/:userName', function (req, res) {
+    router.delete('/:userName', secret.secured(), function (req, res) {
         var username = req.params.userName;
         userStore.deleteUser(username, function(err, numRemoved) {
             res.json(numRemoved);
         })
 
     });
-
-    router.jwtSecret = jwtSecret;
 
     module.exports = router;
 
