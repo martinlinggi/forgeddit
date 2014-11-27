@@ -23,7 +23,7 @@
         linkDb.insert({
             "title": "Sony streamt Spiele auf Fernseher",
             "url": "http://www.heise.de/newsticker/meldung/E3-Sony-streamt-Spiele-auf-Fernseher-zeigt-neue-PS4-Titel-2218073.html",
-            "user": "MaLiMaster",
+            "user": "admin",
             "group": "fun",
             "rate": 432,
             "time": 1308774240669,
@@ -43,7 +43,7 @@
         linkDb.insert({
             "title": "Kurios gesammelt",
             "url": "http://www.heise.de/newsticker/meldung/Messesplitter-Kurioses-und-Bemerkenswertes-von-der-Computex-2217665.html",
-            "user": "MaLiMaster",
+            "user": "admin",
             "group": "fun",
             "rate": 15,
             "time": 1308124245826,
@@ -60,7 +60,7 @@
         linkDb.insert({
             "title": "Giraffes in love",
             "url": "http://www.freemake.com/blog/wp-content/uploads/2013/07/animated-gifs-giraffes-51.gif",
-            "user": "MaLiMaster",
+            "user": "user",
             "group": "fun",
             "rate": 578,
             "time": 1309324245826,
@@ -77,7 +77,7 @@
         linkDb.insert({
             "title": "Möchtegern Hausbauer",
             "url": "http://i.imgur.com/RJqRpbM.jpg",
-            "user": "MaLiMaster",
+            "user": "user",
             "group": "fun",
             "rate": 22,
             "time": 1329424245826,
@@ -118,6 +118,11 @@
         console.log('forgedditStore - addLink()');
     }
 
+    function updateLink(linkId, linkData, func) {
+        linkDb.update({_id: linkId}, {$set: linkData}, {multi:false}, func);
+        console.log('forgedditStore - updateLink()');
+    }
+
     function voteLink(linkId, vote, func) {
         console.log('id ' + linkId);
         linkDb.findOne({_id: linkId}, function (err, link) {
@@ -140,6 +145,7 @@
     ForgedditStore.getAllLinks = getAllLinks;
     ForgedditStore.getLink = getLink;
     ForgedditStore.addLink = addLink;
+    ForgedditStore.updateLink = updateLink;
     ForgedditStore.voteLink = voteLink;
     ForgedditStore.addComment = addComment;
 
