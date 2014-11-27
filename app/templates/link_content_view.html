@@ -2,10 +2,10 @@
     <div class="link">
         <form ng-show="isEdit" name="linkEditForm" ng-submit="isEdit=false" novalidate>
             <div>
-                <input ng-model="link.title" type="text" id="linkTitle" placeholder="Enter title" required>
+                <input class="linkEdit" ng-model="newTitle" type="text" id="linkTitle" placeholder="Enter title" required>
                 <button class="active-button"
                         ng-click="doUpdateLink()"
-                        ng-disabled="userForm.$invalid">Speichern</button>
+                        ng-disabled="linkEditForm.$invalid">Speichern</button>
                 <button class="cancel-button"
                         ng-click="isEdit=false">Abbrechen</button>
             </div>
@@ -13,7 +13,7 @@
         </form>
 
         <a ng-hide="isEdit" href="{{link.url}}">{{link.title}}</a>
-        <a ng-hide="isEdit" ng-click="isEdit=true" class="icon">
+        <a ng-show="canEdit && !isEdit" ng-click="doEditStart()" class="icon">
             <span aria-hidden="true" title="Edit link" class="icon-small icon-edit"></span>
             <span class="screen-reader-text">Edit link: {{link.title}}</span>
         </a>

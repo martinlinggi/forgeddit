@@ -30,13 +30,19 @@
 					}
             }
 
+            function doEditStart() {
+                $scope.isEdit = true;
+                $scope.newTitle = $scope.link.title;
+            }
+
             function doUpdateLink() {
                 var linkId = $scope.link._id;
                 var link = {
-                    title: $scope.link.title
+                    title: $scope.newTitle
                 };
                 ForgedditDataService.updateLink(linkId, link)
                     .success(function () {
+                        $scope.link.title = $scope.newTitle;
                         console.log('Success: link updated');
                     })
                     .error(function () {
@@ -54,9 +60,11 @@
 
 
             $scope.canDelete = $scope.link.user === UserService.getUserName() || UserService.isAdmin();
-            $scope.canEdit = $scope.link.user === UserService.getUserName();
             $scope.isEdit = false;
+            $scope.canEdit = $scope.link.user === UserService.getUserName();
+            $scope.newTitle = $scope.link.title;
             $scope.toggleComments = toggleComments;
+            $scope.doEditStart = doEditStart;
             $scope.doUpdateLink = doUpdateLink;
 
         }]);
