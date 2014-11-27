@@ -261,9 +261,8 @@ form label {
   height : 2rem;
 }
 
-form button {
+.formButton {
   margin-left: 11rem;
-
 }
 
 input,
@@ -274,6 +273,10 @@ select
   width: 33%;
   height: 2rem;
   background: white;
+}
+
+.linkEdit {
+  width: 66%;
 }
 
 // Buttons
