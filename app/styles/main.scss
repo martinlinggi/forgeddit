@@ -106,12 +106,18 @@ $maxWith: 75em;
   cursor: pointer;
 }
 
+.icon-small {
+  font-size: 1.0rem;
+}
+
 .icon-arrow-up-a:before { content: "\f10c"; }
 .icon-arrow-down-a:before { content: "\f103"; }
 .icon-arrow-left-c:before { content: "\f108"; }
+.icon-chatboxes:before { content: "\f11c"; }
 .icon-information-circled:before { content: "\f149"; }
 .icon-trash:before { content: "\f252";}
 .icon-add-user:before { content: "\f211";}
+.icon-edit:before { content: "\f2bf";}
 
 .screen-reader-text { /* Reusable, toolbox kind of class */
   position: absolute;

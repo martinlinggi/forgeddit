@@ -8,8 +8,8 @@
 (function() {
     'use strict';
 
-    angular.module('forgedditApp').controller('LinkContentCtrl', ['$scope', 'ForgedditDataService',
-        function ($scope, ForgedditDataService) {
+    angular.module('forgedditApp').controller('LinkContentCtrl', ['$scope', 'ForgedditDataService', 'UserService',
+        function ($scope, ForgedditDataService, UserService) {
 
             //=====================================================================
             // private functions
@@ -29,42 +29,35 @@
 					$scope.showAddComment = true;
 					}
             }
-			
-			//----------------------------------------------------------------------
-			// The method sends a comment to the backend
-			//----------------------------------------------------------------------
-			function sendComment(link) {
-                console.log('send comment clicked');
-				var id = link._id;
-                var theComment = {
-                    text: $scope.$$childTail.newComment,   // this is a somehow undocumented element because child scopes should not accessed from parent nodes in angular :-)
-					user: $scope.$parent.$parent.username  // this is an access to the username in a parent scope of the application
+
+            function doUpdateLink() {
+                var linkId = $scope.link._id;
+                var link = {
+                    title: $scope.link.title
                 };
-				console.log('comment to add:' + theComment.text);
-                console.log('user to add:' + theComment.user);
-                ForgedditDataService.addComment(id, theComment)
+                ForgedditDataService.updateLink(linkId, link)
                     .success(function () {
-                        console.log('Success: comment added');
-						var addedComment = {
-							text: theComment.text,
-							time: Date.now(),
-							user: theComment.user
-						};
-						$scope.link.comments.push(addedComment);
-						$scope.showAddComment = false;
-                        console.log('Success: DOM Comment Object added');
+                        console.log('Success: link updated');
                     })
                     .error(function () {
-                        console.log('Error: comment not added');
+                        console.log('Error: link not updated');
+// TODO Fix Error when send link does not work
                     });
             }
-			
+
+
+
+
             //=====================================================================
             // Controller API
             //=====================================================================
 
+
+            $scope.canDelete = $scope.link.user === UserService.getUserName() || UserService.isAdmin();
+            $scope.canEdit = $scope.link.user === UserService.getUserName();
+            $scope.isEdit = false;
             $scope.toggleComments = toggleComments;
-			$scope.sendComment = sendComment;
+            $scope.doUpdateLink = doUpdateLink;
 
         }]);
 

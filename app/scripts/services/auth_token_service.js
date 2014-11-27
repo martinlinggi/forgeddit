@@ -15,7 +15,7 @@
         // private variables
         //=====================================================================
 
-        var _store = $window.sessionStorage;
+        var _store = $window.localStorage;
         var _key = 'auth-token';
         var _isAuth;
 

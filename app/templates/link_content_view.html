@@ -1,25 +1,39 @@
 <div class="entry">
     <div class="link">
-        <a href="{{link.url}}">{{link.title}}</a>
+        <form ng-show="isEdit" name="linkEditForm" ng-submit="isEdit=false" novalidate>
+            <div>
+                <input ng-model="link.title" type="text" id="linkTitle" placeholder="Enter title" required>
+                <button class="active-button"
+                        ng-click="doUpdateLink()"
+                        ng-disabled="userForm.$invalid">Speichern</button>
+                <button class="cancel-button"
+                        ng-click="isEdit=false">Abbrechen</button>
+            </div>
+            <div>{{link.url}}</div>
+        </form>
+
+        <a ng-hide="isEdit" href="{{link.url}}">{{link.title}}</a>
+        <a ng-hide="isEdit" ng-click="isEdit=true" class="icon">
+            <span aria-hidden="true" title="Edit link" class="icon-small icon-edit"></span>
+            <span class="screen-reader-text">Edit link: {{link.title}}</span>
+        </a>
     </div>
     <div class="info">Submitted {{getTimeAgo(link.time)}} ago from <a href="#">{{link.user}}</a> to <a href="#">{{link.group}}</a></div>
     <div class="actionList">
         <ul class="menu">
-            <li class="menuItem"><a ng-click="toggleComments(link)"> {{link.comments.length}} Comments</a></li>
+            <li class="menuItem">
+                <a  ng-click="toggleComments(link)" class="icon">
+                    <span aria-hidden="true" title="Show comments" class="icon-small icon-chatboxes"> {{link.comments.length}}</span>
+                    <span class="screen-reader-text">Show {{link.comments.length}} comments for link: {{link.title}}</span>
+                </a>
+            </li>
+            <li class="menuItem"  ng-show="canDelete">
+                <a  ng-click="" class="icon">
+                    <span aria-hidden="true" title="Delete link" class="icon-small icon-trash"></span>
+                    <span class="screen-reader-text">Delete link: {{link.title}}</span>
+                </a>
+            </li>
         </ul>
     </div>
-    <div ng-show="showComments" class="commentList">
-        <div class="commentItem" ng-repeat="comment in link.comments">
-            <div class="commentUser">{{comment.user}}</div>
-            <div class="commentTime">{{getTimeAgo(link.comments[$index].time)}}</div>
-            <div class="commentText">{{comment.text}}</div>
-        </div>
-    </div>
-    <div ng-show="showAddComment" ng-if="isLogged" class="addComment">
-        <form name="addComment" class="ccs-form">
-            <label style="valign=top" for="comment">New Comment:</label>
-            <textarea rows="5" cols="80" ng-model="newComment" type="text" id="comment" placeholder="Enter Comment" required >
-			<button class="active-button" ng-click="sendComment(link)" ng-disabled="addComment.$invalid">Send Comment</button>
-        </form>
-    </div>
+    <link-comment-view></link-comment-view>
 </div>

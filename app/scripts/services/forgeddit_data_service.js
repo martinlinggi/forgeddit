@@ -30,6 +30,10 @@
             return $http.post('/api/links', newLink);
         }
 
+        function updateLink(id, linkData) {
+            return $http.put('/api/links/' + id, linkData);
+        }
+
         function voteLink(id, userName, value) {
             return $http.put('/api/links/' + id + '/vote', {value: value, userName: userName});
         }
@@ -46,6 +50,7 @@
             getLink: getLink,
             getVotes: getVotes,
             addLink: addLink,
+            updateLink: updateLink,
             voteLink: voteLink,
 			addComment: addComment
         };

@@ -23,7 +23,7 @@
                     $scope.username = response.data.username;
                     $scope.hasAdminRights = response.data.role === 'Administrator';
                     AuthTokenService.setAuthenticated(true);
-                    UserService.setUserName(response.data.username);
+                    UserService.setUser(response.data.username, $scope.hasAdminRights);
                     if (redirect) {
                         $location.path('/');
                     }
@@ -49,7 +49,7 @@
 
             function logout() {
                 UserService.logout();
-                UserService.setUserName('');
+                UserService.setUser('', false);
                 AuthTokenService.setAuthenticated(false);
                 $scope.isLogged = false;
                 $scope.hasAdminRights = false;

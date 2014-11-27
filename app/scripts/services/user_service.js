@@ -10,7 +10,7 @@
     angular.module('forgedditApp').factory('UserService', ['$http', '$q', 'AuthTokenService', function ($http, $q, AuthTokenService) {
 
         var _userName = "";
-        var _isAuth = false;
+        var _isAdmin = false;
 
 
         //=====================================================================
@@ -33,14 +33,18 @@
             }
         }
 
-        function setUserName(userName){
+        function setUser(userName, isAdmin){
             _userName = userName;
+            _isAdmin = isAdmin;
         }
 
         function getUserName() {
             return _userName;
         }
 
+        function isAdmin() {
+            return _isAdmin;
+        }
 
         //=====================================================================
         // Service API
@@ -49,8 +53,9 @@
             login: login,
             logout: logout,
             getSessionData: getSessionData,
-            setUserName: setUserName,
-            getUserName: getUserName
+            setUser: setUser,
+            getUserName: getUserName,
+            isAdmin: isAdmin
 
         };
 
