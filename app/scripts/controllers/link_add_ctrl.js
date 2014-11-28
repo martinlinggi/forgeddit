@@ -26,6 +26,9 @@
                 };
                 ForgedditDataService.addLink(newLink)
                     .success(function () {
+                        $scope.links.push(newLink);
+                        $scope.title = '';
+                        $scope.url = '';
                         console.log('Success: link added');
                     })
                     .error(function () {
