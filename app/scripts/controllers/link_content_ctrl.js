@@ -51,6 +51,22 @@
                     });
             }
 
+            function doDeleteLink() {
+                var linkId = $scope.link._id;
+                ForgedditDataService.deleteLink(linkId)
+                    .success(function() {
+                        for (var i = 0, n = $scope.links.length; i < n; i++) {
+                            if ($scope.links[i]._id === linkId) {
+                                $scope.links.splice(i, 1);
+                                break;
+                            }
+                        }
+                    })
+                    .error(function() {
+                        console.log('Error: Link not deleted');
+                    })
+            }
+
 
 
 
@@ -66,6 +82,7 @@
             $scope.toggleComments = toggleComments;
             $scope.doEditStart = doEditStart;
             $scope.doUpdateLink = doUpdateLink;
+            $scope.doDeleteLink = doDeleteLink;
 
         }]);
 

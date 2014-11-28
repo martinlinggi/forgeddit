@@ -51,6 +51,15 @@ function linkRoutes(app, io) {
         });
     });
 
+    //deletes a link
+    router.delete('/:linkId', secret.secured(), function(req, res) {
+        var linkId = req.params.linkId;
+
+        ForgedditStore.deleteLink(linkId, function (err, doc) {
+            res.json(doc);
+        });
+    });
+
     // votes a link
     router.put('/:linkId/vote/', secret.secured(), function (req, res) {
         var vote = req.body.value;

@@ -34,6 +34,10 @@
             return $http.put('/api/links/' + id, linkData);
         }
 
+        function deleteLink(id) {
+            return $http.delete('api/links/' + id);
+        }
+
         function voteLink(id, userName, value) {
             return $http.put('/api/links/' + id + '/vote', {value: value, userName: userName});
         }
@@ -51,6 +55,7 @@
             getVotes: getVotes,
             addLink: addLink,
             updateLink: updateLink,
+            deleteLink: deleteLink,
             voteLink: voteLink,
 			addComment: addComment
         };

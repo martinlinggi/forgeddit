@@ -123,6 +123,10 @@
         console.log('forgedditStore - updateLink()');
     }
 
+    function deleteLink(linkId, func) {
+        linkDb.remove({_id: linkId}, {}, func);
+    }
+
     function voteLink(linkId, vote, func) {
         console.log('id ' + linkId);
         linkDb.findOne({_id: linkId}, function (err, link) {
@@ -146,6 +150,7 @@
     ForgedditStore.getLink = getLink;
     ForgedditStore.addLink = addLink;
     ForgedditStore.updateLink = updateLink;
+    ForgedditStore.deleteLink = deleteLink;
     ForgedditStore.voteLink = voteLink;
     ForgedditStore.addComment = addComment;
 
