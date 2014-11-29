@@ -9,8 +9,8 @@
     'use strict';
 
 
-    angular.module('forgedditApp').controller('LinkListCtrl', ['$scope', 'ForgedditDataService', 'TimeCalculationService', 'AuthTokenService', 'UserService', 'SocketService',
-        function ($scope, ForgedditDataService, TimeCalculationService, AuthTokenService, UserService, SocketService) {
+    angular.module('forgedditApp').controller('LinkListCtrl', ['$scope', 'ForgedditDataService', 'UtilityService', 'AuthTokenService', 'UserService', 'SocketService',
+        function ($scope, ForgedditDataService, UtilityService, AuthTokenService, UserService, SocketService) {
 
             //=====================================================================
             // private functions
@@ -22,7 +22,7 @@
              * @returns {*} String (duration)
              */
             function getTimeAgo(time) {
-                return TimeCalculationService.getDuration(time);
+                return UtilityService.getDuration(time);
             }
 
             /**
