@@ -18,8 +18,9 @@
 			//----------------------------------------------------------------------
 			// The method sends a comment to the backend
 			//----------------------------------------------------------------------
-			function sendComment(newComment) {
+			function sendComment() {
                 console.log('send comment clicked');
+                var newComment = $scope.newComment;
 				var linkId = $scope.link._id;
                 var theComment = {
                     text: newComment,
@@ -35,12 +36,13 @@
 							time: Date.now(),
 							user: theComment.user
 						};
+                        $scope.newComment = '';
 						$scope.link.comments.push(addedComment);
-						$scope.showAddComment = false;
                         console.log('Success: DOM Comment Object added');
                     })
                     .error(function () {
                         console.log('Error: comment not added');
+                        $scope.newComment = newComment;
                     });
             }
 			
@@ -48,8 +50,9 @@
             // Controller API
             //=====================================================================
 
-            $scope.newComment = '';
             $scope.comments = $scope.link.comments;
+            $scope.newComment = '';
+            $scope.currentUserName = UserService.getUserName();
             $scope.sendComment = sendComment;
 
 
