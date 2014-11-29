@@ -103,8 +103,6 @@ $maxWith: 75em;
   url("../fonts/ionicons.svg#svgFontName") format("svg");
 }
 
-
-
 /**********************************************************
  * General settings
  **********************************************************/
@@ -146,7 +144,7 @@ h3 {
   font-weight: bold;
 }
 
-
+// Icon definitions
 .icon {
   display: inline-block;
   font-family: icons;
@@ -204,7 +202,6 @@ h3 {
   color: $colorError;
 }
 
-
 .table {
   width: 100%;
   thead {
@@ -234,7 +231,6 @@ h3 {
     td.centered {
       text-align: center;
     }
-
   }
 }
 
@@ -272,10 +268,6 @@ h3 {
 .imageScaleV {
   height: auto;
   width: 100%;
-}
-
-
-form {
 }
 
 form div {
@@ -426,7 +418,7 @@ button {
 
 /* Menü */
 
-ul.menu {
+.menu {
   li  {
     display: inline;
     list-style: none;
@@ -438,6 +430,30 @@ ul.menu {
       color: $colorLinkHover;
     }
   }
+}
+
+.menuSelection {
+  border-top: 1px solid $colorContentBoxBackground;
+
+  li  {
+    margin: 0;
+    display: inline;
+    list-style: none;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    height: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: $colorLink;
+    li.active {
+
+    }
+
+  }
+  li:hover{
+    background-color: $colorLinkItemBackgroundOdd;
+  }
+
 }
 
 #signIn li,
