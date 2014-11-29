@@ -11,8 +11,8 @@
             <div class="commentMeta">
                 <p class="commentUser">{{currentUserName}}</p>
             </div>
-            <textArea class="newComment" ng-model="newComment" id="comment" placeholder="Enter a new Comment" required focus="true"></textArea>
-            <button class="sendComment active-button" ng-click="sendComment(newComment)" ng-disabled="addComment.$invalid">Send Comment</button>
+            <textArea class="newComment" ng-model="newComment" id="comment" placeholder="Leave a Comment" required focus="true"></textArea>
+            <button class="sendComment active-button" ng-click="sendComment(newComment);newComment=''" ng-disabled="addComment.$invalid">Send Comment</button>
         </form>
-    </div>
+</div>
 </div>

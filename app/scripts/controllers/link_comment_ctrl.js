@@ -18,9 +18,8 @@
 			//----------------------------------------------------------------------
 			// The method sends a comment to the backend
 			//----------------------------------------------------------------------
-			function sendComment() {
+			function sendComment(newComment) {
                 console.log('send comment clicked');
-                var newComment = $scope.newComment;
 				var linkId = $scope.link._id;
                 var theComment = {
                     text: newComment,
@@ -37,7 +36,7 @@
 							user: theComment.user
 						};
                         $scope.newComment = '';
-						$scope.link.comments.push(addedComment);
+						$scope.comments.push(addedComment);
                         console.log('Success: DOM Comment Object added');
                     })
                     .error(function () {
