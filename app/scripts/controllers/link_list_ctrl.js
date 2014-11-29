@@ -33,6 +33,13 @@
             function sort(searchPredicate, reverse) {
                 $scope.searchPredicate = searchPredicate;
                 $scope.reverse = reverse;
+                if ($scope.newLinks.length > 0)
+                {
+                    for (var i = 0, n = $scope.newLinks.length; i < n; i++) {
+                        $scope.links.push($scope.newLinks[i]);
+                    }
+                    $scope.newLinks = [];
+                }
             }
 
             /**
@@ -107,8 +114,11 @@
                     });
             }
 
+            /**
+             * @brief Socket-Update: Changed link
+             * @param id the id of the changed link
+             */
             function updateLink(id) {
-                var link = {};
                 ForgedditDataService.getLink(id)
                     .then(function (res) {
                         for (var i = 0, n = $scope.links.length; i < n; i++) {
@@ -119,6 +129,21 @@
                     })
             }
 
+            /**
+             * @brief Socket-Update: New Link
+             * @param newLink the new link
+             */
+            function newLink(newLink) {
+                // only add if not already exists
+                for (var i = 0, n = $scope.links.length; i < n; i++)
+                {
+                    if (newLink._id === $scope.links[i]._id)
+                    {
+                        return;
+                    }
+                }
+                $scope.newLinks.push(newLink);
+            }
 
             //=====================================================================
             // Controller API
@@ -129,9 +154,11 @@
             $scope.filterExpression = '';
             $scope.links = [];
             $scope.alreadyVoteList = [];
+            $scope.newLinks = [];
             getVotes();
             getLinks();
-            SocketService.on('updateLink', updateLink)
+            SocketService.on('updateLink', updateLink);
+            SocketService.on('newLink', newLink);
         }]);
 
 }());

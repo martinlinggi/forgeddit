@@ -2,13 +2,14 @@
 <div class="box">
     <h1 class="boxTitle">Forgeddable Links</h1>
     <div class="boxTitle">
-        <ul class="menu">
-            <li><a ng-click="sort('time', true)" href="">Newest (live)</a></li>
+        <ul class="menuSelection">
+            <li ng-show="newLinks.length" class="newLinks">{{newLinks.length}}</li>
+            <li><a ng-click="sort('time', true)" href="">Newest</a></li>
             <li><a ng-click="sort('rate', true)" href="">Most forgeddable</a></li>
-            <li><a ng-show="isLogged" ng-click="filter('') " href="">All</a></li>
-            <li><a ng-show="isLogged" ng-click="filter('user')" href="">My forgeddables</a></li>
-            <li><a ng-show="isLogged" ng-click="filter('commented')" href="">Commented forgedadables</a></li>
-            <li><a ng-show="isLogged" ng-click="filter('voted')" href="">Voted forgeddables</a></li>
+            <li ng-show="isLogged" ><a ng-click="filter('') " href="">All</a></li>
+            <li ng-show="isLogged" ><a ng-click="filter('user')" href="">My forgeddables</a></li>
+            <li ng-show="isLogged" ><a ng-click="filter('commented')" href="">Commented forgedadables</a></li>
+            <li ng-show="isLogged" ><a ng-click="filter('voted')" href="">Voted forgeddables</a></li>
         </ul>
     </div>
     <div class="boxContent">

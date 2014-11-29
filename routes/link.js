@@ -39,6 +39,7 @@ function linkRoutes(app, io) {
 
         ForgedditStore.addLink(linkData, function (err, doc) {
             res.json(doc);
+            io.emit('newLink', doc);
         });
     });
 
@@ -49,6 +50,7 @@ function linkRoutes(app, io) {
 
         ForgedditStore.updateLink(linkId, linkData, function (err, doc) {
             res.json(doc);
+            io.emit('updateLink', linkId);
         });
     });
 
