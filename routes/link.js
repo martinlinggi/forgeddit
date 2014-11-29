@@ -30,6 +30,7 @@ function linkRoutes(app, io) {
         linkData.user = req.body.user;
         linkData.title = req.body.title;
         linkData.url = req.body.url;
+        linkData.isImage = req.body.isImage;
         linkData.id = linkData.user + '_' + time;
         linkData.group = "test-group";
         linkData.rate = 0;

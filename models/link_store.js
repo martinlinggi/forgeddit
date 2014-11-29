@@ -23,6 +23,7 @@
         linkDb.insert({
             "title": "Sony streamt Spiele auf Fernseher",
             "url": "http://www.heise.de/newsticker/meldung/E3-Sony-streamt-Spiele-auf-Fernseher-zeigt-neue-PS4-Titel-2218073.html",
+            "isImage": false,
             "user": "admin",
             "group": "fun",
             "rate": 432,
@@ -43,6 +44,7 @@
         linkDb.insert({
             "title": "Kurios gesammelt",
             "url": "http://www.heise.de/newsticker/meldung/Messesplitter-Kurioses-und-Bemerkenswertes-von-der-Computex-2217665.html",
+            "isImage": false,
             "user": "admin",
             "group": "fun",
             "rate": 15,
@@ -60,6 +62,7 @@
         linkDb.insert({
             "title": "Giraffes in love",
             "url": "http://www.freemake.com/blog/wp-content/uploads/2013/07/animated-gifs-giraffes-51.gif",
+            "isImage": true,
             "user": "user",
             "group": "fun",
             "rate": 578,
@@ -77,6 +80,7 @@
         linkDb.insert({
             "title": "Möchtegern Hausbauer",
             "url": "http://i.imgur.com/RJqRpbM.jpg",
+            "isImage": true,
             "user": "user",
             "group": "fun",
             "rate": 22,
