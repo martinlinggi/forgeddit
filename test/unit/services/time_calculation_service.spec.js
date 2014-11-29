@@ -3,22 +3,22 @@
  */
 
 
-describe('Service: TimeCalculationService', function() {
+describe('Service: UtilityService', function() {
 
-    var TimeCalculationService;
+    var UtilityService;
 
     // load the application module
     beforeEach(module('forgedditApp'));
 
     // get a reference to all used services
-    beforeEach(inject(function (_TimeCalculationService_) {
-        TimeCalculationService = _TimeCalculationService_;
+    beforeEach(inject(function (_UtilityService_) {
+        UtilityService = _UtilityService_;
     }));
 
     describe('Public API', function () {
 
         it('should include a getDuration() function', function () {
-            expect(TimeCalculationService.getDuration).toBeDefined();
+            expect(UtilityService.getDuration).toBeDefined();
         });
 
     });
@@ -29,49 +29,49 @@ describe('Service: TimeCalculationService', function() {
 
             it('should return a proper duration calculation "now"', function () {
                 var date = new Date();
-                var text = TimeCalculationService.getDuration(date.getTime())
+                var text = UtilityService.getDuration(date.getTime())
                 expect(text).toBe('just now');
             });
 
             it('should return a proper duration for "5 sec"', function () {
                 var date = new Date();
-                var text = TimeCalculationService.getDuration(date.getTime() - 5 * 1000)
+                var text = UtilityService.getDuration(date.getTime() - 5 * 1000)
                 expect(text).toBe('5 seconds ago');
             });
 
             it('should return a proper duration for "2 min"', function () {
                 var date = new Date();
-                var text = TimeCalculationService.getDuration(date.getTime() - 2 * 60 * 1000)
+                var text = UtilityService.getDuration(date.getTime() - 2 * 60 * 1000)
                 expect(text).toBe('2 minutes ago');
             });
 
             it('should return a proper duration for "2 hr"', function () {
                 var date = new Date();
-                var text = TimeCalculationService.getDuration(date.getTime() - 2 * 60 * 60 * 1000)
+                var text = UtilityService.getDuration(date.getTime() - 2 * 60 * 60 * 1000)
                 expect(text).toBe('2 hours ago');
             });
 
             it('should return a proper duration for "2 days"', function () {
                 var date = new Date();
-                var text = TimeCalculationService.getDuration(date.getTime() - 2 *24 *60 * 60 * 1000)
+                var text = UtilityService.getDuration(date.getTime() - 2 *24 *60 * 60 * 1000)
                 expect(text).toBe('2 days ago');
             });
 
             it('should return a proper duration for "2 weeks"', function () {
                 var date = new Date();
-                var text = TimeCalculationService.getDuration(date.getTime() - 2 * 7 * 24 *60 * 60 * 1000)
+                var text = UtilityService.getDuration(date.getTime() - 2 * 7 * 24 *60 * 60 * 1000)
                 expect(text).toBe('2 weeks ago');
             });
 
             it('should return a proper duration for "2 months"', function () {
                 var date = new Date();
-                var text = TimeCalculationService.getDuration(date.getTime() - 2 * 31 * 24 *60 * 60 * 1000)
+                var text = UtilityService.getDuration(date.getTime() - 2 * 31 * 24 *60 * 60 * 1000)
                 expect(text).toBe('2 months ago');
             });
 
             it('should return a proper duration for "2 years"', function () {
                 var date = new Date();
-                var text = TimeCalculationService.getDuration(date.getTime() - 2 * 365 * 24 *60 * 60 * 1000)
+                var text = UtilityService.getDuration(date.getTime() - 2 * 365 * 24 *60 * 60 * 1000)
                 expect(text).toBe('2 years ago');
             });
         });
