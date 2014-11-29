@@ -11,7 +11,11 @@ $colorLinkVisited: #38597a;
 // Disabled
 $colorDisabled: #c8c8c8;
 
-$colorError: #d10000;
+// Error
+$colorError: #D0021B;
+
+$colorVoteUp: #5eaa60;
+$colorVoteDown: #c93034;
 
 // Layout Colors
 $defaultColor: #151515;
@@ -99,31 +103,6 @@ $maxWith: 75em;
   url("../fonts/ionicons.svg#svgFontName") format("svg");
 }
 
-.icon {
-  display: inline-block;
-  font-family: icons;
-  font-size: 1.6rem;
-  cursor: pointer;
-}
-
-.icon-small {
-  font-size: 1.0rem;
-}
-
-.icon-arrow-up-a:before { content: "\f10c"; }
-.icon-arrow-down-a:before { content: "\f103"; }
-.icon-arrow-left-c:before { content: "\f108"; }
-.icon-chatboxes:before { content: "\f11c"; }
-.icon-information-circled:before { content: "\f149"; }
-.icon-trash:before { content: "\f252";}
-.icon-add-user:before { content: "\f211";}
-.icon-edit:before { content: "\f2bf";}
-
-.screen-reader-text { /* Reusable, toolbox kind of class */
-  position: absolute;
-  top: -9999px;
-  left: -9999px;
-}
 
 
 /**********************************************************
@@ -165,6 +144,56 @@ h2 {
 h3 {
   font-Size: 1.0rem;
   font-weight: bold;
+}
+
+
+.icon {
+  display: inline-block;
+  font-family: icons;
+  font-size: 1.6rem;
+  color: $colorLink;
+  cursor: pointer;
+
+  a:link {
+    color: $colorLink;
+  }
+
+  a:visited {
+    color: $colorLink;
+  }
+
+  a:hover {
+    color: $colorLinkHover;
+  }
+}
+
+.icon-small {
+  font-size: 1.0rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.icon-arrow-up-a:before {content: "\f10c"; }
+.icon-arrow-down-a:before {content: "\f103"; }
+.icon-arrow-left-c:before { content: "\f108"; }
+.icon-chatboxes:before { content: "\f11c"; }
+.icon-information-circled:before { content: "\f149"; }
+.icon-trash:before { content: "\f252";}
+.icon-add-user:before { content: "\f211";}
+.icon-edit:before { content: "\f2bf";}
+
+.screen-reader-text { /* Reusable, toolbox kind of class */
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.voteUp {
+  color: $colorVoteUp;
+}
+
+.voteDown {
+  color: $colorVoteDown;
 }
 
 .disabled {
@@ -316,10 +345,6 @@ button {
 }
 
 
-#sendCommentText {
-  margin-left: 0.5em;
-}
-
 #doSearch {
   height: 19px;
   @include border-radius(0);
@@ -388,7 +413,7 @@ button {
 
 /* Menü */
 
-.actionList {
+ul.menu {
   li  {
     display: inline;
     list-style: none;
@@ -418,7 +443,7 @@ button {
   .rate {
     float: left;
     text-align: center;
-    width: 3em;
+    width: 4rem;
   }
 
   .thumb {
@@ -429,61 +454,63 @@ button {
     align-content: center;
   }
 
-  .entry {
-    float: left;
-    font-size: 0.8em;
-
-    div {
-      float: none;
-      overflow: hidden;
-      padding-left:0.5em;
-    }
-
-    .link {
-      overflow: hidden;
-    }
-
-    .actionList {
-      &:after {
-        @include resetBlock;
-      }
-    }
-
-    .commentItem {
-      clear: both;
-      border-top: 1px solid $colorLinkItemBorder;
-    }
-
-    .commentUser {
-      font-weight: bold;
-      float: left;
-    }
-
-    .commentTime {
-      float: left;
-    }
-
-    .commentText {
-      clear: both;
-      float: left;
-    }
-
-    .addComment {
-      clear: both;
-      float: none;
-    }
-
+  .info {
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
   }
 
-  .link {
-    font-size: 1.4em;
-  }
+
+
 
   &:after {
     @include resetBlock;
   }
 
 }
+
+.comments {
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+
+  .commentItem {
+    clear: both;
+    border-top: 1px solid $colorLinkItemBorder;
+  }
+
+  .commentMeta {
+    font-size: 0.7rem;
+    float: left;
+    width: 7rem;
+  }
+
+  .commentUser {
+    font-weight: bold;
+  }
+
+  .commentText {
+    float: left;
+  }
+
+  .addComment {
+    .commentUser {
+      padding-top: 0.2rem;
+    }
+    .newComment {
+      margin-top:0.3rem;
+      font-size: 0.8rem;
+      width: 66%;
+      height: 3rem;
+    }
+    .sendComment {
+      display:block;
+      float:right;
+      margin-top: 0.3rem;
+    }
+  }
+}
+
 
 ul#linkList {
 

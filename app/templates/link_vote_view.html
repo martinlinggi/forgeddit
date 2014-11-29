@@ -1,7 +1,7 @@
 <div class="rate">
-    <!-- Logged in NOT voted -->
+    <!-- Logged in CAN vote -->
     <a ng-if="isLogged && isVoteUpActive" ng-click="voteAction(+1)" class="icon">
-        <span aria-hidden="true" title="Vote up" class="icon-arrow-up-a"></span>
+        <span aria-hidden="true" title="Vote up" class="voteUp icon-arrow-up-a"></span>
         <span class="screen-reader-text">Vote Link up: {{link.title}}</span>
     </a>
     <!-- Logged in ALREADY voted -->
@@ -16,9 +16,9 @@
     </div>
     <!-- Vote Value -->
     <div>{{link.rate}}</div>
-    <!-- Logged in NOT voted -->
+    <!-- Logged in CAN vote -->
     <a ng-if="isLogged && isVoteDownActive" ng-click="voteAction(-1)" class="icon">
-        <span aria-hidden="true" title="Vote down" class="icon icon-arrow-down-a"></span>
+        <span aria-hidden="true" title="Vote down" class="voteDown icon-arrow-down-a"></span>
         <span class="screen-reader-text">Vote Link up: {{link.title}}</span>
     </a>
     <!-- Logged in ALREADY voted -->

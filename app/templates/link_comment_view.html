@@ -1,15 +1,18 @@
-<div ng-show="showComments" class="commentList">
-    <div class="commentItem" ng-repeat="comment in link.comments">
-        <div class="commentUser">{{comment.user}}</div>
-        <div class="commentTime">{{getTimeAgo(link.comments[$index].time)}}</div>
-        <div class="commentText">{{comment.text}}</div>
+<div class="comments" ng-show="showComments" class="commentList">
+    <div class="commentItem" ng-repeat="comment in comments">
+        <div class="commentMeta">
+            <p class="commentUser">{{comment.user}}</p>
+            <p class="commentTime">{{getTimeAgo(link.comments[$index].time)}}</p>
+        </div>
+        <p class="commentText">{{comment.text}}</p>
     </div>
-</div>
-<div ng-show="showAddComment" ng-if="isLogged" class="addComment">
-    <form name="addComment" class="ccs-form">
-        <label style="valign:top" for="comment">New Comment:</label>
-        <textArea type="text" rows=5 cols=80 ng-model="newComment" id="comment" placeholder="Enter Comment" required ></textArea>
-        <div ng-bind="newComment"></div>
-        <button class="active-button" ng-click="sendComment(newComment)" ng-disabled="addComment.$invalid">Send Comment</button>
-    </form>
+    <div ng-show="showAddComment" ng-if="isLogged" class="addComment">
+        <form class="addComment commentItem" name="addComment" novalidate>
+            <div class="commentMeta">
+                <p class="commentUser">{{currentUserName}}</p>
+            </div>
+            <textArea class="newComment" ng-model="newComment" id="comment" placeholder="Enter a new Comment" required focus="true"></textArea>
+            <button class="sendComment active-button" ng-click="sendComment(newComment)" ng-disabled="addComment.$invalid">Send Comment</button>
+        </form>
+    </div>
 </div>
