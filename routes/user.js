@@ -147,7 +147,7 @@
     });
 
 // Appends a new user record
-    router.post('/', secret.secured(), userExists, function (req, res) {
+    router.post('/', userExists, function (req, res) {
         var username = req.body.name;
         var password = req.body.password;
         var role = req.body.role;
