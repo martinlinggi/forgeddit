@@ -22,9 +22,18 @@ $defaultColor: #151515;
 
 // Header
 $colorHeaderLineBackGround: #151515;
+$colorHeaderLineBackGroundHover: #2f2f2f;
+$colorHeaderLineText: #f5f5f5;
+$colorHeaderLineTextHover: #ffffff;
 
 // Contentbox Header
 $colorContentBoxHeaderBackground: #c8c8c8;
+$colorContentBoxHeaderBackgroundHover: #bababa;
+$colorContentBoxHeaderActive: #888888;
+$colorContentBoxHeaderHover: #a1a1a1;
+$colorContentBoxHeaderText: #2f2f2f;
+$colorContentBoxHeaderTextActive: #ffffff;
+$colorContentBoxHeaderTextHover: #525252;
 
 // ContentBox
 $colorContentBoxBackground: #f5f5f5;
@@ -111,11 +120,14 @@ $maxWith: 75em;
   padding: 0;
 }
 
-body {
+body,
+{
   line-height: 150%;
   font-family: Helvetica, Verdana, sans-serif;
   font-size: 1.0rem;
 }
+
+
 
 a:link {
   color: $colorLink;
@@ -152,6 +164,12 @@ h3 {
   color: $colorLink;
   cursor: pointer;
 
+  &:hover {
+    background: $colorContentBoxHeaderBackgroundHover;
+    background: rgba(0, 0, 0, 0.1);
+    @include border-radius(0.2rem);
+  }
+
   a:link {
     color: $colorLink;
   }
@@ -162,19 +180,25 @@ h3 {
 
   a:hover {
     color: $colorLinkHover;
+    background: $colorContentBoxHeaderBackgroundHover;
+    background: rgba(0, 0, 0, 0.1);
+    @include border-radius(0.2rem);
+  }
+
+  .icon-small {
+    font-size: 1.0rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 
-.icon-small {
-  font-size: 1.0rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
 
 .icon-arrow-up-a:before {content: "\f10c"; }
 .icon-arrow-down-a:before {content: "\f103"; }
 .icon-arrow-left-c:before { content: "\f108"; }
 .icon-chatboxes:before { content: "\f11c"; }
+.icon-chevron-up:before { content: "\f126"; }
+.icon-gear-b:before { content: "\f13e"; }
 .icon-information-circled:before { content: "\f149"; }
 .icon-trash:before { content: "\f252";}
 .icon-add-user:before { content: "\f211";}
@@ -339,12 +363,12 @@ button {
 .newLinks {
   display: inline;
   background-color: $colorVoteDown;
+  color: #ffffff;
   padding-top: 0.1rem;
   padding-left: 0.3rem;
   padding-right: 0.3rem;
   border: 1px solid white;
   @include border-radius(0.8rem);
-  color: #ffffff;
   font-size: 0.8rem;
   font-weight: bold;
 }
@@ -358,6 +382,171 @@ button {
 #searchText {
   height: 13px;
 }
+
+/**********************************************************
+ * Components
+ **********************************************************/
+
+/* Header Menu */
+.headerMenu {
+  overflow:hidden;
+  position: relative;
+  line-height: 1em;
+  background-color: transparent;
+  float: right;
+  margin-top: 53px;
+  padding: 1px 10px 1px 10px;
+  height: 19px;
+
+
+  ul {
+    display: inline;
+    float: left;
+
+    li {
+      display: inline;
+      float: left;
+      font-size: 1rem;
+      font-weight: normal;
+      list-style: none;
+      margin-right: 0.25rem;
+      padding: 0 0.25rem;
+      cursor: pointer;
+
+      a {
+        display: block;
+        font-size: 1rem;
+        line-height: 0.8rem;
+        font-weight: normal;
+        text-decoration: none;
+        color: $colorHeaderLineText;
+        background: transparent;
+        padding: 0.2rem 0.25rem 0.3rem 0.25rem;
+        width: auto;
+        &:focus,
+        &:hover,
+        &:active{
+          color: $colorHeaderLineTextHover;
+          background: rgba(255, 255, 255, 0.5);
+
+        }
+      }
+    }
+  }
+}
+
+
+
+/* Box Menü */
+.boxContentMenu {
+  overflow:hidden;
+  position: relative;
+  line-height: 1em;
+  background-color: $colorContentBoxHeaderBackground;
+  padding-left: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+
+  ul {
+    display: inline;
+    float: left;
+    margin-right:1rem;
+
+    li {
+      display: inline;
+      float: left;
+      font-size: 0.8rem;
+      font-weight: normal;
+      line-height: 1.5rem;
+      list-style: none;
+      margin-right: 0.25rem;
+      padding: 0 0.25rem;
+      cursor: pointer;
+      color: $colorContentBoxHeaderText;
+
+      a {
+        display: block;
+        font-size: 0.8rem;
+        line-height: 1.5rem;
+        font-weight: normal;
+        text-decoration: none;
+        color: $colorContentBoxHeaderText;
+        background: transparent;
+        width: auto;
+        &:focus,
+        &:hover,
+        &:active{
+          color: $colorContentBoxHeaderTextHover;
+          background: $colorContentBoxHeaderBackgroundHover;
+          background: rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      &.active {
+        background-color: $colorContentBoxHeaderActive;
+        color: $colorContentBoxHeaderTextActive;
+        @include border-radius(0.2rem);
+        a,
+        a:focus,
+        a:hover,
+        a:active {
+          background: transparent;
+          color: $colorContentBoxHeaderTextActive;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+/* Link-Entry Menü */
+.linkEntryMenu {
+  overflow:hidden;
+  position: relative;
+  line-height: 1em;
+  background-color: transparent;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+
+  ul {
+    display: inline;
+    float: left;
+
+    li {
+      display: inline;
+      float: left;
+      font-size: 1rem;
+      font-weight: normal;
+      list-style: none;
+      margin-right: 0.25rem;
+      padding: 0 0.25rem;
+      cursor: pointer;
+      color: $colorLink;
+
+      a {
+        display: block;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        font-weight: normal;
+        text-decoration: none;
+        color: $colorLink;
+        background: transparent;
+        width: auto;
+        &:focus,
+        &:hover,
+        &:active{
+          color: $colorLinkHover;
+          background: $colorContentBoxHeaderBackgroundHover;
+          background: rgba(0, 0, 0, 0.1);
+          @include border-radius(0.2rem);
+
+        }
+      }
+    }
+  }
+}
+
+
 
 
 /**********************************************************
@@ -376,25 +565,7 @@ button {
     width: 304px;
     background-image: url("../images/ForgeddIt-Logo.png");
   }
-
-  #search,
-  #signIn,
-  #signOut {
-    float: right;
-    margin-top: 54px;
-    padding: 0 10px;
-    height: 19px;
-    background-color: $colorHeaderLineBackGround;
-    a {
-      &:link,
-      &:hover,
-      &:visited {
-        color: $colorLinkHover;
-      }
-    }
-  }
 }
-
 // Main Layout Navigation
 #navigation {
   @extend %mainLayout;
@@ -416,52 +587,6 @@ button {
 }
 
 
-/* Menü */
-
-.menu {
-  li  {
-    display: inline;
-    list-style: none;
-    margin-right: 1em;
-    font-weight: bold;
-    cursor: pointer;
-    color: $colorLink;
-    &:hover{
-      color: $colorLinkHover;
-    }
-  }
-}
-
-.menuSelection {
-  border-top: 1px solid $colorContentBoxBackground;
-
-  li  {
-    margin: 0;
-    display: inline;
-    list-style: none;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    height: 2rem;
-    font-weight: bold;
-    cursor: pointer;
-    color: $colorLink;
-    li.active {
-
-    }
-
-  }
-  li:hover{
-    background-color: $colorLinkItemBackgroundOdd;
-  }
-
-}
-
-#signIn li,
-#signOut li{
-  display: inline;
-  list-style: none;
-  margin-right: 1em;
-}
 
 .linkItem {
   border-top: 1px solid $colorLinkItemBorder;
