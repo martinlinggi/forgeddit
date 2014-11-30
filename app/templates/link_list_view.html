@@ -1,20 +1,26 @@
 
 <div class="box">
-    <h1 class="boxTitle">Forgeddable Links</h1>
-    <div class="boxTitle">
-        <ul class="menuSelection">
-            <li ng-show="newLinks.length" class="newLinks">{{newLinks.length}}</li>
-            <li><a ng-click="sort('time', true)" href="">Newest</a></li>
-            <li><a ng-click="sort('rate', true)" href="">Most forgeddable</a></li>
-            <li ng-show="isLogged" ><a ng-click="filter('') " href="">All</a></li>
-            <li ng-show="isLogged" ><a ng-click="filter('user')" href="">My forgeddables</a></li>
-            <li ng-show="isLogged" ><a ng-click="filter('commented')" href="">Commented forgedadables</a></li>
-            <li ng-show="isLogged" ><a ng-click="filter('voted')" href="">Voted forgeddables</a></li>
+    <h1 class="boxTitle">Forgeddable Links <a ng-show="newLinks.length" ng-click="refresh()" class="newLinks">{{newLinks.length}}</a></h1>
+    <div class="boxContentMenu">
+        <ul>
+            <li ng-class="sortPredicate=='time' ? 'active':''">
+                <a ng-click="sort('time', true)" href="">Newest</a>
+            </li>
+            <li ng-class="sortPredicate=='rate' ? 'active':''">
+                <a ng-click="sort('rate', true)" href="">Most voted</a>
+            </li>
+        </ul>
+        <ul ng-show="isLogged">
+            <li>Filter:</li>
+            <li ng-class="filterPredicate =='' ? 'active': ''" ><a ng-click="filter('') " href="">No filter</a></li>
+            <li ng-class="filterPredicate =='user' ? 'active': ''" ><a ng-click="filter('user')" href="">Just mine</a></li>
+            <li ng-class="filterPredicate =='commented' ? 'active': ''"><a ng-click="filter('commented')" href="">Commented</a></li>
+            <li ng-class="filterPredicate =='voted' ? 'active': ''" ><a ng-click="filter('voted')" href="">Voted</a></li>
         </ul>
     </div>
     <div class="boxContent">
         <ul id="linkList" class="linkList">
-            <li class="linkItem" ng-repeat="link in links | filter:filterExpression | orderBy:searchPredicate:reverse" id="{{link.id}}">
+            <li class="linkItem" ng-repeat="link in links | filter:filterExpression | orderBy:sortPredicate:reverse" id="{{link.id}}">
                 <link-vote-view></link-vote-view>
                 <!-- Here comes the preview image    <link-thumb-view></link-thumb-view> -->
                 <link-content-view></link-content-view>

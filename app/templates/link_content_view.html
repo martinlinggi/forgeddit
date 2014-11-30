@@ -1,5 +1,5 @@
 <h3><a ng-hide="isEdit" href="{{link.url}}">{{link.title}}</a>
-    <a ng-show="canEdit && !isEdit" ng-click="doEditStart()" class="icon">
+    <a ng-show="canEdit && !isEdit" ng-click="doEditStart()" class="icon iconLink">
         <span aria-hidden="true" title="Edit link" class="icon-small icon-edit"></span>
         <span class="screen-reader-text">Edit link: {{link.title}}</span>
     </a></h3>
@@ -15,18 +15,20 @@
     <div>{{link.url}}</div>
 </form>
 <p class="info">Submitted {{getTimeAgo(link.time)}} ago from <a href="#">{{link.user}}</a> to <a href="#">{{link.group}}</a></p>
-<ul class="menu">
-    <li class="menuItem">
-        <a  ng-click="toggleComments(link)" class="icon">
-            <span aria-hidden="true" title="Show comments" class="icon-small icon-chatboxes"> {{link.comments.length}}</span>
-            <span class="screen-reader-text">Show {{link.comments.length}} comments for link: {{link.title}}</span>
-        </a>
-    </li>
-    <li class="menuItem"  ng-show="canDelete">
-        <a  ng-click="doDeleteLink()" class="icon">
-            <span aria-hidden="true" title="Delete link" class="icon-small icon-trash"></span>
-            <span class="screen-reader-text">Delete link: {{link.title}}</span>
-        </a>
-    </li>
-</ul>
+<div class="linkEntryMenu">
+    <ul>
+        <li class="menuItem">
+            <a  ng-click="toggleComments(link)" class="icon">
+                <span aria-hidden="true" title="Show comments" class="icon-small icon-chatboxes"> {{link.comments.length}}</span>
+                <span class="screen-reader-text">Show {{link.comments.length}} comments for link: {{link.title}}</span>
+            </a>
+        </li>
+        <li class="menuItem"  ng-show="canDelete">
+            <a  ng-click="doDeleteLink()" class="icon">
+                <span aria-hidden="true" title="Delete link" class="icon-small icon-trash"></span>
+                <span class="screen-reader-text">Delete link: {{link.title}}</span>
+            </a>
+        </li>
+    </ul>
+</div>
 <link-comment-view></link-comment-view>
