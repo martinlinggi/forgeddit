@@ -25,21 +25,24 @@
                 return UtilityService.getDuration(time);
             }
 
-            /**
-             * @brief Sets the predicate and sort-order for the list
-             * @param searchPredicate name of the attribute to sort
-             * @param reverse sort-order
-             */
-            function sort(searchPredicate, reverse) {
-                $scope.searchPredicate = searchPredicate;
-                $scope.reverse = reverse;
-                if ($scope.newLinks.length > 0)
-                {
+            function refresh() {
+                if ($scope.newLinks.length > 0) {
                     for (var i = 0, n = $scope.newLinks.length; i < n; i++) {
                         $scope.links.push($scope.newLinks[i]);
                     }
                     $scope.newLinks = [];
                 }
+            }
+
+            /**
+             * @brief Sets the predicate and sort-order for the list
+             * @param searchPredicate name of the attribute to sort
+             * @param reverse sort-order
+             */
+            function sort(sortPredicate, reverse) {
+                $scope.sortPredicate = sortPredicate;
+                $scope.reverse = reverse;
+                refresh();
             }
 
             /**
@@ -87,6 +90,8 @@
                     expression = filterMyVotedForgeddables;
                 }
                 $scope.filterExpression = expression;
+                $scope.filterPredicate = filterPredicate;
+                refresh();
             }
 
             /**
@@ -151,11 +156,13 @@
             $scope.getTimeAgo = getTimeAgo;
             $scope.sort = sort;
             $scope.filter = filter;
-            $scope.filterExpression = '';
+            $scope.refresh = refresh;
             $scope.links = [];
             $scope.alreadyVoteList = [];
             $scope.newLinks = [];
+            sort('time', true);
             getVotes();
+            filter('');
             getLinks();
             SocketService.on('updateLink', updateLink);
             SocketService.on('newLink', newLink);
