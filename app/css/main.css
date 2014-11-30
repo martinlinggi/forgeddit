@@ -25,11 +25,11 @@ h2 { font-Size: 1.1rem; font-weight: bold; }
 h3 { font-Size: 1.0rem; font-weight: bold; }
 
 .icon { display: inline-block; font-family: icons; font-size: 1.6rem; color: #528fcc; cursor: pointer; }
+.icon:hover { background: #bababa; background: rgba(0, 0, 0, 0.1); -webkit-border-radius: 0.2rem; -moz-border-radius: 0.2rem; -ms-border-radius: 0.2rem; border-radius: 0.2rem; }
 .icon a:link { color: #528fcc; }
 .icon a:visited { color: #528fcc; }
-.icon a:hover { color: #80b5ea; }
-
-.icon-small { font-size: 1.0rem; padding-left: 0.5rem; padding-right: 0.5rem; }
+.icon a:hover { color: #80b5ea; background: #bababa; background: rgba(0, 0, 0, 0.1); -webkit-border-radius: 0.2rem; -moz-border-radius: 0.2rem; -ms-border-radius: 0.2rem; border-radius: 0.2rem; }
+.icon .icon-small { font-size: 1.0rem; padding-left: 0.5rem; padding-right: 0.5rem; }
 
 .icon-arrow-up-a:before { content: "\f10c"; }
 
@@ -38,6 +38,10 @@ h3 { font-Size: 1.0rem; font-weight: bold; }
 .icon-arrow-left-c:before { content: "\f108"; }
 
 .icon-chatboxes:before { content: "\f11c"; }
+
+.icon-chevron-up:before { content: "\f126"; }
+
+.icon-gear-b:before { content: "\f13e"; }
 
 .icon-information-circled:before { content: "\f149"; }
 
@@ -95,31 +99,43 @@ button:hover:enabled { background-color: #dfdfdf; }
 .active-button:enabled { color: #777777; background-color: #78ff9c; border: 1px solid #51ed7a; -moz-box-shadow: inset 0 1px 0 0 #c0fad1; -webkit-box-shadow: inset 0 1px 0 0 #c0fad1; -ms-box-shadow: inset 0 1px 0 0 #c0fad1; box-shadow: inset 0 1 0 0 #c0fad1; }
 .active-button:hover:enabled { background-color: #25fa5e; }
 
-.newLinks { display: inline; background-color: #c93034; padding-top: 0.1rem; padding-left: 0.3rem; padding-right: 0.3rem; border: 1px solid white; -webkit-border-radius: 0.8rem; -moz-border-radius: 0.8rem; -ms-border-radius: 0.8rem; border-radius: 0.8rem; color: #ffffff; font-size: 0.8rem; font-weight: bold; }
+.newLinks { display: inline; background-color: #c93034; color: #ffffff; padding-top: 0.1rem; padding-left: 0.3rem; padding-right: 0.3rem; border: 1px solid white; -webkit-border-radius: 0.8rem; -moz-border-radius: 0.8rem; -ms-border-radius: 0.8rem; border-radius: 0.8rem; font-size: 0.8rem; font-weight: bold; }
 
 #doSearch { height: 19px; -webkit-border-radius: 0; -moz-border-radius: 0; -ms-border-radius: 0; border-radius: 0; }
 
 #searchText { height: 13px; }
 
+/********************************************************** Components *********************************************************/
+/* Header Menu */
+.headerMenu { overflow: hidden; position: relative; line-height: 1em; background-color: transparent; float: right; margin-top: 53px; padding: 1px 10px 1px 10px; height: 19px; }
+.headerMenu ul { display: inline; float: left; }
+.headerMenu ul li { display: inline; float: left; font-size: 1rem; font-weight: normal; list-style: none; margin-right: 0.25rem; padding: 0 0.25rem; cursor: pointer; }
+.headerMenu ul li a { display: block; font-size: 1rem; line-height: 0.8rem; font-weight: normal; text-decoration: none; color: whitesmoke; background: transparent; padding: 0.2rem 0.25rem 0.3rem 0.25rem; width: auto; }
+.headerMenu ul li a:focus, .headerMenu ul li a:hover, .headerMenu ul li a:active { color: white; background: rgba(255, 255, 255, 0.5); }
+
+/* Box Menü */
+.boxContentMenu { overflow: hidden; position: relative; line-height: 1em; background-color: #c8c8c8; padding-left: 1rem; padding-top: 0.25rem; padding-bottom: 0.25rem; }
+.boxContentMenu ul { display: inline; float: left; margin-right: 1rem; }
+.boxContentMenu ul li { display: inline; float: left; font-size: 0.8rem; font-weight: normal; line-height: 1.5rem; list-style: none; margin-right: 0.25rem; padding: 0 0.25rem; cursor: pointer; color: #2f2f2f; }
+.boxContentMenu ul li a { display: block; font-size: 0.8rem; line-height: 1.5rem; font-weight: normal; text-decoration: none; color: #2f2f2f; background: transparent; width: auto; }
+.boxContentMenu ul li a:focus, .boxContentMenu ul li a:hover, .boxContentMenu ul li a:active { color: #525252; background: #bababa; background: rgba(0, 0, 0, 0.1); }
+.boxContentMenu ul li.active { background-color: #888888; color: white; -webkit-border-radius: 0.2rem; -moz-border-radius: 0.2rem; -ms-border-radius: 0.2rem; border-radius: 0.2rem; }
+.boxContentMenu ul li.active a, .boxContentMenu ul li.active a:focus, .boxContentMenu ul li.active a:hover, .boxContentMenu ul li.active a:active { background: transparent; color: white; text-decoration: none; }
+
+/* Link-Entry Menü */
+.linkEntryMenu { overflow: hidden; position: relative; line-height: 1em; background-color: transparent; padding-top: 0.25rem; padding-bottom: 0.25rem; }
+.linkEntryMenu ul { display: inline; float: left; }
+.linkEntryMenu ul li { display: inline; float: left; font-size: 1rem; font-weight: normal; list-style: none; margin-right: 0.25rem; padding: 0 0.25rem; cursor: pointer; color: #528fcc; }
+.linkEntryMenu ul li a { display: block; font-size: 1rem; line-height: 1.5rem; font-weight: normal; text-decoration: none; color: #528fcc; background: transparent; width: auto; }
+.linkEntryMenu ul li a:focus, .linkEntryMenu ul li a:hover, .linkEntryMenu ul li a:active { color: #80b5ea; background: #bababa; background: rgba(0, 0, 0, 0.1); -webkit-border-radius: 0.2rem; -moz-border-radius: 0.2rem; -ms-border-radius: 0.2rem; border-radius: 0.2rem; }
+
 /********************************************************** Layout *********************************************************/
 #header { display: block; background: url("../images/ForgeddIt-Logo-bg.png") repeat-x; }
 #header #logo { float: left; height: 74px; width: 304px; background-image: url("../images/ForgeddIt-Logo.png"); }
-#header #search, #header #signIn, #header #signOut { float: right; margin-top: 54px; padding: 0 10px; height: 19px; background-color: #151515; }
-#header #search a:link, #header #search a:hover, #header #search a:visited, #header #signIn a:link, #header #signIn a:hover, #header #signIn a:visited, #header #signOut a:link, #header #signOut a:hover, #header #signOut a:visited { color: #80b5ea; }
 
 #navigation { display: block; background-color: #c8c8c8; margin-top: 1em; }
 
 #content { height: 1%; display: block; }
-
-/* Menü */
-.menu li { display: inline; list-style: none; margin-right: 1em; font-weight: bold; cursor: pointer; color: #528fcc; }
-.menu li:hover { color: #80b5ea; }
-
-.menuSelection { border-top: 1px solid whitesmoke; }
-.menuSelection li { margin: 0; display: inline; list-style: none; padding-left: 0.5rem; padding-right: 0.5rem; height: 2rem; font-weight: bold; cursor: pointer; color: #528fcc; }
-.menuSelection li:hover { background-color: #ededed; }
-
-#signIn li, #signOut li { display: inline; list-style: none; margin-right: 1em; }
 
 .linkItem { border-top: 1px solid #e1e1e1; padding-top: 0.6em; padding-bottom: 0.6em; list-style: none; }
 .linkItem .rate { float: left; text-align: center; width: 4rem; }
