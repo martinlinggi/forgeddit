@@ -17,6 +17,9 @@
             <label class="error">Error:</label>
             <span class="error" ng-bind="message"></span>
         </div>
-    <button class="formButton" type="submit" class="active-button" id="submitLogin" ng-disabled="loginform.$invalid" ng-click="login(login.email, login.password)">Log In</button>
+
+        <div class="formButton">
+            <button type="submit" class="active-button" id="submitLogin" ng-disabled="loginform.$invalid" ng-click="login(login.email, login.password)">Log In</button>
+        </div>
     </form>
 </div>
