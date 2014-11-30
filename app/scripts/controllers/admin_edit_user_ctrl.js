@@ -40,6 +40,9 @@
                 user.active = true;
                 user.registrationDate = new Date().getTime();
                 user.lastLoginDate = 0;
+                if (user.password === '') {
+                    delete user.password;
+                }
                 console.log('Update ', user.name);
                 UserDataService.updateUser(user.name, user)
                     .success(function () {

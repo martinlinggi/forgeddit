@@ -2,6 +2,8 @@
 <div ng-show="isEditMode" class="boxHeader">Edit User</div>
 <div class="boxContent">
     <form name="userForm" class="css-form" novalidate>
+
+        <!-- User name: only editable when creating a new user -->
         <div ng-show="isEditMode">
             <label for="usernameReadOnly">Username</label>
             <input type="text" class="form-control" id="usernameReadOnly" placeholder="Enter Username" ng-model="user.name" readonly>
@@ -12,11 +14,17 @@
             <div class="error icon icon-information-circled" ng-show="userNameError"></div>
         </div>
 
-        <div>
-            <label for="inputPassword">Password</label>
-            <input type="password" class="form-control" id="inputPassword" placeholder="Enter Password" ng-model="user.password" required>
+        <!-- Password field user: required, admin:not required -->
+        <div ng-if="!hasAdminRights">
+            <label for="inputPasswordUser">Password</label>
+            <input type="password" class="form-control" id="inputPasswordUser" placeholder="Enter Password" ng-model="user.password" required>
+        </div>
+        <div ng-if="hasAdminRights">
+            <label for="inputPasswordAdmin">Password</label>
+            <input type="password" class="form-control" id="inputPasswordAdmin" placeholder="Enter Password" ng-model="user.password">
         </div>
 
+        <!-- User role (admin only) -->
         <div ng-if="hasAdminRights">
             <label for="inputUserRole">Role</label>
             <select id="inputUserRole" ng-model="user.role">
@@ -25,6 +33,7 @@
             </select>
         </div>
 
+        <!-- block (admin only) -->
         <div ng-if="hasAdminRights">
             <label for="inputUserBlocked">Blocked</label>
             <input type="checkbox" id="inputUserBlocked" ng-model="user.blocked">
