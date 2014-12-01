@@ -11,9 +11,16 @@ var clean = require('gulp-clean');
 var nodemon = require('nodemon');
 var karma = require('gulp-karma');
 
+var del = require('del');
+
 gulp.task('clean', function() {
     return gulp.src('./dist/*')
         .pipe(clean({force: true}));
+});
+
+// Because we use the app folder to publish to heroku
+gulp.task('clean-js', function(cb) {
+    del( ['./app/scripts/forgeddit.js','./app/scripts/forgeddit.js.map'], cb);
 });
 
 gulp.task('styles', function(){
@@ -28,7 +35,7 @@ gulp.task('styles', function(){
         .pipe(notify({message: 'Styles task complete'}));
 });
 
-gulp.task('scripts', function() {
+gulp.task('scripts', ['clean-js'], function() {
     return gulp.src(['app/scripts/app.js', 'app/scripts/**/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
@@ -36,6 +43,7 @@ gulp.task('scripts', function() {
         .pipe(concat('forgeddit.js'))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('dist/app/scripts'))
+        .pipe(gulp.dest('app/scripts'))
         .pipe(notify({message: 'Scripts task complete'}));
 });
 

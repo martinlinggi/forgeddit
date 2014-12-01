@@ -10,6 +10,7 @@ var debug = require('debug')('express-template');
 var app = express();
 
 var env = process.env.NODE_ENV || '/dist/app';
+console.log("--> Environment: " + env);
 
 app.use(favicon(path.join(__dirname, env, '/favicon.ico')));
 app.use(logger('dev'));
