@@ -31,6 +31,7 @@ gulp.task('styles', function(){
             sourcemapPath: '../styles',
             precision: 10
             }))
+        .pipe(gulp.dest('app/css'))
         .pipe(gulp.dest('dist/app/css'))
         .pipe(notify({message: 'Styles task complete'}));
 });
