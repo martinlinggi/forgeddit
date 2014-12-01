@@ -9,14 +9,14 @@ var debug = require('debug')('express-template');
 
 var app = express();
 
+var env = process.env.NODE_ENV || '/dist/app';
 
-
-app.use(favicon(__dirname + '/app/favicon.ico'));
+app.use(favicon(path.join(__dirname, env, '/favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'app')));
+app.use(express.static(path.join(__dirname, env)));
 
 // Start the server
 app.set('port', process.env.PORT || 3000);
