@@ -70,7 +70,7 @@ h3 { font-Size: 1.0rem; font-weight: bold; }
 .table tbody td { padding-left: 0.5rem; }
 .table tbody td.centered { text-align: center; }
 
-.box { clear: left; content: ""; display: block; width: 100%; margin-top: 1.5rem; float: left; }
+.box { clear: left; content: ""; display: block; width: 100%; margin-top: 1.0rem; float: left; }
 
 .boxTitle { background-color: #c8c8c8; padding-left: 1rem; }
 
@@ -158,13 +158,18 @@ ul#linkList .linkItem:nth-child(odd) { background-color: #ededed; }
 ul#linkList .linkItem:nth-child(even) { background-color: #fafafa; }
 
 /********************************************************** Responsive design *********************************************************/
-@media (max-width: 48em) { #header #logo { float: none; }
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) { #header #logo { float: none; }
   #header #search { float: right; width: auto; margin-top: 0.5em; background-color: white; }
-  #header #signIn { float: left; width: auto; margin-top: 0.5em; background-color: white; }
-  #header #signIn a:link, #header #signIn a:hover, #header #signIn a:visited { color: #528fcc; } }
-@media (max-width: 30em) { #header #logo { float: none; }
-  #header #signIn, #header #search { float: none; width: auto; margin-top: 0.5em; background-color: white; }
-  #header #signIn a:link, #header #signIn a:hover, #header #signIn a:visited, #header #search a:link, #header #search a:hover, #header #search a:visited { color: #528fcc; }
+  #header .headerMenu { float: left; width: 100%; margin: 0; padding-top: 0.5rem; padding-bottom: 0.5rem; background-color: #151515; }
+  form label { width: 5rem; }
+  .formButton { margin-left: 6rem; width: 100%; }
+  .linkEdit { width: 50%; } }
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) { #header { height: 37px; background-color: #151515; }
+  #header #logo { height: 37px; width: 152px; background-size: 100%; float: none; }
+  #header .headerMenu { float: left; width: 100%; margin: 0; padding-top: 0.5rem; background-color: #151515; }
+  form label { width: 5rem; }
+  .formButton { margin-left: 6rem; width: 20rem; }
   #content #linkBox, #content #addEntry { margin-top: 1em; float: none; width: 100%; } }
 
 /*# sourceMappingURL=main.css.map */
