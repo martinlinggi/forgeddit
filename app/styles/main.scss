@@ -261,7 +261,7 @@ h3 {
 .box {
   @include resetBlock;
   width: 100%;
-  margin-top: 1.5rem;
+  margin-top: 1.0rem;
   float: left;
 }
 
@@ -688,9 +688,11 @@ ul#linkList {
 /**********************************************************
  * Responsive design
  **********************************************************/
-@media (max-width: 48em){
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
 
-  #header {
+#header {
 
     #logo {
       float: none;
@@ -703,45 +705,68 @@ ul#linkList {
       background-color: white;
     }
 
-    #signIn {
+    .headerMenu {
       float: left;
-      width: auto;
-      margin-top: 0.5em;
-      background-color: white;
-      a {
-        &:link,
-        &:hover,
-        &:visited {
-          color: $colorLink;
-        }
-      }
+      width: 100%;
+      margin: 0;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      background-color: $colorHeaderLineBackGround;
     }
   }
+
+  form {
+    label {
+      width: 5rem;
+    }
+  }
+
+  .formButton {
+    margin-left: 6rem;
+    width: 100%;
+  }
+
+  .linkEdit {
+    width: 50%;
+  }
+
+
 }
 
-@media (max-width: 30em)
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 480px)
 {
 
   #header {
+    height: 37px;
+    background-color: $colorHeaderLineBackGround;
 
     #logo {
+      height: 37px;
+      width: 152px;
+      background-size: 100%;
       float: none;
     }
 
-    #signIn,
-    #search {
-      float: none;
-      width: auto;
-      margin-top: 0.5em;
-      background-color: white;
-      a {
-        &:link,
-        &:hover,
-        &:visited {
-          color: $colorLink;
-        }
-      }
+    .headerMenu {
+      float: left;
+      width: 100%;
+      margin: 0;
+      padding-top: 0.5rem;
+      background-color: $colorHeaderLineBackGround;
     }
+  }
+
+  form {
+    label {
+      width: 5rem;
+    }
+  }
+
+  .formButton {
+    margin-left: 6rem;
+    width: 20rem;
   }
 
   #content {
