@@ -86,7 +86,7 @@
 	
     forgedditApp.run(function($rootScope, $location, AuthTokenService) {
         $rootScope.$on("$routeChangeStart", function(event, nextRoute, currentRoute) {
-            if (nextRoute.access.requiredLogin && !AuthTokenService.isAuthenticated()) {
+            if (nextRoute.access && nextRoute.access.requiredLogin && !AuthTokenService.isAuthenticated()) {
                 $location.path("/");
             }
         });
