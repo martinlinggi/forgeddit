@@ -1,25 +1,27 @@
-<div class="boxHeader">Sign in</div>
-<div id="signIn" class="boxContent">
-    <form name="loginform" class="css-form" role="form" novalidate="">
+<div class="box">
+    <div class="boxHeader">Sign in</div>
+    <div id="signIn" class="boxContent">
+        <form name="loginform" class="css-form" role="form" novalidate="">
 
-        <div>
-            <label for="inputUsername" >Username:</label>
-            <input type="text" id="inputUsername" placeholder="Enter username" ng-model="login.email" required focus="true">
-            <div class="error icon icon-information-circled" ng-show="message!==''"></div>
-        </div>
+            <div>
+                <label for="inputUsername" >Username:</label>
+                <input type="text" id="inputUsername" placeholder="Enter username" ng-model="login.email" required focus="true">
+                <div class="error icon icon-information-circled" ng-show="message!==''"></div>
+            </div>
 
-        <div>
-            <label for="inputPassword" >Password:</label>
-            <input type="password" id="inputPassword" placeholder="Enter password" ng-model="login.password" required>
-            <div class="error icon icon-information-circled" ng-show="message!==''"></div>
-        </div>
-        <div ng-show="message!==''">
-            <label class="error">Error:</label>
-            <span class="error" ng-bind="message"></span>
-        </div>
+            <div>
+                <label for="inputPassword" >Password:</label>
+                <input type="password" id="inputPassword" placeholder="Enter password" ng-model="login.password" required>
+                <div class="error icon icon-information-circled" ng-show="message!==''"></div>
+            </div>
+            <div ng-show="message!==''">
+                <label class="error">Error:</label>
+                <span class="error" ng-bind="message"></span>
+            </div>
 
-        <div class="formButton">
-            <button type="submit" class="active-button" id="submitLogin" ng-disabled="loginform.$invalid" ng-click="login(login.email, login.password)">Log In</button>
-        </div>
-    </form>
+            <div class="formButton">
+                <button type="submit" class="active-button" id="submitLogin" ng-disabled="loginform.$invalid" ng-click="login(login.email, login.password)">Log In</button>
+            </div>
+        </form>
+    </div>
 </div>
