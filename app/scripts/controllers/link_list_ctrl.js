@@ -131,23 +131,23 @@
                                 $scope.links[i] = res.data;
                             }
                         }
-                    })
+                    });
             }
 
             /**
              * @brief Socket-Update: New Link
-             * @param newLink the new link
+             * @param aLink the new link
              */
-            function newLink(newLink) {
+            function newLink(aLink) {
                 // only add if not already exists
                 for (var i = 0, n = $scope.links.length; i < n; i++)
                 {
-                    if (newLink._id === $scope.links[i]._id)
+                    if (aLink._id === $scope.links[i]._id)
                     {
                         return;
                     }
                 }
-                $scope.newLinks.push(newLink);
+                $scope.newLinks.push(aLink);
             }
 
             //=====================================================================

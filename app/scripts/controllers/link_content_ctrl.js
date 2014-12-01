@@ -20,7 +20,7 @@
 			// link_content_view template by setting the showComments variable
 			//----------------------------------------------------------------------
 			function toggleComments(link) {
-				if($scope.showComments == true) {
+				if($scope.showComments === true) {
 					$scope.showComments = false;
 					$scope.showAddComment = false;
 					}
@@ -64,7 +64,7 @@
                     })
                     .error(function() {
                         console.log('Error: Link not deleted');
-                    })
+                    });
             }
 
 

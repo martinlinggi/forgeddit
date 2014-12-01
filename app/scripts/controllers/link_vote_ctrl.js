@@ -73,7 +73,7 @@
 
             $scope.isVoteUpActive = false;
             $scope.isVoteDownActive = false;
-            $scope.$watch(function(scope) {return $scope.alreadyVoteList}, refreshVoteArrows());
+            $scope.$watch(function(scope) {return $scope.alreadyVoteList;}, refreshVoteArrows());
             $scope.voteAction = voteAction;
         }]);
 

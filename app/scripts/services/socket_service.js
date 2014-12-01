@@ -43,8 +43,8 @@
         }
 
         function emitAndListen(eventName, data, callback) {
-            this.emit(eventName, data, callback);
-            this.on(eventName, callback);
+            emit(eventName, data, callback);
+            on(eventName, callback);
         }
 
         //=====================================================================
