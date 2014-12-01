@@ -120,7 +120,7 @@ $maxWith: 75em;
   padding: 0;
 }
 
-body,
+body
 {
   line-height: 150%;
   font-family: Helvetica, Verdana, sans-serif;
@@ -739,6 +739,12 @@ and (max-device-width : 1024px)
 and (min-device-width : 320px)
 and (max-device-width : 480px)
 {
+
+  body
+  {
+    font-size: 1.5rem;
+  }
+
 
   #header {
     height: 37px;
