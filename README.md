@@ -34,24 +34,24 @@ protractor  ./test/protractor.conf.js
 ```
 
 ##Initial Users:
-admin password: admin_secret
-user  password: user
+ - admin password: admin_secret
+ - user  password: user
 
 This users will be generated automatically on server-start if they don't exist. For security reasons please change
 their passwords as soon as possible after going online!
 
- ##Initial links
- If the database is empty on server-start, Four links will be generated automatically.
+##Initial links
+If the database is empty on server-start, Four links will be generated automatically.
 
- ##Features
+##Features
 
- ###Not signed in
+###Not signed in
  - Browse the links and Comments
  - Change sort order: "Newest" or "Most voted"
  - Sign in
  - Create account
 
- ###Signed in
+###Signed in
  - Set Filter: "No filter", "Just mine", "Commented", "Voted"
  - Add links*
  - Edit link title*
@@ -61,7 +61,7 @@ their passwords as soon as possible after going online!
  - Change password
  *(Live-Update in other browsers)
 
- ###Signed in as Admin
+###Signed in as Admin
  - Add a new user
  - Change password
  - Change user role
