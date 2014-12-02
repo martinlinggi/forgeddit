@@ -76,7 +76,7 @@
             });
     }]);
 
-	forgedditApp.controller('MyCtrl', function($scope) {
+	forgedditApp.controller('OverlayCtrl', function($scope) {
 		console.log('Controller in app.js called');
 		$scope.modalShown = false;
 		$scope.toggleModal = function() {
