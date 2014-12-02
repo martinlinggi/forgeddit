@@ -17,7 +17,7 @@
     function authenticate(username, password, func) {
         // check if usename and password are given
         if (!username || !password) {
-            return func(new Error('Must provide username or password'));
+            return func(new Error('Please provide username and password.'));
         }
 
         // check if username exists and password is correct
@@ -31,8 +31,7 @@
                     for (var i = 0, n = hash.length; i < n; i++)
                     {
                         if (hash[i] !== user.hash[i]) {
-                            console.log('pw-check: ' + i);
-                            func(new Error('invalid password'));
+                            return func(new Error('invalid password'));
                         }
                     }
                     return func(null, user);
@@ -45,10 +44,9 @@
     }
 
     function userExists(req, res, next) {
-        console.log('userExists');
         userStore.findUser(req.body.name, function (err, user) {
             if (user) {
-                res.status(400).end('Username already exists');
+                res.status(400).end('Username already exists. Please choose another one.');
             }
             else {
                 next();
@@ -64,21 +62,21 @@
 
         authenticate(username, password, function(err, user) {
             if (err) {
-                res.status(401).end('Login failed. Please check your username and password');
+                res.status(401).end('Login failed. Please check your username and password.');
             }
             else {
                 if (user.blocked) {
-                    res.status(401).end('Your account has been blocked. Please contact the administrator');
+                    res.status(401).end('Your account has been blocked. Please contact the administrator.');
                 }
 
                 // Update User-Info (last-login)
                 user.lastLogin = new Date().getTime();
                 userStore.updateUser(user.name, user, function(err, numReplaced) {
                     if (err) {
-                        console.log('user update failed: '+ user.name);
+                        console.log('user update "last-login" failed: '+ user.name);
                     }
                     else {
-                        console.log('update successful: ' + user.name + ' ' + numReplaced)
+                        console.log('update "last-login" successful: ' + user.name + ' ' + numReplaced)
                     }
                 });
 
@@ -110,7 +108,6 @@
     router.get('/me', function (req, res) {
         var token = (req.headers.authorization).split(' ')[1];
         sessionStore.findSession(token, function (err, session) {
-            console.log("me: " + session);
             if (!session) {
                 res.status(401).end('No session found');
             }
@@ -121,10 +118,9 @@
     });
 
 
-    router.post('/logout', function (req, res) {
+    router.get('/logout', function (req, res) {
         var token = (req.headers.authorization).split(' ')[1];
         sessionStore.removeSession(token, function (err, session) {
-            console.log('me: ' + session);
             res.send('ok');
         })
     });
@@ -134,7 +130,6 @@
     router.get('/', secret.secured(), function (req, res) {
         userStore.getAllUsers(function (err, users) {
             res.json(users);
-            console.log('getAllUsers', users);
         });
     });
 
@@ -142,7 +137,6 @@
     router.get('/:userName', secret.secured(), function (req, res) {
         userStore.findUser(req.params.userName, function (err, user) {
             res.json(user);
-            console.log('getUser', user);
         });
     });
 
@@ -162,7 +156,6 @@
                 salt: salt,
                 hash: hash};
             userStore.addUser(user, function (err, doc) {
-                console.log('addUser', doc);
                 res.json(doc);
             })
         });
@@ -172,7 +165,6 @@
     router.put('/:userName', secret.secured(), function (req, res) {
         var username = req.params.userName;
         userStore.updateUser(username, req.body, function (err, doc) {
-            console.log('addUser', doc);
             res.json(doc);
         })
 

@@ -7,12 +7,12 @@ module.exports = function (config) {
         frameworks: ['jasmine'],
 // list of files / patterns to load in the browser
         files: [
-            'app/bower_components/angular/angular.js',
-            'app/bower_components/angular-route/angular-route.js',
-            'node_modules/angular-mocks/angular-mocks.js',
-            'app/scripts/app.js',
-            'app/scripts/**/*.js',
-            'test/unit/**/*.js'
+            '../app/bower_components/angular/angular.js',
+            '../app/bower_components/angular-route/angular-route.js',
+            '../node_modules/angular-mocks/angular-mocks.js',
+            '../app/scripts/app.js',
+            '../app/scripts/**/*.js',
+            'unit/**/*.js'
         ],
 // list of files to exclude
         exclude: [

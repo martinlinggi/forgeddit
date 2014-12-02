@@ -14,6 +14,8 @@
 
     var forgedditApp = angular.module('forgedditApp', ['ngRoute']);
 
+
+
     // Configuration of authentication-token
     forgedditApp.config(function ($httpProvider) {
         $httpProvider.interceptors.push('TokenInterceptor');
@@ -21,6 +23,7 @@
 
     // Configuration of the routes
     forgedditApp.config(['$locationProvider', '$routeProvider', function($location, $routeProvider) {
+
         $routeProvider
 
             .when ('/', {

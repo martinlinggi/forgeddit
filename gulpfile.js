@@ -10,6 +10,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var clean = require('gulp-clean');
 var nodemon = require('nodemon');
 var karma = require('gulp-karma');
+//var protractor = require('gulp-protractor');
 
 var del = require('del');
 
@@ -111,26 +112,26 @@ var unitTestFiles = [
 
 gulp.task('test-unit', function() {
     return gulp.src(unitTestFiles)
-        .pipe(karma({configFile: 'karma.conf.js', action: 'run' }))
+        .pipe(karma({configFile: './test/karma.conf.js', action: 'run' }))
         .on('error', function(err) {
             // Make sure failed tests cause gulp to exit non-zero
             throw err;
         })
 });
 
-var e2eTestFiles = [
-    'test/e2e/**/*.js'
-];
+// Does not work this time
+//gulp.task('test-e2e', function() {
+//    return gulp.src(['./e2e/**/*.js'])
+//        .pipe(protractor({
+//            configFile: './test/protractor.conf.js',
+//            args: ['--baseUrl', 'http://127.0.0.1:3000']
+//        }))
+//        .on('error', function(err) {
+//            // Make sure failed tests cause gulp to exit non-zero
+//            throw err;
+//        })
+//});
 
-gulp.task('test-e2e', function() {
-    return gulp.src(e2eTestFiles)
-        .pipe(karma({configFile: 'karma-e2e.conf.js', action: 'run'}))
-        .on('error', function(err) {
-            // Make sure failed tests cause gulp to exit non-zero
-            throw err;
-        })
-});
-
-gulp.task('test', ['test-unit', 'test-e2e']);
+gulp.task('test', ['test-unit']);
 
 gulp.task('default', ['dev']);

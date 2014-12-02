@@ -84,7 +84,7 @@ describe('Service: ForgedditDataService', function() {
 
             it('should properly vote the passed link object', function() {
                 var id = testLink._id;
-                $httpBackend.expectPUT('/api/links/' + id + '/vote', {value:1});
+                $httpBackend.expectPUT('/api/links/' + id + '/vote', {userName:1});
                 ForgedditDataService.voteLink(id, 1);
                 $httpBackend.flush();
             });

@@ -2,15 +2,15 @@
     <div id="logo"></div>
     <div class="headerMenu" ng-if="!isLogged" id="signIn">
         <ul>
-            <li><a ng-href="#/login">Sign in Friend</a></li>
-            <li><a ng-href="#/user/create">Create free account</a></li>
+            <li><a class="signIn" ng-href="#/login">Sign in Friend</a></li>
+            <li><a class="createAccount" ng-href="#/user/create">Create free account</a></li>
         </ul>
     </div>
     <div class="headerMenu" ng-if="isLogged" id="signOut">
         <ul>
-            <li><a ng-href="#/user/{{username}}">{{username}}</a></li>
-            <li><a ng-click="logout()" ng-href="#/logout">Sign out</a></li>
-            <li ng-if="hasAdminRights"><a ng-href="#/admin/users">Settings</a></li>
+            <li><a class="userName" ng-href="#/user/{{username}}">{{username}}</a></li>
+            <li><a class="logout" ng-click="logout()" ng-href="#/logout">Sign out</a></li>
+            <li ng-if="hasAdminRights"><a class="adminSettings" ng-href="#/admin/users">Settings</a></li>
         </ul>
     </div>
 </div>

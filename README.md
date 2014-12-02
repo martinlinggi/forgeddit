@@ -11,22 +11,26 @@ npm install
 bower install
 ```
 
-run server:
+##Start server:
 
 ```
 npm start
 ```
 
-run server for development with live-reload environment:
+##Start development with live-reload environment:
 
 ```
 gulp dev
 ```
 
-run tests:
+##Run tests:
 
+Unit-Tests
 ```
-npm test
+gulp test-unit
 ```
-
+E2E-Tests (Server must be started)
+```
+protractor  ./test/protractor.conf.js
+```
 
