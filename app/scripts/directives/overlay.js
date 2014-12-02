@@ -1,4 +1,3 @@
-//app.directive('modalDialog', function() {
   angular.module('forgedditApp').directive('modalDialog', function () {
   console.log('Overlay directive called');
   return {
