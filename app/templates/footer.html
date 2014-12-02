@@ -1,63 +1,69 @@
 <div id="footer">
-    <div id="modal1" ng-controller='MyCtrl' style="float:left;padding:10px;">
-        <a href="" ng-click="toggleModal()">Architektur</a>
-        <modal-dialog show='modalShown' width='750px' height='60%'>
-            <p>Modal Content Goes here 1<p>
+    <div id="modal0" ng-controller='OverlayCtrl' style="float:left;padding:10px;">
+        <a href="" ng-click="toggleModal()">User Experience</a>
+        <modal-dialog show='modalShown' width='90%' height='80%'>
+           <img src="images/app_overview.png">
         </modal-dialog>
     </div>
-    <div id="modal2" ng-controller='MyCtrl' style="float:left;padding:10px;">
-        <a href="" ng-click="toggleModal()">Modules</a>
-        <modal-dialog show='modalShown' width='750px' height='60%'>
-            <p>Modal Content Goes here 2<p>
+    <div id="modal1" ng-controller='OverlayCtrl' style="float:left;padding:10px;">
+        <a href="" ng-click="toggleModal()">Technologies</a>
+        <modal-dialog show='modalShown' width='90%' height='70%'>
+           <img src="images/Technologies.png">
         </modal-dialog>
     </div>
-
-    <div id="modal3" ng-controller='MyCtrl' style="float:left;padding:10px;">
+    <div id="modal2" ng-controller='OverlayCtrl' style="float:left;padding:10px;">
+        <a href="" ng-click="toggleModal()">Solution</a>
+        <modal-dialog show='modalShown' width='90%' height='70%'>
+            <img src="images/Solution_Overview.png">
+        </modal-dialog>
+    </div>
+    <div id="modal3" ng-controller='OverlayCtrl' style="float:left;padding:10px;">
+        <a href="" ng-click="toggleModal()">Start Options</a>
+        <modal-dialog show='modalShown' width='90%' height='75%'>
+            <img src="images/start_options.png">
+        </modal-dialog>
+    </div>
+    <div id="modal3" ng-controller='OverlayCtrl' style="float:left;padding:10px;">
         <a href="" ng-click="toggleModal()">Build</a>
-        <modal-dialog show='modalShown' width='750px' height='60%'>
-            <p>Modal Content Goes here 3<p>
+        <modal-dialog show='modalShown' width='70%' height='70%'>
+            <img src="images/build.png">
         </modal-dialog>
     </div>
-    <div id="modal4" ng-controller='MyCtrl' style="float:left;padding:10px;">
-        <a href="" ng-click="toggleModal()">Database</a>
-        <modal-dialog show='modalShown' width='750px' height='60%'>
-            <p>Modal Content Goes here 4<p>
+    <div id="modal5" ng-controller='OverlayCtrl' style="float:left;padding:10px;">
+        <a href="" ng-click="toggleModal()">Webserver Structure</a>
+        <modal-dialog show='modalShown' width='90%' height='70%'>
+			<img src="images/Serverside_Structure.png">
         </modal-dialog>
     </div>
-    <div id="modal5" ng-controller='MyCtrl' style="float:left;padding:10px;">
-        <a href="" ng-click="toggleModal()">Webserver/Express</a>
-        <modal-dialog show='modalShown' width='750px' height='60%'>
-            <p>Modal Content Goes here 5<p>
+    <div id="modal6" ng-controller='OverlayCtrl' style="float:left;padding:10px;">
+        <a href="" ng-click="toggleModal()">Angular Structure</a>
+        <modal-dialog show='modalShown' width='80%' height='70%'>
+           <img src="images/Angular.png">
         </modal-dialog>
     </div>
-    <div id="modal6" ng-controller='MyCtrl' style="float:left;padding:10px;">
-        <a href="" ng-click="toggleModal()">Angular</a>
-        <modal-dialog show='modalShown' width='750px' height='60%'>
-            <p>Modal Content Goes here 6<p>
+    <div id="modal7" ng-controller='OverlayCtrl' style="float:left;padding:10px;">
+        <a href="" ng-click="toggleModal()">Angular Templates</a>
+        <modal-dialog show='modalShown' width='70%' height='70%'>
+			<img src="images/SPA_Angular_Templates.png">
         </modal-dialog>
     </div>
-    <div id="modal7" ng-controller='MyCtrl' style="float:left;padding:10px;">
-        <a href="" ng-click="toggleModal()">Linkliste</a>
-        <modal-dialog show='modalShown' width='750px' height='60%'>
-            <p>Modal Content Goes here 7<p>
+	<br/>
+    <div id="modal10" ng-controller='OverlayCtrl' style="float:left;padding:10px;">
+        <a href="" ng-click="toggleModal()">Authentication / Session Management Überblick</a>
+        <modal-dialog show='modalShown' width='90%' height='60%'>
+			<img src="images/Authentication_Session.png">
         </modal-dialog>
     </div>
-    <div id="modal8" ng-controller='MyCtrl' style="float:left;padding:10px;">
-        <a href="" ng-click="toggleModal()">Login/Logout</a>
-        <modal-dialog show='modalShown' width='750px' height='60%'>
-            <p>Modal Content Goes here 8<p>
+	<div id="modal11" ng-controller='OverlayCtrl' style="float:left;padding:10px;">
+        <a href="" ng-click="toggleModal()">Add User</a>
+        <modal-dialog show='modalShown' width='90%' height='60%'>
+			<img src="images/Add_User.png">
         </modal-dialog>
     </div>
-    <div id="modal9" ng-controller='MyCtrl' style="float:left;padding:10px;">
-        <a href="" ng-click="toggleModal()">Votes</a>
-        <modal-dialog show='modalShown' width='750px' height='60%'>
-            <p>Modal Content Goes here 9<p>
-        </modal-dialog>
-    </div>
-    <div id="modal10" ng-controller='MyCtrl' style="padding:10px;">
-        <a href="" ng-click="toggleModal()">Comments</a>
-        <modal-dialog show='modalShown' width='750px' height='60%'>
-            <p>Modal Content Goes here 10<p>
+	<div id="modal11" ng-controller='OverlayCtrl' style="float:left;padding:10px;">
+        <a href="" ng-click="toggleModal()">Login / Session</a>
+        <modal-dialog show='modalShown' width='90%' height='60%'>
+ 			<img src="images/login_session.png">
         </modal-dialog>
     </div>
 </div>
