@@ -17,7 +17,7 @@
     function authenticate(username, password, func) {
         // check if usename and password are given
         if (!username || !password) {
-            return func(new Error('Please provide username and password.'));
+            return func(new Error('Please provide username or password.'));
         }
 
         // check if username exists and password is correct
@@ -31,7 +31,7 @@
                     for (var i = 0, n = hash.length; i < n; i++)
                     {
                         if (hash[i] !== user.hash[i]) {
-                            return func(new Error('invalid password'));
+                            func(new Error('invalid password'));
                         }
                     }
                     return func(null, user);
