@@ -191,7 +191,6 @@
                 $scope.userNameError = false;
                 $scope.message = '';
                 var user = $scope.user;
-                user.active = true;
                 user.registrationDate = new Date().getTime();
                 user.lastLoginDate = 0;
                 if (user.password === '') {
