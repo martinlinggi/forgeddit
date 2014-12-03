@@ -46,7 +46,7 @@ If the database is empty on server-start, Four links will be generated automatic
 ##Features
 
 ###Not signed in
- - Browse the links and Comments
+ - Browse the links and comments
  - Change sort order: "Newest" or "Most voted"
  - Sign in
  - Create account
@@ -65,5 +65,6 @@ If the database is empty on server-start, Four links will be generated automatic
  - Add a new user
  - Change password
  - Change user role
+ - Delete any Link
  - Block an unfriendly user
  - Delete an user
