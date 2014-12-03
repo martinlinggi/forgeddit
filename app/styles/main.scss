@@ -686,9 +686,8 @@ ul#linkList {
 /**********************************************************
  * Responsive design
  **********************************************************/
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
+@media (max-width: 1024px)
+
 {
 
 #header {
@@ -732,15 +731,13 @@ and (max-device-width : 1024px)
 
 }
 
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 480px)
+/* Smartphones (portrait) ----------- */
+@media (max-width: 320px), (max-device-width: 320px)
 {
 
   body
   {
-    font-size: 1.5rem;
+//    font-size: 1.5rem;
   }
 
 

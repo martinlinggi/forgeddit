@@ -158,15 +158,14 @@ ul#linkList .linkItem:nth-child(odd) { background-color: #ededed; }
 ul#linkList .linkItem:nth-child(even) { background-color: #fafafa; }
 
 /********************************************************** Responsive design *********************************************************/
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) { #header #logo { float: none; }
+@media (max-width: 1024px) { #header #logo { float: none; }
   #header #search { float: right; width: auto; margin-top: 0.5em; background-color: white; }
   #header .headerMenu { float: left; width: 100%; margin: 0; padding-top: 0.5rem; padding-bottom: 0.5rem; background-color: #151515; }
   form label { width: 5rem; }
   .formButton { margin-left: 6rem; width: 100%; }
   .linkEdit { width: 50%; } }
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) { body { font-size: 1.5rem; }
-  #header { height: 37px; background-color: #151515; }
+/* Smartphones (portrait) ----------- */
+@media (max-width: 320px), (max-device-width: 320px) { #header { height: 37px; background-color: #151515; }
   #header #logo { height: 37px; width: 152px; background-size: 100%; float: none; }
   #header .headerMenu { float: left; width: 100%; margin: 0; padding-top: 0.5rem; background-color: #151515; }
   form label { width: 5rem; }
