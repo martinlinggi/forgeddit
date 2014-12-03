@@ -9,6 +9,7 @@ First clone the project from the git repository and then install the libraries:
 ```
 npm install
 bower install
+gulp build
 ```
 
 ##Start server
