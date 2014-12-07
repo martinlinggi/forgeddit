@@ -29,9 +29,16 @@ Unit-Tests
 ```
 gulp test-unit
 ```
-E2E-Tests (Server must be started)
+E2E-Tests (Server must running)
+
 ```
 protractor  ./test/protractor.conf.js
+```
+
+Protractor installation (if needed)
+```
+npm install -g protractor
+webdriver-manager update
 ```
 
 ##Initial Users:
