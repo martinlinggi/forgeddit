@@ -9,7 +9,7 @@
     <div class="headerMenu" ng-if="isLogged" id="signOut">
         <ul>
             <li><a class="userName" ng-href="#/user/{{username}}">{{username}}</a></li>
-            <li><a class="logout" ng-click="logout()" ng-href="#/logout">Sign out</a></li>
+            <li><a class="signOut" ng-click="logout()" ng-href="#/logout">Sign out</a></li>
             <li ng-if="hasAdminRights"><a class="adminSettings" ng-href="#/admin/users">Settings</a></li>
         </ul>
     </div>
