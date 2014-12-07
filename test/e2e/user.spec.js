@@ -36,7 +36,7 @@ describe("E2E: User functions:", function() {
         expect(element(by.css('.adminSettings')).isPresent()).toBeTruthy();
 
         // sign out
-        element(by.id('signOut')).click();
+        element(by.css('.signOut')).click();
 
         // check if signed oud
         expect(element(by.css('.userName')).isPresent()).toBeFalsy();
@@ -54,7 +54,7 @@ describe("E2E: User functions:", function() {
         expect(element(by.css('.adminSettings')).isPresent()).toBeFalsy();
 
         // sign out
-        element(by.id('signOut')).click();
+        element(by.css('.signOut')).click();
 
         // check if signed oud
         expect(element(by.css('.userName')).isPresent()).toBeFalsy();
@@ -94,12 +94,12 @@ describe("E2E: User functions:", function() {
         element(by.id('confirmAddUser')).click();
 
         // sign out as admin, sign in as test
-        element(by.id('signOut')).click();
+        element(by.css('.signOut')).click();
         signInAs('test1', 'test1');
 
         // check if signed in as test and sign out
         expect(element(by.css('.userName')).getText()).toEqual('test1');
-        element(by.id('signOut')).click();
+        element(by.css('.signOut')).click();
 
     });
 
@@ -117,12 +117,11 @@ describe("E2E: User functions:", function() {
         expect(element(by.css('span.error')).isDisplayed()).toBeFalsy();
 
         // Try to sign in
-        element(by.id('signIn')).click();
         signInAs('test2', 'test2');
 
         // check if signed in as test and sign out
         expect(element(by.css('.userName')).getText()).toEqual('test2');
-        element(by.id('signOut')).click();
+        element(by.css('.signOut')).click();
 
     });
 
