@@ -31,7 +31,7 @@
                     for (var i = 0, n = hash.length; i < n; i++)
                     {
                         if (hash[i] !== user.hash[i]) {
-                            func(new Error('invalid password'));
+                            return func(new Error('invalid password'));
                         }
                     }
                     return func(null, user);
