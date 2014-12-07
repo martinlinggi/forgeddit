@@ -76,3 +76,7 @@ If the database is empty on server-start, Four links will be generated automatic
  - Delete any Link
  - Block an unfriendly user
  - Delete an user
+
+###Specials
+ - Screenreader-Support on the icon's
+ - Inpage-Editor for the Link-Field
